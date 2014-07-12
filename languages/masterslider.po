@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MasterSlider\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-07-06 13:01+0330\n"
-"PO-Revision-Date: 2014-07-06 13:01+0330\n"
+"POT-Creation-Date: 2014-07-12 11:36+0330\n"
+"PO-Revision-Date: 2014-07-12 11:36+0330\n"
 "Last-Translator: FULL NAME <email@example.com>\n"
 "Language-Team: LANGUAGE <translations@example.com >\n"
 "MIME-Version: 1.0\n"
@@ -48,16 +48,40 @@ msgstr ""
 msgid "Sample Sliders"
 msgstr ""
 
-#: admin/includes/msp-sample-sliders.php:31
+#: admin/includes/msp-sample-sliders.php:29
 msgid "Custom Slider"
 msgstr ""
 
-#: admin/includes/msp-sample-sliders.php:45
-msgid "Sample Slider 1"
+#: admin/includes/msp-sample-sliders.php:43
+msgid "Slider with Horizontal Thumbnails"
 msgstr ""
 
-#: admin/includes/msp-sample-sliders.php:54
-msgid "Sample Slider 2"
+#: admin/includes/msp-sample-sliders.php:52
+msgid "Slider Without Thumbnails"
+msgstr ""
+
+#: admin/includes/msp-sample-sliders.php:61
+msgid "Slider with Vertical Thumbnails"
+msgstr ""
+
+#: admin/includes/msp-sample-sliders.php:70
+msgid "Fullwidth Slider"
+msgstr ""
+
+#: admin/includes/msp-sample-sliders.php:79
+msgid "Simple Autoplay Slider"
+msgstr ""
+
+#: admin/includes/msp-sample-sliders.php:88
+msgid "Fullwidth Slider with Thumbnails"
+msgstr ""
+
+#: admin/includes/msp-sample-sliders.php:97
+msgid "Slider with Slide Info"
+msgstr ""
+
+#: admin/includes/msp-sample-sliders.php:106
+msgid "Slider with Slide Info V2"
 msgstr ""
 
 #: admin/includes/classes/class-axiom-list-table.php:181
@@ -624,69 +648,73 @@ msgstr ""
 msgid "Starter ID is not valid."
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:282
+#: admin/includes/classes/class-msp-importer.php:272
 msgid "Sorry, You don't have enough permission to import/export sliders."
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:428
+#: admin/includes/classes/class-msp-importer.php:413
 msgid "Import data is not valid."
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:455
+#: admin/includes/classes/class-msp-importer.php:440
 msgid "Preset styles imported successfully."
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:461
+#: admin/includes/classes/class-msp-importer.php:446
 msgid "Preset transitions imported successfully."
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:472
+#: admin/includes/classes/class-msp-importer.php:449
+msgid "Importing slides .."
+msgstr ""
+
+#: admin/includes/classes/class-msp-importer.php:459
 msgid "All data imported successfully, have fun :)"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:474
+#: admin/includes/classes/class-msp-importer.php:461
 msgid "Back to panel .."
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:628
-#: admin/includes/classes/class-msp-importer.php:737
+#: admin/includes/classes/class-msp-importer.php:615
+#: admin/includes/classes/class-msp-importer.php:724
 msgid "Invalid file type"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:675
+#: admin/includes/classes/class-msp-importer.php:662
 msgid "Remote server did not respond"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:681
+#: admin/includes/classes/class-msp-importer.php:668
 #, php-format
 msgid "Remote server returned error response %1$d %2$s"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:688
+#: admin/includes/classes/class-msp-importer.php:675
 msgid "Remote file is incorrect size"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:693
+#: admin/includes/classes/class-msp-importer.php:680
 msgid "Zero size file downloaded"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:699
+#: admin/includes/classes/class-msp-importer.php:686
 #, php-format
 msgid "Remote file is too large, limit is %s"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:732
+#: admin/includes/classes/class-msp-importer.php:719
 msgid "Empty filename"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:760
+#: admin/includes/classes/class-msp-importer.php:747
 #, php-format
 msgid ""
 "Unable to create directory %s. Is its parent directory writable by the "
 "server?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-importer.php:766
+#: admin/includes/classes/class-msp-importer.php:753
 #, php-format
 msgid "Could not write file %s"
 msgstr ""
@@ -757,7 +785,7 @@ msgstr ""
 
 #: admin/views/index.php:20
 #, php-format
-msgid " and using Master Slider %s"
+msgid " and using <a href=\"%s\">Master Slider</a> %s"
 msgstr ""
 
 #: admin/views/setting/class-msp-settings.php:45
@@ -818,23 +846,11 @@ msgid "Create"
 msgstr ""
 
 #: admin/views/slider-dashboard/list-sliders.php:105
-#: admin/views/slider-dashboard/list-sliders.php:168
+#: admin/views/slider-dashboard/list-sliders.php:153
 msgid "Export"
 msgstr ""
 
-#: admin/views/slider-dashboard/list-sliders.php:111
-msgid "Export Options"
-msgstr ""
-
-#: admin/views/slider-dashboard/list-sliders.php:118
-msgid "Export Preset Styles?"
-msgstr ""
-
-#: admin/views/slider-dashboard/list-sliders.php:120
-msgid "Export Preset Transitions?"
-msgstr ""
-
-#: admin/views/slider-dashboard/list-sliders.php:171
+#: admin/views/slider-dashboard/list-sliders.php:156
 msgid ""
 "Downloads an export file that contains your selected sliders to import on "
 "your new site."
