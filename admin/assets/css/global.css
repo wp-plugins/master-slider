@@ -1,0 +1,15 @@
+
+/** masterslider admin menu icon **/
+#toplevel_page_master-slider .menu-icon-generic div.wp-menu-image:before { content: ' ';}
+#toplevel_page_master-slider .menu-icon-generic div.wp-menu-image {
+	background: url( ../images/master-admin-menu.svg ) no-repeat 7px 7px !important;
+	background-size: 23px auto !important;
+	opacity:0.6;
+}
+#toplevel_page_masterslider .menu-icon-generic.wp-menu-open div.wp-menu-image,
+#toplevel_page_masterslider .menu-icon-generic.current div.wp-menu-image {
+	opacity:1;
+}
+/** visual composer element **/
+.icon-vc-msslider-el ,
+.wpb_masterslider_pb .wpb_element_wrapper { background-image: url( ../images/thirdparty/master-slider-32x32.png ) !important; }
