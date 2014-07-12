@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, seo, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, video slider, yotube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
