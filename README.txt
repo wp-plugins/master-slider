@@ -1,4 +1,4 @@
-=== Master Slider - Responsive Touch Slider for WordPress  ===
+=== Master Slider - Responsive Touch Slider ===
 Contributors: averta
 Donate link: http://averta.net/
 License: GPLv3
@@ -8,7 +8,7 @@ Requires at least: 3.8
 Tested up to: 3.9.1
 Stable tag: 1.0.2
 
-Master Slider is the most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
+The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
 == Description ==
 
