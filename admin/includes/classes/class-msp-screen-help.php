@@ -90,7 +90,6 @@ class MSP_Screen_Help extends Axiom_Screen_Help {
 				<p><code>&lt;?php masterslider ( 1 ); ?&gt;</code></p>OR
 				<p><code>&lt;?php echo get_masterslider ( 1 ); ?&gt;</code></p><br />
 				
-				<p><strong>Note</strong>: If you are developer, take a look at our <a href="http://masterslider.com/doc/wp/developer/" target="_blank">developer documentation</a> too.</p>
 				<hr>
 
 				<p>
@@ -105,28 +104,23 @@ class MSP_Screen_Help extends Axiom_Screen_Help {
 	public function display_support(){
 		?>
 		<h3><strong>Support</strong></h3>
-		<hr>
+		<hr />
 
 		<h4>If you have any questions please follow these steps:</h4>
-		<ul>
-			<li>1 - Please read item's <a href="http://masterslider.com/doc/wp" target="_blank">Documentation </a> </li>
-			<li>2 - Take a look in our <a href="http://support.averta.net/envato/faq/" target="_blank">FAQ</a> page</li>
-			<li>3 - Take a look in our <a href="http://support.averta.net/envato/knowledgebase/" target="_blank">Knowledge base</a></li>
-			<li>4 - Take a look in <a href="http://support.averta.net/envato/videos/" target="_blank">Video Tutorials</a> page</li>
-			<li>5 - Still have questions(s)? <a href="http://support.averta.net/envato/wp-login.php?action=register" target="_blank" rel="nofollow">Create an Account</a> in <a href="http://support.averta.net/envato/support/" rel="nofollow">Support Forums</a> (<a href="http://i44.tinypic.com/311rr4h.jpg" rel="nofollow">Find your “Item Purchase Code”</a>)</li>
-			<li>6 - Use search field at the top of support forum for similar topics</li>
-			<li>7 - If you still didn't find your answers please post your question(s) in the item’s <a href="http://support.averta.net/envato/support/" target="_blank">support forum</a>
-			Our support staff are there to help you as soon as possible.</li>
-		</ul>
-		<br>
+		<ol>
+			<li>Please read item's <a href="http://masterslider.com/doc/wp/free" target="_blank">Documentation </a> </li>
+			<li>Take a look in our <a href="http://wordpress.org/plugins/master-slider/faq/" target="_blank">FAQ</a> page</li>
+			<li>Search plugin's support forum using <a href="https://www.google.com/search?q=site:wordpress.org+%22master+slider%22+%22support%22+your+question+here" target="_blank">this link</a> for finding already asked or similar questions.</li>
+			<li>If you did not find your answer, please post new topic in <a href="http://wordpress.org/support/plugin/master-slider" target="_blank">support forum</a></li>
+		</ol>
+		<br />
 
 
 		<strong>Why support forum?</strong>
 		<ul>
-			<li>You can upload images and insert code with code-highlighting.</li>
 			<li>It is organized and searchable (that makes support easier and faster)</li>
 		</ul>
-		<br>
+		<br />
 
 		<strong>Supporting our Items INCLUDES</strong>:
 		<ul>
@@ -134,21 +128,19 @@ class MSP_Screen_Help extends Axiom_Screen_Help {
 		  <li>Fixing bugs and reported issues</li>
 		  <li>Providing updates to ensure compatibility with new software versions</li>
 		</ul>
-		<br>
+		<br/>
 
 		<strong>Item support does NOT include</strong>:
 		<ul>
 		  <li>Customization and installation services</li>
 		  <li>Support for third party software and plug-ins</li>
 		</ul>
-		<br>
+		<br/>
 		
-		<p><span class="label label-info">Important Note</span> We <strong>CAN NOT</strong> provide support via email.
-		Please ask your support related questions only in our <a href="http://support.averta.net/envato/support/" target="_blank">support forum</a>.
-		</p>
-		
-		<br>
+		<p><span class="label label-info">Note</span> We <strong>CANNOT</strong> provide support via email, Please ask your support related questions only in <a href="http://wordpress.org/support/plugin/master-slider/" target="_blank">support forum</a>.</p>
+		<br />
 		<p><span class="label label-info">Important Note</span> For the fast troubleshooting, please send us detailed informations about the issue and make sure that you don't forget to send us your site url where you are using or want to use the item. Please note, that we cannot troubleshoot from screencast videos or screenshots.</p>
+
 		<?php
 	}
     
