@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, seo, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, video slider, yotube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
@@ -14,10 +14,8 @@ The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navi
 
 Master Slider is a free responsive image and content slider with super smooth hardware accelerated transitions. It supports touch navigation with pure swipe gesture that you have never experienced before. It's a truly responsive and device friendly slider which works perfect in all major devices.
 
-= Strength & flexibility =
-Master Slider is built using WordPress best practices both on the front and the back end. This results in an efficient, robust and intuitive plugin.
 
-Master Slider works with any theme, including the default WordPress themes. 
+Master Slider is built using WordPress best practices both on the front and the back end. This results in an efficient, robust and intuitive plugin. It's works with any theme, including the default WordPress themes. 
 
 
 = Features =
@@ -61,6 +59,11 @@ Master Slider works with any theme, including the default WordPress themes.
 * Chrome
 * iOS browser
 * Android browser
+
+
+= Documentations =
+
+If you have any question about working with "Master Slider", you can take a look at [online documentations](http://masterslider.com/doc/wp/free/)
 
 
 = Translation =
@@ -120,12 +123,16 @@ You can use automatic update to update the plugin safely.
 
 For help setting up and configuring Master Slider please refer to our [user guide](#)
 
-
-
 If you get stuck you can ask for help on the [Support Forums](http://wordpress.org/support/plugin/master-slider).
 
 = Will Master Slider work with my theme? =
 Master Slider works with any theme, including the default WordPress themes. 
+
+= I added text to slide (slide info), but it does not appear in slider =
+You need to add "slide info" control too. To do that, go for editing slider, under "slider controls" tab, select and add "slide info" control
+
+= After I've removed a slider, it still appears on my website =
+Maybe you have a cache plugin enabled on your website or Master Slider's built-in cache is enabled.
 
 = Where can I report bugs? =
 Bugs can be reported in our support forum
@@ -144,6 +151,9 @@ Bugs can be reported in our support forum
 
 == Changelog ==
 
+= Version 1.0.4 / (13.07.2014) =
+* Documentations added to readme file
+
 = Version 1.0.1 / (12.07.2014) =
 * initial release
 
@@ -151,4 +161,5 @@ Bugs can be reported in our support forum
 
 == Upgrade Notice ==
 
-= 1.0.1 =
+= 1.0.4 =
+* Documentations added to readme file
