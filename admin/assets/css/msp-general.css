@@ -474,3 +474,5 @@ tbody .latest-updates {
 }
 
 #wpcontent, .auto-fold #wpcontent { padding-left: 0; }
+
+.msp-template-caption { min-height: 38px; }
