@@ -163,9 +163,6 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 = Version 1.0.5 / (15.07.2014) =
 * An issue with uninstalling the plugin fixed
 
-= Version 1.0.4 / (13.07.2014) =
-* Documentations added to readme file
-
 = Version 1.0.1 / (12.07.2014) =
 * initial release
 
