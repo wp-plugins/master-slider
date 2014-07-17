@@ -12,6 +12,9 @@ The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navi
 
 == Description ==
 
+[youtube=http://www.youtube.com/watch?v=t0N5BTH8kfE&w=530]
+
+
 Master Slider is a free responsive image and content slider with super smooth hardware accelerated transitions. It supports touch navigation with pure swipe gesture that you have never experienced before. It's a truly responsive and device friendly slider which works perfectly in all major devices.
 
 
@@ -123,7 +126,7 @@ You can use automatic update to update the plugin safely.
 
 If you have any question about working with "Master Slider", you can take a look at [online documentations](http://masterslider.com/doc/wp/free/)
 
-If you get stuck you can ask for help on the [Support Forums](http://wordpress.org/tags/master-slider).
+If you get stuck you can follow these [steps to get support](http://masterslider.com/doc/wp/free/#support).
 
 = Will Master Slider work with my theme? =
 Master Slider works with any theme, including the default WordPress themes. 
