@@ -16,7 +16,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit( 'No Naughty Business Please !' );
 }
 
-// To uninstall the plugin completely you need to define MS_UNINSTALL_PLUGIN constant
+// To uninstall the plugin completely you need to define MS_UNINSTALL_PLUGIN constant in wp-config.php file
 // before deleting it from plugins page
 if ( defined( 'MS_UNINSTALL_PLUGIN' ) ) {
 	
