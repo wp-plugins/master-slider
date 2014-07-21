@@ -65,6 +65,10 @@ class MSP_Frontend_Assets {
 		                     $this->assets_dir . '/js/masterslider.min.js'	, 
 		                     array( 'jquery', 'jquery-easing' ), $this->version, true );
 		
+		// always load assets by default if 'allways_load_ms_assets' option was enabled
+		if( 'on' == msp_get_setting( 'allways_load_ms_assets' , 'msp_advanced' ) ) {
+			wp_enqueue_script( 'masterslider-core'   );
+		}
 
 		// Print JS Object //////////////////////////////////////////////////////////////////
 		

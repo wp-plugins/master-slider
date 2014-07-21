@@ -70,6 +70,11 @@ class MSP_Settings {
             )
         );
 
+        $sections[] = array(
+            'id' => 'msp_advanced',
+            'title' => __( 'Advanced Setting', MSWP_TEXT_DOMAIN )
+        );
+
         return $sections;
     }
 
@@ -102,6 +107,15 @@ class MSP_Settings {
                 'type'  => 'text',
                 'default' => '12',
                 'sanitize_callback' => 'floatval'
+            )
+        );
+
+        $settings_fields['msp_advanced'] = array(
+            array(
+                'name'  => 'allways_load_ms_assets',
+                'label' => __( 'Load assets on all pages?', MSWP_TEXT_DOMAIN ),
+                'desc'  => __( 'By default, Master Slider will load corresponding JavaScript files on demand. but if you need to load assets on all pages, check this option. ( For example, if you plan to load Master Slider via Ajax, you need to check this option ) ', MSWP_TEXT_DOMAIN ),
+                'type'  => 'checkbox'
             )
         );
 
