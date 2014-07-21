@@ -6,17 +6,15 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 
 The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
 == Description ==
 
-[youtube http://www.youtube.com/watch?v=t0N5BTH8kfE]
-
-
 Master Slider is a free responsive image and content slider with super smooth hardware accelerated transitions. It supports touch navigation with pure swipe gesture that you have never experienced before. It's a truly responsive and device friendly slider which works perfectly in all major devices.
 
+[youtube http://www.youtube.com/watch?v=t0N5BTH8kfE]
 
 Master Slider is built using WordPress best practices both on the front and the back end. This results in an efficient, robust and intuitive plugin. It's works with any theme, including the default WordPress themes.
 
@@ -160,6 +158,9 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Changelog ==
 
+= Version 1.0.8 / (21.07.2014) =
+* A link added to plugins page for rating this plugin
+
 = Version 1.0.7 / (19.07.2014) =
 * [New Feature]: New option added to global setting that let you load plugins's scripts on all pages.
 			   ( Useful when loading slider via Ajax )
@@ -178,6 +179,5 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 1.0.7 =
-* [New Feature]: New option added to global setting that let you load plugins's scripts on all pages.
-			   ( Useful when loading slider via Ajax )
+= 1.0.8 =
+* A link added to plugins page for rating this plugin
