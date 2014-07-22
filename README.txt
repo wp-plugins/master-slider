@@ -3,22 +3,20 @@ Contributors: averta
 Donate link: http://averta.net/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia
+Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.0.5
+Stable tag: 1.0.9
 
 The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
 == Description ==
 
-[youtube=http://www.youtube.com/watch?v=t0N5BTH8kfE&w=530]
-
-
 Master Slider is a free responsive image and content slider with super smooth hardware accelerated transitions. It supports touch navigation with pure swipe gesture that you have never experienced before. It's a truly responsive and device friendly slider which works perfectly in all major devices.
 
+[youtube http://www.youtube.com/watch?v=t0N5BTH8kfE]
 
-Master Slider is built using WordPress best practices both on the front and the back end. This results in an efficient, robust and intuitive plugin. It's works with any theme, including the default WordPress themes. 
+Master Slider is built using WordPress best practices both on the front and the back end. This results in an efficient, robust and intuitive plugin. It's works with any theme, including the default WordPress themes.
 
 
 = Features =
@@ -160,11 +158,22 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Changelog ==
 
-= Version 1.0.5 / (15.07.2014) =
-* An issue with uninstalling the plugin fixed
+= Version 1.0.9 / (22.07.2014) =
+* A minor bug in plugins page fixed
 
-= Version 1.0.4 / (13.07.2014) =
-* Documentations added to readme file
+= Version 1.0.8 / (21.07.2014) =
+* A link added to plugins page for rating this plugin
+
+= Version 1.0.7 / (19.07.2014) =
+* [New Feature]: New option added to global setting that let you load plugins's scripts on all pages.
+			   ( Useful when loading slider via Ajax )
+* An issue with text editor fixed
+
+= Version 1.0.6 / (17.07.2014) =
+* [New]: Introduction video added
+
+= Version 1.0.5 / (15.07.2014) =
+* [Fix]: An issue with uninstalling the plugin fixed
 
 = Version 1.0.1 / (12.07.2014) =
 * initial release
@@ -173,5 +182,5 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 1.0.5 =
-* An issue with uninstalling the plugin fixed
+= 1.0.9 =
+* A minor bug in plugins page fixed
