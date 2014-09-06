@@ -5,8 +5,8 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider
 Requires at least: 3.8
-Tested up to: 3.9.2
-Stable tag: 1.0.10
+Tested up to: 4.0.0
+Stable tag: 1.1.0
 
 The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
@@ -158,6 +158,10 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Changelog ==
 
+= Version 1.1.0 / (06.09.2014) =
+* compatibility with WordPress 4.0.0 added
+* Minor bugs fixed
+
 = Version 1.0.10 / (07.08.2014) =
 * Slide info is now shortcode enabled
 * compatibility with WordPress 3.9.2 added
@@ -186,6 +190,6 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 1.0.10 =
-* Slide info is now shortcode enabled
-* compatibility with WordPress 3.9.2 added
+= 1.1.0 =
+* compatibility with WordPress 4.0.0 added
+* Minor bugs fixed
