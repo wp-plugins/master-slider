@@ -165,8 +165,8 @@ class Master_Slider_Admin {
 	 */
 	public function enqueue_admin_scripts() {
 
-		// load global style - loads on all admin area
-		wp_enqueue_style( MSWP_SLUG .'-global-styles', 	MSWP_AVERTA_ADMIN_URL . '/assets/css/global.css', array(), MSWP_AVERTA_VERSION );
+		$admin_assets = new MSP_Admin_Assets();
+		$admin_assets->enqueue_global_assets();
 
 		if ( ! isset( $this->sliders_screen_hook_suffix ) )
 			return;
@@ -174,9 +174,8 @@ class Master_Slider_Admin {
 		// load masterslider spesific assets only on it's admin page
 		$screen = get_current_screen();
 		if ( $this->sliders_screen_hook_suffix == $screen->id ) {
-
-			$admin_assets = new MSP_Admin_Assets();
-			$admin_assets->enqueue();
+			
+			$admin_assets->enqueue_panel_assets();
 		}
 
 	}
