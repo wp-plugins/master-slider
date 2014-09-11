@@ -168,8 +168,11 @@ msp-ac-btn:active {
 }
 
 @media only screen and (max-width: 1500px) { 
+	.msp-template-caption { min-height:40px; } 
+}
+
+@media only screen and (max-width: 1500px) { 
 	.column-date_created { display:none; } 
-	
 }
 
 @media only screen and (max-width: 1350px) { 
@@ -473,6 +476,5 @@ tbody .latest-updates {
 	padding-left: 35px;
 }
 
-#wpcontent, .auto-fold #wpcontent { padding-left: 0; }
 
 .msp-template-caption { min-height: 38px; }

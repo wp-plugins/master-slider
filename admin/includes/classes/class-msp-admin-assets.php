@@ -23,7 +23,7 @@ class MSP_Admin_Assets {
 	}
 
 
-	public function enqueue (){
+	public function enqueue_panel_assets (){
 
 		// general assets
 		$this->load_general_styles();
@@ -41,6 +41,31 @@ class MSP_Admin_Assets {
 			$this->add_panel_script_localizations();
 		}
 		
+	}
+
+
+	public function enqueue_global_assets(){
+
+		$this->load_global_styles();
+		$this->add_global_variables();
+	}
+	
+
+	public function load_global_styles(){
+		// load global style - loads on all admin area
+		wp_enqueue_style( MSWP_SLUG .'-global-styles', 	MSWP_AVERTA_ADMIN_URL . '/assets/css/global.css', array(), MSWP_AVERTA_VERSION );
+	}
+
+
+	public function add_global_variables(){
+		// load global variables about Master Slider
+		wp_localize_script( 'jquery', '__MS_GLOBAL', array(
+			'ajax_url'       => admin_url( 'admin-ajax.php' ),
+			'admin_url'      => admin_url(),
+			'menu_page_url'  => menu_page_url( MSWP_SLUG, false ),
+			'plugin_url' 	 => MSWP_AVERTA_URL,
+			'plugin_name'	 => esc_js( __( 'Master Slider', MSWP_TEXT_DOMAIN ) )
+		));
 	}
 
 	
