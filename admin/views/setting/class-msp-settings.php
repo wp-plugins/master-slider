@@ -75,6 +75,11 @@ class MSP_Settings {
             'title' => __( 'Advanced Setting', MSWP_TEXT_DOMAIN )
         );
 
+        $sections[] = array(
+            'id' => 'upgrade_to_pro',
+            'title' => __( 'Upgrade to Pro version', MSWP_TEXT_DOMAIN )
+        );
+
         return $sections;
     }
 
@@ -116,6 +121,15 @@ class MSP_Settings {
                 'label' => __( 'Load assets on all pages?', MSWP_TEXT_DOMAIN ),
                 'desc'  => __( 'By default, Master Slider will load corresponding JavaScript files on demand. but if you need to load assets on all pages, check this option. ( For example, if you plan to load Master Slider via Ajax, you need to check this option ) ', MSWP_TEXT_DOMAIN ),
                 'type'  => 'checkbox'
+            )
+        );
+
+        $settings_fields['upgrade_to_pro'] = array(
+            array(
+                'name' => 'upgrade_text',
+                'desc' => __( 'Upgrade to Pro version to unlock more features!', MSWP_TEXT_DOMAIN ) . sprintf( ' <a href="http://www.masterslider.com/wordpress/pro/?msl" target="_blank">%s</a>', __( 'Checkout the list of features ..', MSWP_TEXT_DOMAIN ) ),
+                'type' => 'plain_text',
+                'label'=> __( 'Need more features?', MSWP_TEXT_DOMAIN )
             )
         );
 

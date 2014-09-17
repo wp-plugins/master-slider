@@ -245,17 +245,14 @@ class Master_Slider_Admin {
 	/**
 	 * Add settings action link to the plugins page.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 */
 	public function add_action_links( $links ) {
 
-		return array_merge(
-			array(
-				'settings' => '<a href="' . admin_url( 'admin.php?page=' . MSWP_SLUG . '-setting' ) . '">' . __( 'Settings', MSWP_TEXT_DOMAIN ) . '</a>'
-			),
-			$links
-		);
+		$links['settings'] = '<a href="' . admin_url( 'admin.php?page=' . MSWP_SLUG . '-setting' ) . '">' . __( 'Settings', MSWP_TEXT_DOMAIN ) . '</a>';
+		$links['go_pro']   = '<a href="http://www.masterslider.com/wordpress/pro/?msl">' . __( 'Go Pro', MSWP_TEXT_DOMAIN ) . '</a>';
 
+		return $links;
 	}
 
 
