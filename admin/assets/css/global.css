@@ -6,6 +6,12 @@
 	background-size: 23px auto !important;
 	opacity:0.6;
 }
+.mce-i-msp_shortcodes_button {
+	background: url( ../images/master-dark.svg ) no-repeat 0 2px !important;
+	left: 3px;
+	position: relative !important;
+	top: -1px;
+}
 #toplevel_page_masterslider .menu-icon-generic.wp-menu-open div.wp-menu-image,
 #toplevel_page_masterslider .menu-icon-generic.current div.wp-menu-image {
 	opacity:1;

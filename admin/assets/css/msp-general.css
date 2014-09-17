@@ -31,6 +31,7 @@
 #msp-main-wrapper .wp-list-table tfoot th.manage-column a { color:#777; }
 #msp-main-wrapper .wp-list-table tbody tr { height:40px; }
 
+.error { display:none; }
 
 .tablenav.top {
 	display:none;
@@ -50,6 +51,44 @@
 
 .toplevel_page_masterslider .ui-widget-overlay {
 	z-index:39999;
+}
+
+.upgrade-pro {
+	right: 125px;
+	position: absolute;
+	top: 27px;
+	background: #85C63C;
+	text-decoration: none;
+	padding: 4px 20px 4px 30px;
+	border: none;
+	color: #FFF;
+	font-size: 12px;
+	border-radius: 14px;
+}
+
+.upgrade-pro:hover {
+	background: #65AD14;
+	color: #FFF;
+}
+
+.upgrade-pro:before {
+	font: 400 20px/1 dashicons !important;
+	speak: none;
+	display: inline-block;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-moz-transition: all .1s ease-in-out;
+	-o-transition: all .1s ease-in-out;
+	-webkit-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out;
+}
+
+.upgrade-pro:before {
+	content: '\f172';
+	top: 3px;
+	position: absolute;
+	left: 9px;
+	transform: rotate(-90deg);
 }
 
 /** add new slider button **/
@@ -168,8 +207,11 @@ msp-ac-btn:active {
 }
 
 @media only screen and (max-width: 1500px) { 
+	.msp-template-caption { min-height:40px; } 
+}
+
+@media only screen and (max-width: 1500px) { 
 	.column-date_created { display:none; } 
-	
 }
 
 @media only screen and (max-width: 1350px) { 
@@ -218,6 +260,9 @@ tbody .latest-updates {
 	background: white;
 	padding:13px 15px;
 	margin-top: 20px;
+	border-radius: 1px;
+	border:1px solid #e5e5e5;
+	position:relative;
 }
 .msp-logo {
 	line-height:100%;
@@ -463,6 +508,7 @@ tbody .latest-updates {
 	border: none;
 	box-shadow: none;
 	background: url(../images/help.png) no-repeat 2px 2px;
+	z-index:3;
 }
 
 #screen-meta-links .screen-meta-toggle {
@@ -473,6 +519,5 @@ tbody .latest-updates {
 	padding-left: 35px;
 }
 
-#wpcontent, .auto-fold #wpcontent { padding-left: 0; }
 
 .msp-template-caption { min-height: 38px; }

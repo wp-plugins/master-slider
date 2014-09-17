@@ -5,8 +5,8 @@
  * @author Averta (www.averta.net)
  * Copyright © All Rights Reserved, Averta Ltd.
  *
- * @version 1.0.0
- * @date July 2014
+ * @version 1.1.0
+ * @date Sept 2014
  */
 //dev\slider\tools\base.js 
  
@@ -2236,7 +2236,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
  
 /**
  * Master Slider Lite Main JavaScript File
- * @version 1.0.0
+ * @version 1.1.0
  * @author Averta Ltd.
  */
 
@@ -2297,8 +2297,8 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	};
 	
 	MasterSliderLite.author  		= 'Averta Ltd. (www.averta.net)';
-	MasterSliderLite.version 		= '1.0.0';
-	MasterSliderLite.releaseDate 	= 'July 2014';
+	MasterSliderLite.version 		= '1.1.0';
+	MasterSliderLite.releaseDate 	= 'Sept 2014';
 	
 	var p = MasterSliderLite.prototype;
 	
@@ -3349,13 +3349,15 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	p.setup = function(){		
 		this.cont = this.options.insertTo ? $(this.options.insertTo) : this.slider.$controlsCont;
 		if(!this.options.overVideo) this._hideOnvideoStarts();
+	};
 
+	p.checkHideUnder = function(){
 		if(this.options.hideUnder){
-			//this.slider.api.addEventListener(MSLSliderEvent.RESIZE, this.onSliderResize, this);
+			//this.slider.api.addEventListener(MSSliderEvent.RESIZE, this.onSliderResize, this);
+			this.needsRealign = !this.options.insetTo && (this.options.align === 'left' || this.options.align === 'right') && this.options.inset === false;
 			$(window).bind('resize', {that:this}, this.onResize);
 			this.onResize();
 
-			this.needsRealign = !this.options.insetTo && (this.options.align === 'left' || this.options.align === 'right') && this.options.inset === false;
 		}
 	};
 
@@ -3384,26 +3386,67 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			
 			this.hide(true);
 			
-			this.slider.$controlsCont.mouseenter(function(){
-				if(!that._disableAH && !that.mdown)that.visible();
-				that.mleave = false;
-			}).mouseleave(function(){
-				that.mleave = true;
-				if(!that.mdown)that.hide();
-			}).mousedown(function(){
-				that.mdown = true;
-			});
-			
-			$(document).mouseup(function(){
-				if(that.mdown && that.mleave)that.hide();
-				that.mdown = false;
-			});
+			this.slider.$controlsCont.mouseenter($.proxy(this._onMouseEnter, this))
+									 .mouseleave($.proxy(this._onMouseLeave, this))
+									 .mousedown($.proxy(this._onMouseDown, this));
+
+			if ( this.$element ) {
+				this.$element.mouseenter($.proxy(this._onMouseEnter, this))
+							 .mouseleave($.proxy(this._onMouseLeave, this))
+							 .mousedown($.proxy(this._onMouseDown, this));
+			}
+
+			$(document).mouseup($.proxy(this._onMouseUp, this));
 		}
 
 	};
 
 	/**
-	 * calls by the parent class [MSLBaseControl] when the control element visibles [hideUnder option]
+	 * Mouse Enter Listener 
+	 * @since 2.2
+	 */
+	p._onMouseEnter = function(){
+		if ( !this._disableAH && !this.mdown ){
+			this.visible();
+		}
+		
+		this.mleave = false;
+	};
+
+	/**
+	 * Mouse Leave Listener 
+	 * @since 2.2
+	 */
+	p._onMouseLeave = function(){
+		if ( !this.mdown ){
+			this.hide();
+		}
+
+		this.mleave = true;
+	};
+
+	/**
+	 * Mouse Down Listener 
+	 * @since 2.2
+	 */
+	p._onMouseDown = function(){
+		this.mdown = true;
+	};
+
+	/**
+	 * Mouse Up Listener 
+	 * @since 2.2
+	 */
+	p._onMouseUp = function(){
+		if ( this.mdown && this.mleave ) { 
+			this.hide();
+		}
+		
+		this.mdown = false;
+	};
+
+	/**
+	 * calls by the parent class [MSBaseControl] when the control element visibles [hideUnder option]
 	 * @since 1.5.7
 	 */
 	p.onAppend = function(){
@@ -3413,7 +3456,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	};
 
 	/**
-	 * calls by the parent class [MSLBaseControl] when the control element visibles [hideUnder option]
+	 * calls by the parent class [MSBaseControl] when the control element visibles [hideUnder option]
 	 * @since 1.5.7
 	 */
 	p.onDetach = function(){
@@ -3424,12 +3467,12 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p._hideOnvideoStarts = function(){
 		var that = this;
-		slider.api.addEventListener(MSLSliderEvent.VIDEO_PLAY , function(){
+		slider.api.addEventListener(MSSliderEvent.VIDEO_PLAY , function(){
    			 that._disableAH = true;
    			 that.hide();
 		});
 		 
-		slider.api.addEventListener(MSLSliderEvent.VIDEO_CLOSE , function(){
+		slider.api.addEventListener(MSSliderEvent.VIDEO_CLOSE , function(){
 		     that._disableAH = false;
    			 that.visible();
 		});
@@ -3440,7 +3483,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			this.$element.css('opacity' , 0);
 			this.$element.css('display' , 'none');
 		} else {
-			 CTween.fadeOut(this.$element , 400 , false);
+			clearTimeout(this.hideTo);
+			this.hideTo = setTimeout(function($element){
+				CTween.fadeOut($element , 400 , false);
+			}, 20 , this.$element);
 		}
 
 		this.$element.addClass('ms-ctrl-hide');
@@ -3448,15 +3494,16 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p.visible = function(){
 		if(this.detached) return;
+		clearTimeout(this.hideTo);
 		this.$element.css('display' , '');
-		CTween.fadeIn(this.$element , 400 );
+		CTween.fadeIn(this.$element , 400 , false);
 		this.$element.removeClass('ms-ctrl-hide');
 	};
 	
 	p.destroy = function(){
 
 		if(this.options && this.options.hideUnder){
-			//this.slider.api.removeEventListener(MSLSliderEvent.RESIZE, this.onResize, this);
+			//this.slider.api.removeEventListener(MSSliderEvent.RESIZE, this.onResize, this);
 			$(window).unbind('resize', this.onResize);
 		}
 	};
@@ -3510,6 +3557,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
 		this.cont.append(this.$next);
 		this.cont.append(this.$prev);
+
+		this.checkHideUnder(); // super method
 	};
 	
 	p.hide = function(fast){
@@ -3642,7 +3691,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 				this.$element.height(this.options.height);
 			}
 		}
-	
+		this.checkHideUnder(); // super method
 	};
 	
 	/**
@@ -3908,6 +3957,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.options.dir 	= 'h';
 		this.options.inset  = true;
 		this.options.margin = 10;
+		this.options.space = 10;
 		
 
 		$.extend(this.options , options);
@@ -3934,21 +3984,17 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.$bullet_cont = $('<div></div>')
 						.addClass('ms-bullets-count')
 						.appendTo(this.$element);
-		
 
-		
 		if( !this.options.insetTo && this.options.align ){
-			// reset old styles
-			this.$element.css({
-				top:'auto',
-				bottom:'auto'
-			})
 
 			var align = this.options.align;
 			if( this.options.inset ){
-				this.$element.css(align, this.options.margin );
+				this.$element.css(align, this.options.margin);
 			}
+
 		}
+
+		this.checkHideUnder(); // super method
 
 	};
 	
@@ -3964,10 +4010,18 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			bullet.on('click', function(){that.changeSlide(this.index);});
 			this.$bullet_cont.append(bullet);
 			this.bullets.push(bullet);
+			if( this.options.dir === 'h' ) {
+				bullet.css('margin', this.options.space/2);
+			}else {
+				bullet.css('margin', this.options.space);
+			}
 		}
 		
-		if(this.options.dir === 'h') 
+		if(this.options.dir === 'h') {
 			this.$element.width(bullet.outerWidth(true) * this.slider.api.count());
+		} else {
+			this.$element.css('margin-top', -this.$element.outerHeight(true)/2);
+		}
 		
 		this.select(this.bullets[this.cindex]);
 	};
@@ -4106,6 +4160,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 				this.align();
 			}
 		}
+
+		this.checkHideUnder(); // super method
 	};
 
 	/**
@@ -4273,7 +4329,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 				this.align();
 			}
 		}
-		
+		this.checkHideUnder(); // super method
 	};
 
 	/**
@@ -4363,6 +4419,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.__w = (this.options.radius + this.options.stroke/2) * 2;
 		this.$canvas[0].width  = this.__w;
 		this.$canvas[0].height = this.__w;
+
+		this.checkHideUnder(); // super method
 	};
 	
 	p.create = function(){
@@ -4474,6 +4532,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 				this.$element.css('min-height', this.options.size);
 			}
 		}
+
+		this.checkHideUnder(); // super method
 
 	};
 
