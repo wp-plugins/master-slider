@@ -2513,14 +2513,24 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			$view.mousedown(function(){
 				$view.removeClass('ms-grab-cursor');
 				$view.addClass('ms-grabbing-cursor');
+
+				if ( $.browser.msie && window.ms_grabbing_curosr ) {
+					$view[0].style.cursor = 'url(' + window.ms_grabbing_curosr + '), move';
+				}
+
 			}).addClass('ms-grab-cursor');
 			
 			$(document).mouseup(function(){
 				$view.removeClass('ms-grabbing-cursor');
 				$view.addClass('ms-grab-cursor');
+
+				if ( $.browser.msie && window.ms_grab_curosr ) {
+					$view[0].style.cursor = 'url(' + window.ms_grab_curosr + '), move';
+				}
+
 			});
 		}
-
+		
 		this.slideController.__dispatchInit();
 		
 	};

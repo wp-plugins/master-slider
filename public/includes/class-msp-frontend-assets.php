@@ -90,8 +90,14 @@ class MSP_Frontend_Assets {
 		// load custom.css if the directory is writable. else use inline css fallback
 	    $inline_css = msp_get_option( 'custom_inline_style', '' );
 	    if( empty( $inline_css ) ) {
-	    	$custom_css_ver = get_option( 'masterslider_custom_css_ver', '1.0' );
-	        wp_enqueue_style ( $this->prefix . 'custom'  , MSWP_AVERTA_URL . '/assets/custom.css', array($this->prefix . 'main'), $custom_css_ver );
+
+	    	$custom_css_ver = msp_get_option( 'masterslider_custom_css_ver', '1.0' );
+
+	    	$uploads   = wp_upload_dir();
+			$css_file  = $uploads['baseurl'] . '/' . MSWP_SLUG . '/custom.css';
+			$css_file  = apply_filters( 'masterslider_custom_css_url', $css_file );
+
+	        wp_enqueue_style ( $this->prefix . 'custom'  , $css_file , array( $this->prefix . 'main' ), $custom_css_ver );
 	    }
 
 	}
@@ -130,6 +136,8 @@ class MSP_Frontend_Assets {
 	    		printf( "<!-- Note for admin: The custom.css file in [%s] is not writeable, so masterslider uses inline css callback instead. -->\n", MSWP_AVERTA_URL . '/assets/custom.css' );
 	    	printf( "<style>%s</style>\n", $inline_css );
 	    }
+
+	    printf( "<script>var ms_grabbing_curosr = '%s', ms_grab_curosr = '%s';</script>\n", MSWP_AVERTA_URL . '/public/assets/css/common/grabbing.cur', MSWP_AVERTA_URL . '/public/assets/css/common/grab.cur' );
 	}
 
 }
