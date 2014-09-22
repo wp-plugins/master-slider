@@ -12,9 +12,7 @@
 ?>
 
 <!-- markup for slider panel page here. -->
-<div id="msp-header">
-    <div class="msp-logo"><a href="?page=masterslider"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/masterslider.gif" ></a></div>
-</div>
+<?php msp_get_panel_header(); ?>
 <div id="panelLoading" class="msp-loading">
     <img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/loading.gif">
     <?php _e('Loading data...', MSWP_TEXT_DOMAIN); ?>
@@ -280,7 +278,12 @@
         </div>
         <h4><?php _e('Youtube or Vimeo video as slide', MSWP_TEXT_DOMAIN); ?></h4>
         <div class="msp-metabox-indented">
-            <label><?php _e('Video embed src :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=60 value=currentSlide.video}}
+            <label><?php _e('Video embed url :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=60 value=currentSlide.video}}
+            <span class="msp-form-space"></span>
+            <label><?php _e('Autoplay video :', MSWP_TEXT_DOMAIN); ?> </label>  {{switch-box value=currentSlide.autoplayVideo}}
+        </div>
+        <div class="msp-metabox-indented">
+            <a href="http://masterslider.com/doc/wp/#embed-url" target="_blank"><?php _e('Where to find the Youtube/Vimeo embed URL.', MSWP_TEXT_DOMAIN); ?></a>
         </div>
     </div>
 </script>
@@ -434,10 +437,14 @@
                 <?php _e('Align control :', MSWP_TEXT_DOMAIN); ?> 
                 {{#dropdwon-List value=currentControl.align width=100}}
                     <option value="top"><?php _e('Top', MSWP_TEXT_DOMAIN); ?></option>        
-                    <option value="bottom"><?php _e('Bottom', MSWP_TEXT_DOMAIN); ?></option>   
+                    <option value="right"><?php _e('Right', MSWP_TEXT_DOMAIN); ?></option>        
+                    <option value="left"><?php _e('Left', MSWP_TEXT_DOMAIN); ?></option>   
+                    <option value="bottom"><?php _e('Bottom', MSWP_TEXT_DOMAIN); ?></option>  
                 {{/dropdwon-List}}
                 <div class="msp-form-space-med"></div>
                 <label><?php _e('Bullets margin :', MSWP_TEXT_DOMAIN); ?> </label> {{number-input value=currentControl.margin min=null}} px
+                <div class="msp-form-space-med"></div>
+                <label><?php _e('Space between bullets :', MSWP_TEXT_DOMAIN); ?> </label> {{number-input value=currentControl.space min=null}} px
             </div>
             <div class="msp-metabox-indented">
                 <label><?php _e('Hide bullets under this window width :', MSWP_TEXT_DOMAIN); ?> </label> {{number-input value=currentControl.hideUnder}} px
