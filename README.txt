@@ -3,14 +3,23 @@ Contributors: averta
 Donate link: http://averta.net/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider
+Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
 Requires at least: 3.8
 Tested up to: 4.0.0
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 
 The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
 == Description ==
+
+= Demo =
+
+* [Master Slider Demo Sliders](http://masterslider.com/wordpress/free/templates/?mslf)
+* [Master Slider Features](http://masterslider.com/wordpress/free/?mslf)
+* [Master Slider Manual](http://masterslider.com/doc/wp/free/?mslf)
+
+
+= Overview =
 
 Master Slider is a free responsive image and content slider with super smooth hardware accelerated transitions. It supports touch navigation with pure swipe gesture that you have never experienced before. It's a truly responsive and device friendly slider which works perfectly in all major devices.
 
@@ -21,34 +30,42 @@ Master Slider is built using WordPress best practices both on the front and the 
 
 = Features =
 
-* Responsive
+* Fully Responsive
+* Cross Browser IE8+ and Other Modern Browsers
+* HTML5 Valid and SEO Friendly Markup
 * Touch Swipe Navigation
-* Extremely user friendly admin panel
 * Drag and drop slider creation
-* Live preview in admin panel
-* Smart auto crop
-* Thumbnails and Tabs
-* Smart Preloading
+* Extremely user friendly admin panel
+* CSS3 Transitions with jQuery Fallback
+* Hardware Accelerated CSS3 3D Transforms
+* Optimized for Any Screen Sizes and Touch Devices
+* Smart Loading Assets
+* 6+ Interactive Slide Transitions
 * 8 Starter Samples
-* Cross Browser
-* Light weight
-* Fully Customizable
-* SEO Friendly
-* Hardware Accelerated Transitions
+* Smart auto crop
+* Loop and Linear sliding
+* Shuffle Ordering Slides Option
 * Auto height Slider
-* Loop Sliding
-* Smart Memory Management
-* Autoplay
+* Vertical and Horizontal Direction Navigation
+* Fully Customizable Thumbnail and Tabs
+* Vertical and Horizontal Bullets
+* Mouse Wheel Navigation
+* Customizable Arrows
 * Exclusive Widget and shortcodes
-* 6 modern and unique skins
-* Flexible
-* Advanced import/export tool
-* Custom user roles
+* Scroll Handle Slide Indicator
+* Auto Play with Timing Options
+* Smart Memory Management
+* 6 Modern and Unique Skins
+* Timer-bar and Circle Timer UI Controls
+* Custom user roles and capabilities
+* 5 Image Positioning Options (fill, fit, tile, ..)
 * Extremely lightweight
+* Advanced Import And Export Tool
 * Built-in cache boosting
-* Translate ready
-* Multisite compatible
+* Translate Ready
+* Multisite Compatible
 * Extensive Developer API
+* [Full List of Features](http://masterslider.com/wordpress/free/?mslf)
 
 
 = Compatible Browsers =
@@ -60,6 +77,50 @@ Master Slider is built using WordPress best practices both on the front and the 
 * Chrome
 * iOS browser
 * Android browser
+
+
+= Master Slider Pro Features =
+
+* Full-width, Full-screen and Boxed Layout
+* Post Slider - with Advanced Filtering Tool (Any Post-type)
+* WooCommerce Product Slider - With Advanced Filtering Tool
+* Flickr Slider - Make Slider Dynamically From Flickr Photosets or User Latest Photos
+* Facebook Slider - Make Image Gallery Dynamically From Facebook Public Images
+* HD Video Backgrounds for Slides
+* Embedding YouTube and Vimeo Videos
+* Animated Layers
+* 4 Different Layer Types (Text, Image, Button and Video)
+* Huge Verity of Layer Transitions
+* Transition In and Out Available for Each Layer
+* Hotspots and Tooltips over Slides
+* Deep-linking
+* Parallax Effect while Scrolling
+* Layers Parallax Effect while Swiping
+* Layers Parallax Effect while Moving Mouse over Slide
+* Boxed with Visible Nearby Slides
+* Auto Height and Auto Fill Layout
+* Binding Special Actions to Layers (Go to slide, scroll down, play, pause, ..)
+* Custom Pattern and Color Overlay
+* Auto Resizing and Aligning Layers while Resizing
+* Option to Linking Slides, Layers and Hotspots
+* 30+ Ready to Use Sample Sliders (One Click Import)
+* Nice Looking and Easy to Use Layout
+* WYSIWYG Drag & Drop Editor
+* Easy to Use Timeline animation tool
+* Visual Style Editor
+* Visual Transition Effect Editor
+* Visual Button Editor
+* Easy Aligning Layers over Stage
+* Snapping Option on Drag & Drop Layers
+* 9 Different Positioning Origin Points for Each Layer
+* Realtime Animation Preview
+* Moving Layers by Arrow Keys
+* Using WordPress Native Text Editor
+* Using Google Fonts (600+ Fonts)
+* [Full List of Pro Features](http://masterslider.com/wordpress/pro/?mslf)
+
+
+Upgrade to [Pro Version](http://masterslider.com/purchase/?mslf)
 
 
 = Documentations =
@@ -158,6 +219,9 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Changelog ==
 
+= Version 1.3.1 / (22.09.2014) =
+- Documentation updated
+
 = Version 1.3.0 / (19.09.2014) =
 - [Fix]: Addressed an issue with grap cursors in internet explorer
 - [Fix]: An issue with creating styles on multisite fixed
@@ -208,8 +272,5 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 1.3.0 =
-- [Fix]: Addressed an issue with grap cursors in internet explorer
-- [Fix]: An issue with creating styles on multisite fixed
-- [New]: New developer API to change origin_uploads_url for importing medias
-- [Improvement]: Improvement in admin interface
+= 1.3.1 =
+- Documentation updated
