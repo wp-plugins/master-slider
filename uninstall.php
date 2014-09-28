@@ -16,7 +16,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit( 'No Naughty Business Please !' );
 }
 
-// To uninstall the plugin completely you need to define MS_UNINSTALL_PLUGIN constant
+// To uninstall the plugin completely you need to define MS_UNINSTALL_PLUGIN constant in wp-config.php file
 // before deleting it from plugins page
 if ( defined( 'MS_UNINSTALL_PLUGIN' ) ) {
 	
@@ -43,4 +43,8 @@ if ( defined( 'MS_UNINSTALL_PLUGIN' ) ) {
 	$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE 'masterslider_%';");
 	$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE 'master_slider_%';");
 
+	// Delete custom css directory
+	$uploads   = wp_upload_dir();
+	$css_dir   = $uploads['basedir'] . '/master-slider' ;
+	rmdir( $dir );
 }

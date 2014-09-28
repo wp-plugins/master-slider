@@ -165,8 +165,8 @@ class Master_Slider_Admin {
 	 */
 	public function enqueue_admin_scripts() {
 
-		// load global style - loads on all admin area
-		wp_enqueue_style( MSWP_SLUG .'-global-styles', 	MSWP_AVERTA_ADMIN_URL . '/assets/css/global.css', array(), MSWP_AVERTA_VERSION );
+		$admin_assets = new MSP_Admin_Assets();
+		$admin_assets->enqueue_global_assets();
 
 		if ( ! isset( $this->sliders_screen_hook_suffix ) )
 			return;
@@ -174,9 +174,8 @@ class Master_Slider_Admin {
 		// load masterslider spesific assets only on it's admin page
 		$screen = get_current_screen();
 		if ( $this->sliders_screen_hook_suffix == $screen->id ) {
-
-			$admin_assets = new MSP_Admin_Assets();
-			$admin_assets->enqueue();
+			
+			$admin_assets->enqueue_panel_assets();
 		}
 
 	}
@@ -246,17 +245,14 @@ class Master_Slider_Admin {
 	/**
 	 * Add settings action link to the plugins page.
 	 *
-	 * @since    1.0.0
+	 * @since    1.2.0
 	 */
 	public function add_action_links( $links ) {
 
-		return array_merge(
-			array(
-				'settings' => '<a href="' . admin_url( 'admin.php?page=' . MSWP_SLUG . '-setting' ) . '">' . __( 'Settings', MSWP_TEXT_DOMAIN ) . '</a>'
-			),
-			$links
-		);
+		$links['settings'] = '<a href="' . admin_url( 'admin.php?page=' . MSWP_SLUG . '-setting' ) . '">' . __( 'Settings', MSWP_TEXT_DOMAIN ) . '</a>';
+		$links['go_pro']   = '<a href="http://www.masterslider.com/wordpress/pro/?msl">' . __( 'Go Pro', MSWP_TEXT_DOMAIN ) . '</a>';
 
+		return $links;
 	}
 
 
