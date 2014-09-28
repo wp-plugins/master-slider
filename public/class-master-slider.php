@@ -273,7 +273,8 @@ class Master_Slider {
 			$roles = array( 'administrator', 'editor' );
 
 			foreach ( $roles as $role ) {
-				$role = get_role( $role );
+				if( ! $role = get_role( $role ) ) 
+					continue;
 				$role->add_cap( 'access_masterslider'  ); 
 				$role->add_cap( 'publish_masterslider' ); 
 				$role->add_cap( 'delete_masterslider'  ); 
