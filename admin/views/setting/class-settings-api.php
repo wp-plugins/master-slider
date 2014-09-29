@@ -155,7 +155,7 @@ class WeDevs_Settings_API {
     function callback_plain_text( $args ) {
 
         $size = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
-
+        $html = '';
         $html .= sprintf( '<span> %s</span>', $args['desc'] );
 
         echo $html;

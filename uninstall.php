@@ -46,5 +46,5 @@ if ( defined( 'MS_UNINSTALL_PLUGIN' ) ) {
 	// Delete custom css directory
 	$uploads   = wp_upload_dir();
 	$css_dir   = $uploads['basedir'] . '/master-slider' ;
-	rmdir( $dir );
+	rmdir( $css_dir );
 }

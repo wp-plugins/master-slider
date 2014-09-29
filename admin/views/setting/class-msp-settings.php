@@ -35,6 +35,18 @@ class MSP_Settings {
 
         //initialize settings
         $this->settings_api->admin_init();
+
+        $this->flush_sliders_cache();
+    }
+
+
+    function flush_sliders_cache(){
+
+        if( isset( $_POST['msp_general_setting'] ) ){
+            if( isset( $_POST['msp_general_setting']['_enable_cache'] ) &&  'on' == $_POST['msp_general_setting']['_enable_cache'] ){
+                msp_flush_all_sliders_cache();
+            }
+        }
     }
 
 
@@ -169,13 +181,6 @@ class MSP_Settings {
      */
     function print_setting_script() {
         ?>
-        <script>
-        (function($) {
-        $(function() {  
-
-        });
-        })(jQuery);
-        </script>
 
         <style>
             .master-slider_page_masterslider-setting .wrap input[disabled] { background-color:#e0e0e0; }
