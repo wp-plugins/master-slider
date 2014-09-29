@@ -148,6 +148,20 @@ class WeDevs_Settings_API {
     }
 
     /**
+     * Displays a plain text
+     *
+     * @param array   $args settings field args
+     */
+    function callback_plain_text( $args ) {
+
+        $size = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
+        $html = '';
+        $html .= sprintf( '<span> %s</span>', $args['desc'] );
+
+        echo $html;
+    }
+
+    /**
      * Displays a text field for a settings field
      *
      * @param array   $args settings field args
@@ -514,6 +528,7 @@ class WeDevs_Settings_API {
         </script>
         <style type="text/css">
             .nav-tab-wrapper { margin-bottom:30px; }
+            .error, .update { display:none; }
         </style>
         <?php
     }
