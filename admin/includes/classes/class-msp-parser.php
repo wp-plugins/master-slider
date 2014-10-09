@@ -316,7 +316,7 @@ class MSP_Parser {
             'target'    => isset( $slide['linkTarget'] ) ? (string) $slide['linkTarget'] : '',
             'video'     => isset( $slide['video'] ) ? esc_attr( $slide['video'] ) : '', // youtube or vimeo video link
 
-            'info'      => wp_slash( $info ), // image alternative text
+            'info'      => wp_slash( do_shortcode( $info ) ), // image alternative text
 
             'mp4'       => isset( $slide['bgv_mp4'] ) ? esc_attr( $slide['bgv_mp4'] ) : '', // self host video bg
             'webm'      => isset( $slide['bgv_webm'] ) ? esc_attr( $slide['bgv_webm'] ) : '', // self host video bg
