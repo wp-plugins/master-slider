@@ -9,7 +9,7 @@ function msp_get_panel_header(){
         	</a>
         </div>
         <?php if( isset( $_GET['action'] ) && 'edit' == $_GET['action'] ) { ?>
-        <a class="upgrade-pro" href="http://www.masterslider.com/wordpress/pro/?msl" title="<?php _e( "Upgrade to PRO version to unlock more features. Click to see the list of features." ); ?>" target="_blank"><?php _e( "Upgrade to PRO Version", MSWP_TEXT_DOMAIN ); ?></a>
+        <a class="upgrade-pro" href="http://avt.li/mslpan" title="<?php _e( "Upgrade to PRO version to unlock more features. Click to see the list of features." ); ?>" target="_blank"><?php _e( "Upgrade to PRO Version", MSWP_TEXT_DOMAIN ); ?></a>
     	<?php } ?>
     </div>
 <?php

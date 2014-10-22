@@ -251,7 +251,7 @@ class Master_Slider_Admin {
 	public function add_action_links( $links ) {
 
 		$links['settings'] = '<a href="' . admin_url( 'admin.php?page=' . MSWP_SLUG . '-setting' ) . '">' . __( 'Settings', MSWP_TEXT_DOMAIN ) . '</a>';
-		$links['go_pro']   = '<a href="http://www.masterslider.com/wordpress/pro/?msl">' . __( 'Go Pro', MSWP_TEXT_DOMAIN ) . '</a>';
+		$links['go_pro']   = '<a href="http://avt.li/mslgo">' . __( 'Go Pro', MSWP_TEXT_DOMAIN ) . '</a>';
 
 		return $links;
 	}

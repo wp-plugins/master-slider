@@ -139,7 +139,7 @@ class MSP_Settings {
         $settings_fields['upgrade_to_pro'] = array(
             array(
                 'name' => 'upgrade_text',
-                'desc' => __( 'Upgrade to Pro version to unlock more features!', MSWP_TEXT_DOMAIN ) . sprintf( ' <a href="http://www.masterslider.com/wordpress/pro/?msl" target="_blank">%s</a>', __( 'Checkout the list of features ..', MSWP_TEXT_DOMAIN ) ),
+                'desc' => __( 'Upgrade to Pro version to unlock more features!', MSWP_TEXT_DOMAIN ) . sprintf( ' <a href="http://avt.li/mslset" target="_blank">%s</a>', __( 'Checkout the list of features ..', MSWP_TEXT_DOMAIN ) ),
                 'type' => 'plain_text',
                 'label'=> __( 'Need more features?', MSWP_TEXT_DOMAIN )
             )

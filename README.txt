@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
 Requires at least: 3.8
 Tested up to: 4.0.0
-Stable tag: 1.3.4
+Stable tag: 1.3.6
 
 The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
@@ -14,9 +14,9 @@ The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navi
 
 = Demo =
 
-* [Master Slider Demo Sliders](http://masterslider.com/wordpress/free/templates/?mslf)
-* [Master Slider Features](http://masterslider.com/wordpress/free/?mslf)
-* [Master Slider Manual](http://masterslider.com/doc/wp/free/?mslf)
+* [Master Slider Demo Sliders](http://avt.li/mswftem)
+* [Master Slider Features](http://avt.li/mswfea)
+* [Master Slider Manual](http://avt.li/mswfdoc)
 
 
 = Overview =
@@ -123,6 +123,13 @@ Master Slider is built using WordPress best practices both on the front and the 
 Upgrade to [Pro Version](http://masterslider.com/purchase/?mslf)
 
 
+= Demo for PRO Version =
+
+* [Master Slider Demo Sliders](http://avt.li/mswptem)
+* [Master Slider Features](http://avt.li/mswpfea)
+* [Master Slider Manual](http://avt.li/mswpdoc)
+
+
 = Documentations =
 
 If you have any question about working with "Master Slider", you can take a look at [online documentations](http://masterslider.com/doc/wp/free/)
@@ -219,6 +226,9 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Changelog ==
 
+= Version 1.3.6 / (22.10.2014) =
+- Improvement in swipe on android devices
+
 = Version 1.3.4 / (6.10.2014) =
 - Improvement in loading admin assets
 
@@ -282,5 +292,5 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 1.3.4 =
-- Improvement in loading admin assets
+= 1.3.6 =
+- Improvement in swipe on android devices
