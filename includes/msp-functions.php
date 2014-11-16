@@ -122,14 +122,35 @@ function msp_generate_slider_output( $slider_id, $cache_output = false ){
  * Flush and re-cache slider output if slider cache is enabled
  * 
  * @param  int      $slider_id   The ID of the slider you'd like to flush the cache
- * @return string   True if the cache is flushed and false otherwise
+ * @return bool     True if the cache is flushed and false otherwise
  */
 function msp_flush_slider_cache( $slider_id ){
-    // flush slider cache if slider cache is enabled
+    
     $is_cache_enabled = ( 'on' == msp_get_setting( '_enable_cache', 'msp_general_setting', 'off' ) );
-    if( $is_cache_enabled )
+    if( $is_cache_enabled ){
         msp_generate_slider_output( $slider_id, true );
-    return $is_cache_enabled;
+        return true;
+    }
+    return false;
+}
+
+
+/**
+ * Flush and re-cache all slideres if slider cache is enabled
+ * 
+ * @return bool     True if the cache is flushed and false otherwise
+ */
+function msp_flush_all_sliders_cache(){
+    
+    $is_cache_enabled = ( 'on' == msp_get_setting( '_enable_cache', 'msp_general_setting', 'off' ) );
+    if( ! $is_cache_enabled ){ return false; }
+
+    $all_sliders = get_masterslider_names();
+    foreach ( $all_sliders as $slider_id => $slider_name ) {
+        msp_generate_slider_output( $slider_id, true );
+    }
+        
+    return true;
 }
 
 
