@@ -327,7 +327,7 @@ function MSP(){ return Master_Slider::get_instance(); }
 MSP();
 
 
-class AttachmentFields {
+class MSP_AttachmentFields {
 	
     private $fields = array();
     
@@ -370,7 +370,7 @@ class AttachmentFields {
     }
 }
 
-$attach_fields = new AttachmentFields();
+$attach_fields = new MSP_AttachmentFields();
 $attchments_options = array(
     'image_copyright' => array(
         'label'       => '',
