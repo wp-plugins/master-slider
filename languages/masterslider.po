@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MasterSlider\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-07-12 11:36+0330\n"
-"PO-Revision-Date: 2014-07-12 11:36+0330\n"
+"POT-Creation-Date: 2014-09-28 18:17+0330\n"
+"PO-Revision-Date: 2014-09-28 18:18+0330\n"
 "Last-Translator: FULL NAME <email@example.com>\n"
 "Language-Team: LANGUAGE <translations@example.com >\n"
 "MIME-Version: 1.0\n"
@@ -24,20 +24,43 @@ msgid ""
 "deactive one of them."
 msgstr ""
 
-#: admin/class-master-slider-admin.php:221
+#: admin/class-master-slider-admin.php:220
 msgid "Master Sliders"
 msgstr ""
 
-#: admin/class-master-slider-admin.php:222
+#: admin/class-master-slider-admin.php:221
+#: admin/includes/classes/class-msp-admin-assets.php:67
 #: admin/includes/classes/class-msp-importer.php:53
 #: includes/lib/vcomposer.php:11 includes/lib/vcomposer.php:29
 msgid "Master Slider"
 msgstr ""
 
-#: admin/class-master-slider-admin.php:255
+#: admin/class-master-slider-admin.php:252
 #: admin/views/setting/class-msp-settings.php:56
 #: admin/views/setting/class-msp-settings.php:57
 msgid "Settings"
+msgstr ""
+
+#: admin/class-master-slider-admin.php:253
+msgid "Go Pro"
+msgstr ""
+
+#: admin/includes/msp-admin-templates.php:12
+msgid ""
+"Upgrade to PRO version to unlock more features. Click to see the list of "
+"features."
+msgstr ""
+
+#: admin/includes/msp-admin-templates.php:12
+msgid "Upgrade to PRO Version"
+msgstr ""
+
+#: admin/includes/msp-hooks.php:5
+msgid "Rate this plugin"
+msgstr ""
+
+#: admin/includes/msp-hooks.php:6
+msgid "Donate"
 msgstr ""
 
 #: admin/includes/msp-sample-sliders.php:8
@@ -193,425 +216,425 @@ msgstr ""
 msgid "Slider can not be created."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:173
+#: admin/includes/classes/class-msp-admin-assets.php:198
 msgid "On slide change start"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:174
+#: admin/includes/classes/class-msp-admin-assets.php:199
 msgid "On slide change end"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:175
+#: admin/includes/classes/class-msp-admin-assets.php:200
 msgid "On slide timer change"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:176
+#: admin/includes/classes/class-msp-admin-assets.php:201
 msgid "On slider resize"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:177
+#: admin/includes/classes/class-msp-admin-assets.php:202
 msgid "On Youtube/Vimeo video play"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:178
+#: admin/includes/classes/class-msp-admin-assets.php:203
 msgid "On Youtube/Vimeo video close"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:179
+#: admin/includes/classes/class-msp-admin-assets.php:204
 msgid "On swipe start"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:180
+#: admin/includes/classes/class-msp-admin-assets.php:205
 msgid "On swipe move"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:181
+#: admin/includes/classes/class-msp-admin-assets.php:206
 msgid "On swipe end"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:182
+#: admin/includes/classes/class-msp-admin-assets.php:207
 #, php-format
 msgid "Are you sure you want to remove \"%s\" callback?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:183
+#: admin/includes/classes/class-msp-admin-assets.php:208
 msgid "On slider Init"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:186
+#: admin/includes/classes/class-msp-admin-assets.php:211
 msgid "Arrows"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:187
+#: admin/includes/classes/class-msp-admin-assets.php:212
 msgid "Line Timer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:188
+#: admin/includes/classes/class-msp-admin-assets.php:213
 msgid "Bullets"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:189
+#: admin/includes/classes/class-msp-admin-assets.php:214
 msgid "Circle Timer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:190
+#: admin/includes/classes/class-msp-admin-assets.php:215
 msgid "Scrollbar"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:191
-#: admin/views/slider-panel/index.php:232
+#: admin/includes/classes/class-msp-admin-assets.php:216
+#: admin/views/slider-panel/index.php:230
 msgid "Slide Info"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:192
+#: admin/includes/classes/class-msp-admin-assets.php:217
 msgid "Thumblist/Tabs"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:195
+#: admin/includes/classes/class-msp-admin-assets.php:220
 msgid "Please enter name for new preset effect"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:196
+#: admin/includes/classes/class-msp-admin-assets.php:221
 msgid "Custom effect"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:199
+#: admin/includes/classes/class-msp-admin-assets.php:224
 msgid "Text Layer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:200
+#: admin/includes/classes/class-msp-admin-assets.php:225
 msgid "Image Layer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:201
+#: admin/includes/classes/class-msp-admin-assets.php:226
 msgid "Video Layer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:202
+#: admin/includes/classes/class-msp-admin-assets.php:227
 msgid "Hotspot"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:203
+#: admin/includes/classes/class-msp-admin-assets.php:228
 msgid "Button Layer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:206
+#: admin/includes/classes/class-msp-admin-assets.php:231
 msgid "Please enter name for new preset style"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:207
+#: admin/includes/classes/class-msp-admin-assets.php:232
 msgid "Custom style"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:210
+#: admin/includes/classes/class-msp-admin-assets.php:235
 #: admin/includes/classes/class-msp-parser.php:83
 msgid "Untitled Slider"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:213
+#: admin/includes/classes/class-msp-admin-assets.php:238
 msgid "Preset Transitions"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:214
+#: admin/includes/classes/class-msp-admin-assets.php:239
 msgid "Apply transition"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:215
-#: admin/includes/classes/class-msp-admin-assets.php:226
+#: admin/includes/classes/class-msp-admin-assets.php:240
+#: admin/includes/classes/class-msp-admin-assets.php:251
 msgid "Save as preset"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:216
+#: admin/includes/classes/class-msp-admin-assets.php:241
 msgid "Transition Editor"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:219
+#: admin/includes/classes/class-msp-admin-assets.php:244
 msgid "Align to stage :"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:220
+#: admin/includes/classes/class-msp-admin-assets.php:245
 msgid "Snapping :"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:221
+#: admin/includes/classes/class-msp-admin-assets.php:246
 msgid "Zoom :"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:222
+#: admin/includes/classes/class-msp-admin-assets.php:247
 msgid "Layer position origin : "
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:225
+#: admin/includes/classes/class-msp-admin-assets.php:250
 msgid "Apply style"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:227
+#: admin/includes/classes/class-msp-admin-assets.php:252
 msgid "Preset Styles"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:228
+#: admin/includes/classes/class-msp-admin-assets.php:253
 #, php-format
 msgid ""
 "By deleting preset style it also will be removed from other sliders in your "
 "website. Are you sure you want to delete \"%s\"?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:229
+#: admin/includes/classes/class-msp-admin-assets.php:254
 msgid "Style Editor"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:232
+#: admin/includes/classes/class-msp-admin-assets.php:257
 msgid "Master Slider Templates"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:233
+#: admin/includes/classes/class-msp-admin-assets.php:258
 msgid ""
 "Changing template will reset all slider controls and will change some slider "
 "settings. Continue?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:235
+#: admin/includes/classes/class-msp-admin-assets.php:260
 msgid "Show/Hide all"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:236
+#: admin/includes/classes/class-msp-admin-assets.php:261
 msgid "Solo All"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:237
+#: admin/includes/classes/class-msp-admin-assets.php:262
 msgid "Lock/Unlock all"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:238
+#: admin/includes/classes/class-msp-admin-assets.php:263
 msgid "Exit preview"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:239
+#: admin/includes/classes/class-msp-admin-assets.php:264
 msgid "Preview slide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:240
+#: admin/includes/classes/class-msp-admin-assets.php:265
 msgid "Show/Hide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:241
+#: admin/includes/classes/class-msp-admin-assets.php:266
 msgid "Solo"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:242
+#: admin/includes/classes/class-msp-admin-assets.php:267
 msgid "Lock/Unlock"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:243
+#: admin/includes/classes/class-msp-admin-assets.php:268
 msgid "Are you sure you want to remove this layer?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:244
+#: admin/includes/classes/class-msp-admin-assets.php:269
 msgid "Start delay :"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:245
+#: admin/includes/classes/class-msp-admin-assets.php:270
 msgid "Show duration :"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:246
+#: admin/includes/classes/class-msp-admin-assets.php:271
 msgid "Waiting duration :"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:247
+#: admin/includes/classes/class-msp-admin-assets.php:272
 msgid "Hide duration :"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:250
+#: admin/includes/classes/class-msp-admin-assets.php:275
 msgid "Show/Hide slide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:251
+#: admin/includes/classes/class-msp-admin-assets.php:276
 msgid "Duplicate slide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:252
+#: admin/includes/classes/class-msp-admin-assets.php:277
 msgid "Remove slide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:253
+#: admin/includes/classes/class-msp-admin-assets.php:278
 msgid "Are you sure you want to delete this slide?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:254
+#: admin/includes/classes/class-msp-admin-assets.php:279
 msgid "Open on the same page"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:255
+#: admin/includes/classes/class-msp-admin-assets.php:280
 msgid "Open on new page"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:256
+#: admin/includes/classes/class-msp-admin-assets.php:281
 msgid "Open in parent frame"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:257
+#: admin/includes/classes/class-msp-admin-assets.php:282
 msgid "Open in main frame"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:258
+#: admin/includes/classes/class-msp-admin-assets.php:283
 msgid "Fill"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:259
+#: admin/includes/classes/class-msp-admin-assets.php:284
 msgid "Fit"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:260
+#: admin/includes/classes/class-msp-admin-assets.php:285
 msgid "Center"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:261
+#: admin/includes/classes/class-msp-admin-assets.php:286
 msgid "Stretch"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:262
+#: admin/includes/classes/class-msp-admin-assets.php:287
 msgid "Tile"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:263
+#: admin/includes/classes/class-msp-admin-assets.php:288
 msgid "None"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:264
+#: admin/includes/classes/class-msp-admin-assets.php:289
 msgid "Align top"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:265
+#: admin/includes/classes/class-msp-admin-assets.php:290
 msgid "Align vertical center"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:266
+#: admin/includes/classes/class-msp-admin-assets.php:291
 msgid "Align bottom"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:267
+#: admin/includes/classes/class-msp-admin-assets.php:292
 msgid "Align left"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:268
+#: admin/includes/classes/class-msp-admin-assets.php:293
 msgid "Align horizontal center"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:269
+#: admin/includes/classes/class-msp-admin-assets.php:294
 msgid "Align right"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:272
+#: admin/includes/classes/class-msp-admin-assets.php:297
 msgid "Sending data..."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:273
+#: admin/includes/classes/class-msp-admin-assets.php:298
 msgid "An Error accorded, please try again."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:274
+#: admin/includes/classes/class-msp-admin-assets.php:299
 msgid "Data saved successfully."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:276
+#: admin/includes/classes/class-msp-admin-assets.php:301
 msgid "Photo title"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:277
-#: admin/includes/classes/class-msp-admin-assets.php:282
+#: admin/includes/classes/class-msp-admin-assets.php:302
+#: admin/includes/classes/class-msp-admin-assets.php:307
 msgid "Photo owner name"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:278
+#: admin/includes/classes/class-msp-admin-assets.php:303
 msgid "Date taken"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:279
+#: admin/includes/classes/class-msp-admin-assets.php:304
 msgid "Photo description"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:281
+#: admin/includes/classes/class-msp-admin-assets.php:306
 msgid "Photo name"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:283
+#: admin/includes/classes/class-msp-admin-assets.php:308
 msgid "Photo link"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:285
+#: admin/includes/classes/class-msp-admin-assets.php:310
 msgid "Goto next slide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:286
+#: admin/includes/classes/class-msp-admin-assets.php:311
 msgid "Goto previous slide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:287
+#: admin/includes/classes/class-msp-admin-assets.php:312
 msgid "Goto slide"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:288
+#: admin/includes/classes/class-msp-admin-assets.php:313
 msgid "Pause timer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:289
+#: admin/includes/classes/class-msp-admin-assets.php:314
 msgid "Resume timer"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:291
+#: admin/includes/classes/class-msp-admin-assets.php:316
 msgid "Update Button Style"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:292
+#: admin/includes/classes/class-msp-admin-assets.php:317
 msgid "Save As New Button"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:293
+#: admin/includes/classes/class-msp-admin-assets.php:318
 msgid "Are you sure you want to delete this button?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:294
+#: admin/includes/classes/class-msp-admin-assets.php:319
 msgid "Buttons"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:295
+#: admin/includes/classes/class-msp-admin-assets.php:320
 msgid "Button Editor"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:296
+#: admin/includes/classes/class-msp-admin-assets.php:321
 msgid ""
 "By updating a button it will be changed in all of your sliders. Are you sure "
 "you want to update this button?"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:311
+#: admin/includes/classes/class-msp-admin-assets.php:336
 msgid ""
 "The changes you made will be lost if you navigate away from this page. To "
 "exit preview mode click on close (X) button."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:312
+#: admin/includes/classes/class-msp-admin-assets.php:337
 msgid "Master Slider Preview"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:313
+#: admin/includes/classes/class-msp-admin-assets.php:338
 msgid "Loading Slider .."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:314
+#: admin/includes/classes/class-msp-admin-assets.php:339
 msgid "Creating The Slider .."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:315
+#: admin/includes/classes/class-msp-admin-assets.php:340
 msgid "Select a Starter"
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:316
+#: admin/includes/classes/class-msp-admin-assets.php:341
 msgid "No slider is selected to export."
 msgstr ""
 
-#: admin/includes/classes/class-msp-admin-assets.php:317
+#: admin/includes/classes/class-msp-admin-assets.php:342
 #: admin/views/slider-dashboard/list-sliders.php:95
 msgid "Import"
 msgstr ""
@@ -801,36 +824,68 @@ msgid "Validating .."
 msgstr ""
 
 #: admin/views/setting/class-msp-settings.php:69
-#: admin/views/slider-panel/index.php:61
+#: admin/views/slider-panel/index.php:59
 msgid "General Settings"
 msgstr ""
 
-#: admin/views/setting/class-msp-settings.php:88
+#: admin/views/setting/class-msp-settings.php:75
+msgid "Advanced Setting"
+msgstr ""
+
+#: admin/views/setting/class-msp-settings.php:80
+msgid "Upgrade to Pro version"
+msgstr ""
+
+#: admin/views/setting/class-msp-settings.php:98
 msgid "Hide info table"
 msgstr ""
 
-#: admin/views/setting/class-msp-settings.php:89
+#: admin/views/setting/class-msp-settings.php:99
 msgid ""
 "If you want to hide \"Latest video tutorials\" table on master slider admin "
 "panel check this field."
 msgstr ""
 
-#: admin/views/setting/class-msp-settings.php:94
+#: admin/views/setting/class-msp-settings.php:104
 msgid "Enable cache?"
 msgstr ""
 
-#: admin/views/setting/class-msp-settings.php:95
+#: admin/views/setting/class-msp-settings.php:105
 msgid "Enable cache to make Masterslider even more faster!"
 msgstr ""
 
-#: admin/views/setting/class-msp-settings.php:100
+#: admin/views/setting/class-msp-settings.php:110
 msgid "Cache period time"
 msgstr ""
 
-#: admin/views/setting/class-msp-settings.php:101
+#: admin/views/setting/class-msp-settings.php:111
 msgid ""
 "The cache refresh time in hours. Cache is also cleared when you click on "
 "\"Save Changes\" in slider panel."
+msgstr ""
+
+#: admin/views/setting/class-msp-settings.php:121
+msgid "Load assets on all pages?"
+msgstr ""
+
+#: admin/views/setting/class-msp-settings.php:122
+msgid ""
+"By default, Master Slider will load corresponding JavaScript files on "
+"demand. but if you need to load assets on all pages, check this option. "
+"( For example, if you plan to load Master Slider via Ajax, you need to check "
+"this option ) "
+msgstr ""
+
+#: admin/views/setting/class-msp-settings.php:130
+msgid "Upgrade to Pro version to unlock more features!"
+msgstr ""
+
+#: admin/views/setting/class-msp-settings.php:130
+msgid "Checkout the list of features .."
+msgstr ""
+
+#: admin/views/setting/class-msp-settings.php:132
+msgid "Need more features?"
 msgstr ""
 
 #: admin/views/slider-dashboard/list-sliders.php:14
@@ -860,598 +915,612 @@ msgstr ""
 msgid "Not found."
 msgstr ""
 
-#: admin/views/slider-panel/index.php:20
+#: admin/views/slider-panel/index.php:18
 msgid "Loading data..."
 msgstr ""
 
-#: admin/views/slider-panel/index.php:36
+#: admin/views/slider-panel/index.php:34
 msgid "Slider Settings"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:37
-#: admin/views/slider-panel/index.php:214
+#: admin/views/slider-panel/index.php:35
+#: admin/views/slider-panel/index.php:212
 msgid "Slides"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:38
+#: admin/views/slider-panel/index.php:36
 msgid "Slider Controls"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:39
+#: admin/views/slider-panel/index.php:37
 msgid "Slider Callbacks"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:45
+#: admin/views/slider-panel/index.php:43
 msgid "Shortcode :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:46
+#: admin/views/slider-panel/index.php:44
 msgid "PHP function :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:48
+#: admin/views/slider-panel/index.php:46
 msgid "Preview"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:50
+#: admin/views/slider-panel/index.php:48
 msgid "Saving..."
 msgstr ""
 
-#: admin/views/slider-panel/index.php:52
+#: admin/views/slider-panel/index.php:50
 msgid "Save Changes"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:65
+#: admin/views/slider-panel/index.php:63
 msgid "Slider name and dimentions"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:68
+#: admin/views/slider-panel/index.php:66
 msgid "Slider name :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:71
+#: admin/views/slider-panel/index.php:69
 msgid "Slider width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:73
+#: admin/views/slider-panel/index.php:71
 msgid "Slider height :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:77
+#: admin/views/slider-panel/index.php:75
 msgid "Automatically crop and resize slider images based on above size."
 msgstr ""
 
-#: admin/views/slider-panel/index.php:80
+#: admin/views/slider-panel/index.php:78
 msgid "Slider sizing method"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:84
+#: admin/views/slider-panel/index.php:82
 msgid "Boxed layout"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:85
+#: admin/views/slider-panel/index.php:83
 msgid "Full-width"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:89
+#: admin/views/slider-panel/index.php:87
 msgid "Auto-height slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:94
+#: admin/views/slider-panel/index.php:92
 msgid "Slider wrapper width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:106
+#: admin/views/slider-panel/index.php:104
 msgid "Slider transition"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:109
+#: admin/views/slider-panel/index.php:107
 msgid "Change slider transition, transition speed and space between slides"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:112
+#: admin/views/slider-panel/index.php:110
 msgid "Transition :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:118
+#: admin/views/slider-panel/index.php:116
 msgid "Transition speed :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:121
+#: admin/views/slider-panel/index.php:119
 msgid "Direction :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:123
-#: admin/views/slider-panel/index.php:464
-#: admin/views/slider-panel/index.php:598
+#: admin/views/slider-panel/index.php:121
+#: admin/views/slider-panel/index.php:471
+#: admin/views/slider-panel/index.php:605
 msgid "Horizontal"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:124
-#: admin/views/slider-panel/index.php:465
-#: admin/views/slider-panel/index.php:599
+#: admin/views/slider-panel/index.php:122
+#: admin/views/slider-panel/index.php:472
+#: admin/views/slider-panel/index.php:606
 msgid "Vertical"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:127
+#: admin/views/slider-panel/index.php:125
 msgid "Slide space :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:132
+#: admin/views/slider-panel/index.php:130
 msgid "Navigation"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:135
+#: admin/views/slider-panel/index.php:133
 msgid "Slideshow behavior and sorting slides"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:137
+#: admin/views/slider-panel/index.php:135
 msgid "Slideshow"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:139
+#: admin/views/slider-panel/index.php:137
 msgid "Loop navigation"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:141
+#: admin/views/slider-panel/index.php:139
 msgid "Pause at end slide"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:144
+#: admin/views/slider-panel/index.php:142
 msgid "Pause on hover"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:146
+#: admin/views/slider-panel/index.php:144
 msgid "Random order"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:149
+#: admin/views/slider-panel/index.php:147
 msgid "Start with slide"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:151
+#: admin/views/slider-panel/index.php:149
 msgid "Slider navigation methods"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:153
+#: admin/views/slider-panel/index.php:151
 msgid "Touch swipe navigation"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:155
+#: admin/views/slider-panel/index.php:153
 msgid "Mouse swipe navigation"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:157
+#: admin/views/slider-panel/index.php:155
 msgid "Use grab mouse cursor"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:160
+#: admin/views/slider-panel/index.php:158
 msgid "Mouse wheel navigation"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:162
+#: admin/views/slider-panel/index.php:160
 msgid "Slide preloading"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:165
+#: admin/views/slider-panel/index.php:163
 msgid "Load nearby slides"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:166
+#: admin/views/slider-panel/index.php:164
 msgid "Load slides in sequence"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:167
+#: admin/views/slider-panel/index.php:165
 msgid "Load all slides before init"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:171
+#: admin/views/slider-panel/index.php:169
 msgid "Number of slides :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:178
+#: admin/views/slider-panel/index.php:176
 msgid "Appearance"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:181
+#: admin/views/slider-panel/index.php:179
 msgid "Slider Skin"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:183
+#: admin/views/slider-panel/index.php:181
 msgid "Skin :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:191
+#: admin/views/slider-panel/index.php:189
 msgid "Align center slider controls :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:193
+#: admin/views/slider-panel/index.php:191
 msgid "Slider background settings"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:195
+#: admin/views/slider-panel/index.php:193
 msgid "Background image :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:197
-#: admin/views/slider-panel/index.php:319
+#: admin/views/slider-panel/index.php:195
+#: admin/views/slider-panel/index.php:322
 msgid "Background color :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:199
+#: admin/views/slider-panel/index.php:197
 msgid "Slider custom class name and inline style"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:201
-#: admin/views/slider-panel/index.php:313
+#: admin/views/slider-panel/index.php:199
+#: admin/views/slider-panel/index.php:316
 msgid "Class name :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:204
+#: admin/views/slider-panel/index.php:202
 msgid "Inline style :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:230
+#: admin/views/slider-panel/index.php:228
 msgid "Background"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:231
+#: admin/views/slider-panel/index.php:229
 msgid "Video and Link"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:233
+#: admin/views/slider-panel/index.php:231
 msgid "Misc"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:250
+#: admin/views/slider-panel/index.php:248
 msgid "Slide duration :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:262
+#: admin/views/slider-panel/index.php:260
 msgid "Choose slide background and thumbnail"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:264
+#: admin/views/slider-panel/index.php:262
 msgid "Background :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:266
+#: admin/views/slider-panel/index.php:264
 msgid "Fillmode :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:268
+#: admin/views/slider-panel/index.php:266
 msgid "Thumbnail :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:276
+#: admin/views/slider-panel/index.php:274
 msgid "Link this slide"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:278
+#: admin/views/slider-panel/index.php:276
 msgid "URL :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:281
+#: admin/views/slider-panel/index.php:279
 msgid "Youtube or Vimeo video as slide"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:283
-msgid "Video embed src :"
+#: admin/views/slider-panel/index.php:281
+msgid "Video embed url :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:292
+#: admin/views/slider-panel/index.php:283
+msgid "Autoplay video :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:286
+msgid "Where to find the Youtube/Vimeo embed URL."
+msgstr ""
+
+#: admin/views/slider-panel/index.php:295
 msgid ""
 "This info will show beside of slider when slider reaches the slide or it can "
 "represent as tab in a tabs control. It is relative to selected slider "
 "template."
 msgstr ""
 
-#: admin/views/slider-panel/index.php:297
+#: admin/views/slider-panel/index.php:300
 msgid "Insert dynamic content : "
 msgstr ""
 
-#: admin/views/slider-panel/index.php:311
+#: admin/views/slider-panel/index.php:314
 msgid "Custom class name and id for slide element"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:315
+#: admin/views/slider-panel/index.php:318
 msgid "CSS id :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:317
+#: admin/views/slider-panel/index.php:320
 msgid "Background color and slide background alt text "
 msgstr ""
 
-#: admin/views/slider-panel/index.php:321
+#: admin/views/slider-panel/index.php:324
 msgid "Alt text :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:332
+#: admin/views/slider-panel/index.php:335
 msgid "The selected tempalte for slider does not support custom controls."
 msgstr ""
 
-#: admin/views/slider-panel/index.php:340
+#: admin/views/slider-panel/index.php:343
 msgid "Here you can add or remove controls to slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:343
+#: admin/views/slider-panel/index.php:346
 msgid "Add new control"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:354
+#: admin/views/slider-panel/index.php:357
 msgid "-- All controls are used --"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:361
+#: admin/views/slider-panel/index.php:364
 msgid "Used controls:"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:378
+#: admin/views/slider-panel/index.php:381
 msgid "Hide arrows when mouse leaves slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:380
+#: admin/views/slider-panel/index.php:383
 msgid "Show arrows over Youtube/Vimeo video player"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:383
+#: admin/views/slider-panel/index.php:386
 msgid "Hide arrows under this window width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:387
+#: admin/views/slider-panel/index.php:390
 msgid "Insert arrows inside slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:390
+#: admin/views/slider-panel/index.php:393
 msgid "Arrows margin :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:400
+#: admin/views/slider-panel/index.php:403
 msgid "Hide line timer when mouse leaves slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:402
-msgid "Show line timer over Youtube/Vimeo video player"
-msgstr ""
-
 #: admin/views/slider-panel/index.php:405
-#: admin/views/slider-panel/index.php:434
-#: admin/views/slider-panel/index.php:476
-#: admin/views/slider-panel/index.php:501
-#: admin/views/slider-panel/index.php:537
-#: admin/views/slider-panel/index.php:575
-msgid "Align control :"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:407
-#: admin/views/slider-panel/index.php:436
-#: admin/views/slider-panel/index.php:478
-#: admin/views/slider-panel/index.php:539
-#: admin/views/slider-panel/index.php:577
-msgid "Top"
+msgid "Show line timer over Youtube/Vimeo video player"
 msgstr ""
 
 #: admin/views/slider-panel/index.php:408
 #: admin/views/slider-panel/index.php:437
-#: admin/views/slider-panel/index.php:481
-#: admin/views/slider-panel/index.php:542
-#: admin/views/slider-panel/index.php:580
-msgid "Bottom"
+#: admin/views/slider-panel/index.php:483
+#: admin/views/slider-panel/index.php:508
+#: admin/views/slider-panel/index.php:544
+#: admin/views/slider-panel/index.php:582
+msgid "Align control :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:410
+#: admin/views/slider-panel/index.php:439
+#: admin/views/slider-panel/index.php:485
+#: admin/views/slider-panel/index.php:546
+#: admin/views/slider-panel/index.php:584
+msgid "Top"
 msgstr ""
 
 #: admin/views/slider-panel/index.php:411
-msgid "Hide line timer under this window width :"
+#: admin/views/slider-panel/index.php:442
+#: admin/views/slider-panel/index.php:488
+#: admin/views/slider-panel/index.php:549
+#: admin/views/slider-panel/index.php:587
+msgid "Bottom"
 msgstr ""
 
 #: admin/views/slider-panel/index.php:414
+msgid "Hide line timer under this window width :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:417
 msgid "Line timer color :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:416
+#: admin/views/slider-panel/index.php:419
 msgid "Line timer width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:426
+#: admin/views/slider-panel/index.php:429
 msgid "Hide bullets when mouse leaves slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:428
+#: admin/views/slider-panel/index.php:431
 msgid "Show bullets over Youtube/Vimeo video player"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:431
+#: admin/views/slider-panel/index.php:434
 msgid "Insert bullets inside slider"
 msgstr ""
 
 #: admin/views/slider-panel/index.php:440
-msgid "Bullets margin :"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:443
-msgid "Hide bullets under this window width :"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:453
-msgid "Hide scrollbar when mouse leaves slider"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:455
-msgid "Show scrollbar over Youtube/Vimeo video player"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:458
-msgid "Insert scrollbar inside slider"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:462
-msgid "Scrollbar direction :"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:471
-msgid "Scrollbar handle color :"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:473
-msgid "Hide scrollbar under this window width :"
-msgstr ""
-
-#: admin/views/slider-panel/index.php:479
-#: admin/views/slider-panel/index.php:540
-#: admin/views/slider-panel/index.php:578
+#: admin/views/slider-panel/index.php:486
+#: admin/views/slider-panel/index.php:547
+#: admin/views/slider-panel/index.php:585
 msgid "Right"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:480
-#: admin/views/slider-panel/index.php:541
-#: admin/views/slider-panel/index.php:579
+#: admin/views/slider-panel/index.php:441
+#: admin/views/slider-panel/index.php:487
+#: admin/views/slider-panel/index.php:548
+#: admin/views/slider-panel/index.php:586
 msgid "Left"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:484
+#: admin/views/slider-panel/index.php:445
+msgid "Bullets margin :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:447
+msgid "Space between bullets :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:450
+msgid "Hide bullets under this window width :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:460
+msgid "Hide scrollbar when mouse leaves slider"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:462
+msgid "Show scrollbar over Youtube/Vimeo video player"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:465
+msgid "Insert scrollbar inside slider"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:469
+msgid "Scrollbar direction :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:478
+msgid "Scrollbar handle color :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:480
+msgid "Hide scrollbar under this window width :"
+msgstr ""
+
+#: admin/views/slider-panel/index.php:491
 msgid "Scrollbar width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:486
+#: admin/views/slider-panel/index.php:493
 msgid "Scrollbar margin :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:496
+#: admin/views/slider-panel/index.php:503
 msgid "Hide cricle timer when mouse leaves slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:498
+#: admin/views/slider-panel/index.php:505
 msgid "Show circle timer over Youtube/Vimeo video player"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:503
+#: admin/views/slider-panel/index.php:510
 msgid "Top Left"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:504
+#: admin/views/slider-panel/index.php:511
 msgid "Top Right"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:505
+#: admin/views/slider-panel/index.php:512
 msgid "Bottom Left"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:506
+#: admin/views/slider-panel/index.php:513
 msgid "Bottom Right"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:510
+#: admin/views/slider-panel/index.php:517
 msgid "Hide circle timer under this window width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:513
+#: admin/views/slider-panel/index.php:520
 msgid "Circle timer margin :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:515
+#: admin/views/slider-panel/index.php:522
 msgid "Circle stroke :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:517
+#: admin/views/slider-panel/index.php:524
 msgid "Circle radius :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:519
+#: admin/views/slider-panel/index.php:526
 msgid "Circle color :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:529
+#: admin/views/slider-panel/index.php:536
 msgid "Hide slide info when mouse leaves slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:531
+#: admin/views/slider-panel/index.php:538
 msgid "Show slide info over Youtube/Vimeo video player"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:534
+#: admin/views/slider-panel/index.php:541
 msgid "Insert slide info inside slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:545
+#: admin/views/slider-panel/index.php:552
 msgid "Slide info margin :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:548
+#: admin/views/slider-panel/index.php:555
 msgid "Slide info width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:550
+#: admin/views/slider-panel/index.php:557
 msgid "Slide info height :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:554
+#: admin/views/slider-panel/index.php:561
 msgid "Hide slide info under this window width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:564
+#: admin/views/slider-panel/index.php:571
 msgid "Hide thumblist/tabs when mouse leaves slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:566
+#: admin/views/slider-panel/index.php:573
 msgid "Show thumblist/tabs over Youtube/Vimeo video player"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:569
+#: admin/views/slider-panel/index.php:576
 msgid "Insert thumblist/tabs inside slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:571
+#: admin/views/slider-panel/index.php:578
 msgid "Thumb background fill mode :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:583
+#: admin/views/slider-panel/index.php:590
 msgid "Thumblist/Tabs margin :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:586
+#: admin/views/slider-panel/index.php:593
 msgid "Appearance :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:588
+#: admin/views/slider-panel/index.php:595
 msgid "Thumblist"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:589
+#: admin/views/slider-panel/index.php:596
 msgid "Tabs"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:592
+#: admin/views/slider-panel/index.php:599
 msgid "Hide thumblist/tabs under this window width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:596
+#: admin/views/slider-panel/index.php:603
 msgid "Thumblist/Tabs direction :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:603
+#: admin/views/slider-panel/index.php:610
 msgid "Thumb/Tab width :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:605
+#: admin/views/slider-panel/index.php:612
 msgid "Thumb/Tab height :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:607
+#: admin/views/slider-panel/index.php:614
 msgid "Space between thumbs/tabs :"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:619
+#: admin/views/slider-panel/index.php:626
 msgid "Here you can add or remove callbacks to slider"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:622
+#: admin/views/slider-panel/index.php:629
 msgid "Add new callback"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:633
+#: admin/views/slider-panel/index.php:640
 msgid "-- All callbacks are added --"
 msgstr ""
 
-#: admin/views/slider-panel/index.php:646
+#: admin/views/slider-panel/index.php:653
 msgid "Remove"
 msgstr ""
 
@@ -1627,4 +1696,12 @@ msgstr ""
 msgid ""
 "If you wish to style particular element differently, then use this field to "
 "add a class name and then refer to it in your css file."
+msgstr ""
+
+#: public/class-master-slider.php:352 public/class-master-slider.php:385
+msgid "rating"
+msgstr ""
+
+#: public/class-master-slider.php:382
+msgid "Field is required"
 msgstr ""
