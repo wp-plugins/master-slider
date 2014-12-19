@@ -273,7 +273,8 @@ class Master_Slider {
 			$roles = array( 'administrator', 'editor' );
 
 			foreach ( $roles as $role ) {
-				$role = get_role( $role );
+				if( ! $role = get_role( $role ) ) 
+					continue;
 				$role->add_cap( 'access_masterslider'  ); 
 				$role->add_cap( 'publish_masterslider' ); 
 				$role->add_cap( 'delete_masterslider'  ); 
@@ -324,3 +325,74 @@ endif;
 
 function MSP(){ return Master_Slider::get_instance(); } 
 MSP();
+
+
+class MSP_AttachmentFields {
+	
+    private $fields = array();
+    
+	function __construct($fields = null) {
+		if(isset($fields) && is_array($fields))
+		  $this->$fields = $fields;
+	}
+    
+    public function add($field){
+        if(is_array($field))
+            $this->fields[] = $field;
+    }
+    
+    public function init(){
+        add_filter( 'attachment_fields_to_edit', array( $this, 'addFields'  ), 11, 2 );
+        add_filter( 'attachment_fields_to_save', array( $this, 'saveFields' ), 11, 2 );
+    }
+    
+    public function addFields( $form_fields, $post ){
+
+        $form_fields['image_rating'] = array(
+	        'label'       => __( 'rating', "default" ),
+	        'input'       => 'radio',
+	        'options' => array(
+	            '1' => 1,
+	            '2' => 2,
+	            '3' => 3,
+	            '4' => 4,
+	            '5' => 5
+	        ),
+	        'application' => 'image',
+	        'exclusions'   => array( 'audio', 'video' )
+	    );
+
+        return $form_fields;
+    }
+    
+    public function saveFields($post, $attachment) {
+        return $post;
+    }
+}
+
+$attach_fields = new MSP_AttachmentFields();
+$attchments_options = array(
+    'image_copyright' => array(
+        'label'       => '',
+        'input'       => 'text',
+        'helps'       => '',
+        'application' => 'image',
+        'exclusions'  => array( 'audio', 'video' ),
+        'required'    => true,
+        'error_text'  => __( 'Field is required', "default" )
+    ),
+    'image_rating' => array(
+        'label'       => __( 'rating', "default" ),
+        'input'       => 'radio',
+        'options' => array(
+            '1' => 1,
+            '2' => 2,
+            '3' => 3,
+            '4' => 4,
+            '5' => 5
+        ),
+        'application' => 'image',
+        'exclusions'   => array( 'audio', 'video' )
+    )
+);
+$attach_fields->init();

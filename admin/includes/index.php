@@ -11,6 +11,7 @@ include_once( 'classes/class-msp-list-table.php'    );
 include_once( 'classes/class-axiom-screen-help.php' );
 include_once( 'classes/class-msp-screen-help.php'   );
 include_once( 'classes/class-msp-admin-assets.php'  );
+include_once( 'classes/class-msp-admin-editor.php'  );
 // include_once( 'classes/class-msp-pointers.php'      );
 include_once( 'classes/class-msp-importer.php' 		);
 
