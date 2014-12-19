@@ -521,3 +521,10 @@ tbody .latest-updates {
 
 
 .msp-template-caption { min-height: 38px; }
+
+.msp-main-nav ul li a:focus,
+.tabs li > a:focus,
+#contextual-help-wrap:focus,
+#msp-main-wrapper .column-title a:focus{
+	box-shadow:none;
+}
