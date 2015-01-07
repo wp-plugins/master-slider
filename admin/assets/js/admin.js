@@ -26,12 +26,15 @@
 				$('.ui-widget-overlay').bind('click',function(){
 					$slider_types_markup.dialog('close');
 				});
+			},
+			position: { 
+				my: "center", 
+				at: "center" 
 			}
 		});
 
 		window.onSelectorDialogResize = function(event){
 			var frame = event.data.the_frame;
-			frame.dialog("option", "position", "center");
 			frame.dialog("option", "width"   , "80%" );
 			frame.dialog("option", "height"  , $(window).height()-90 );
 		};
@@ -144,6 +147,10 @@
 					$('.ui-widget-overlay').bind('click',function(){
 						$preview_wrapper.dialog('close');
 					});
+				},
+				position: { 
+					my: "center", 
+					at: "center" 
 				}
 			});
 			
@@ -156,7 +163,6 @@
 
 			window.onPreviewDialogResize = function(event){
 				var frame = event.data.the_frame;
-				frame.dialog("option", "position", "center");
 				frame.dialog("option", "height"  , $(window).height()-45 );
 			};
 
@@ -192,6 +198,10 @@
 					$('.ui-widget-overlay').bind('click',function(){
 						$preview_wrapper.dialog('close');
 					});
+				},
+				position: { 
+					my: "center", 
+					at: "center" 
 				}
 			});
 
@@ -208,7 +218,6 @@
 
 			window.onPreviewDialogResize = function(event){
 				var frame = event.data.the_frame;
-				frame.dialog("option", "position", "center");
 				frame.dialog("option", "height"  , $(window).height()-45 );
 			};
 
@@ -241,13 +250,16 @@
 					$('.ui-widget-overlay').bind('click',function(){
 						$import_export_wrapper.dialog('close');
 					});
+				},
+				position: { 
+					my: "center", 
+					at: "center" 
 				}
 			});
 
 			window.onPreviewDialogResize = function(event){
 				var frame = event.data.the_frame;
 				var dialogHeight = $(window).height()-85;
-				frame.dialog("option", "position", "center");
 				frame.dialog("option", "height"  , dialogHeight );
 				$('.msp-export-table-container').css('min-height', dialogHeight - 350 );
 			};

@@ -415,22 +415,22 @@ class MSP_Importer {
 		}
 
 
-		// set origin_upload_baseurl
-		if( isset( $export_array['origin_uploads_url'] ) && ! empty( $export_array['origin_uploads_url'] ) ) {
-
-			$this->origin_upload_baseurl = $export_array['origin_uploads_url'];
-
-			$this->origin_upload_baseurl = str_replace( '{{masterslider}}'   , MSWP_AVERTA_URL, $this->origin_upload_baseurl );
-			$this->origin_upload_baseurl = str_replace( '{{theme_dir}}'      , get_template_directory_uri() , $this->origin_upload_baseurl );
-			$this->origin_upload_baseurl = str_replace( '{{child_theme_dir}}', get_stylesheet_directory_uri() , $this->origin_upload_baseurl );
-
 		// if you need to change "origin_upload_baseurl" while importing content, just define MSWP_IMPORT_FETCH_DIR const
-		} elseif( defined( 'MSWP_IMPORT_FETCH_DIR' ) ){
+		if( defined( 'MSWP_IMPORT_FETCH_DIR' ) ){
 			$this->origin_upload_baseurl = MSWP_IMPORT_FETCH_DIR;
+
+		// set origin_upload_baseurl
+		} elseif( isset( $export_array['origin_uploads_url'] ) && ! empty( $export_array['origin_uploads_url'] ) ) {
+			$this->origin_upload_baseurl = $export_array['origin_uploads_url'];
 
 		} else {
 			$this->origin_upload_baseurl = MSWP_AVERTA_URL . '/samples';
 		}
+
+		// find and replace special template tags
+		$this->origin_upload_baseurl = str_replace( '{{masterslider}}'   , MSWP_AVERTA_URL, $this->origin_upload_baseurl );
+		$this->origin_upload_baseurl = str_replace( '{{theme_dir}}'      , get_template_directory_uri() , $this->origin_upload_baseurl );
+		$this->origin_upload_baseurl = str_replace( '{{child_theme_dir}}', get_stylesheet_directory_uri() , $this->origin_upload_baseurl );
 
 
 
