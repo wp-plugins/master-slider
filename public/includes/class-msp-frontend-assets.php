@@ -83,24 +83,10 @@ class MSP_Frontend_Assets {
 
 		// Load Css files
 		if ( $enqueue_styles ) {
-			foreach ( $enqueue_styles as $handle => $args )
+			foreach ( $enqueue_styles as $handle => $args ){
 				wp_enqueue_style( $handle, $args['src'], $args['deps'], $args['version'] );
+			}
 		}
-
-
-		// load custom.css if the directory is writable. else use inline css fallback
-	    $inline_css = msp_get_option( 'custom_inline_style', '' );
-	    if( empty( $inline_css ) ) {
-
-	    	$custom_css_ver = msp_get_option( 'masterslider_custom_css_ver', '1.0' );
-
-	    	$uploads   = wp_upload_dir();
-			$css_file  = $uploads['baseurl'] . '/' . MSWP_SLUG . '/custom.css';
-			$css_file  = apply_filters( 'masterslider_custom_css_url', $css_file );
-
-	        wp_enqueue_style ( $this->prefix . 'custom'  , $css_file , array( $this->prefix . 'main' ), $custom_css_ver );
-	    }
-
 	}
 
 
@@ -112,7 +98,8 @@ class MSP_Frontend_Assets {
 	 */
 	public function get_styles() {
 
-		return apply_filters( 'masterslider_enqueue_styles', array(
+		
+		$styles_queue = array(
 
 			$this->prefix . 'main' => array(
 				'src'     => $this->assets_dir . '/css/masterslider.main.css' ,
@@ -120,7 +107,27 @@ class MSP_Frontend_Assets {
 				'version' => $this->version
 			)
 		
-		) );
+		);
+
+		// load custom.css if the directory is writable. else use inline css fallback
+	    $inline_css = msp_get_option( 'custom_inline_style', '' );
+	    if( empty( $inline_css ) ) {
+
+	    	$custom_css_ver = msp_get_option( 'masterslider_custom_css_ver', '1.0' );
+
+	    	$uploads   = wp_upload_dir();
+			$css_file  = $uploads['baseurl'] . '/' . MSWP_SLUG . '/custom.css';
+			$css_file  = apply_filters( 'masterslider_custom_css_url', $css_file );
+
+			$styles_queue[ $this->prefix.'custom' ] = array(
+				'src'     => $css_file ,
+				'deps'    => array( $this->prefix . 'main' ),
+				'version' => $custom_css_ver
+			);
+
+	    }
+
+		return apply_filters( 'masterslider_enqueue_styles', $styles_queue );		
 	}
 
 
@@ -146,7 +153,7 @@ class MSP_Frontend_Assets {
 	 * Print meta generator tag
 	 */
 	function meta_generator(){
-	    echo sprintf( '<meta name="generator" content="MasterSlider %s - Responsive Touch Image Slider | http://avt.li/MsF" />', MSWP_AVERTA_VERSION )."\n";
+	    echo sprintf( '<meta name="generator" content="MasterSlider %s - Responsive Touch Image Slider | www.avt.li/msf" />', MSWP_AVERTA_VERSION )."\n";
 	}
 
 }
