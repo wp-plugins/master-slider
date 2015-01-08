@@ -13,10 +13,16 @@
 	-moz-transform: translate3d(0 , 0 , 0);
 }
 
-.master-slider, .master-slider * {
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
+.wpb_row .master-slider-parent *,
+.master-slider-parent * {
+	 -webkit-box-sizing: content-box;
+	 -moz-box-sizing: content-box;
+	 box-sizing: content-box;
+}
+
+.master-slider-parent {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .ms-layout-partialview .ms-view {
@@ -24,17 +30,13 @@
 	background-color:transparent;
 }
 
-.ms-layout-partialview .ms-container { overflow: hidden; }
-
 .master-slider.before-init{}
 
-.master-slider img {max-width:none;}
+.master-slider img, .ms-slide-bgvideocont video {max-width:none;}
 
 .ms-ie img{border:none;}
 .ms-ie8 * {opacity:inherit;filter:inherit;}
 .ms-ie7   {zoom:1;}
-
-.master-slider.ms-fullheight{height: 100%;}
 
 .ms-loading-container{
 	position:absolute;
@@ -61,8 +63,9 @@
 .ms-def-cursor{cursor:auto !important;}
 .ms-grab-cursor{cursor: url(common/grab.png), move;}
 .ms-grabbing-cursor{cursor: url(common/grabbing.png), move;}
-.ms-ie .ms-grab-cursor{cursor: url(common/grab.cur), move;}
-.ms-ie .ms-grabbing-cursor {cursor: url(common/grabbing.cur), move;}
+.ms-ie .ms-grab-cursor{cursor: move;}
+.ms-ie .ms-grabbing-cursor {cursor: move;}
+
 
 .ms-view { 
 	margin:0px auto;
@@ -158,26 +161,9 @@
 	top: 0;
 }
 
-/*-----------------------------------------------------------*/
-.ms-action-layer{cursor: pointer;}
-.ms-btn-container{position: absolute;}
-.ms-btn {
-	text-decoration: none;
-	display: inline-block;
-	color:black;
-	position: relative;
-	padding: 8px 15px;
-	cursor: pointer;
-	white-space: nowrap;
+.ms-btn-container{
+	position: absolute;
 }
-
-.ms-default-btn{
-	background: #0074A2;
-	border-radius: 5px;
-	color: #FFF;
-}
-.ms-default-btn:hover{background-color: #0098D5;}
-.ms-default-btn:active{top:1px;}
 
 .ms-layer.video-box{background:black;}
 .ms-layer.video-box iframe{
@@ -187,35 +173,6 @@
 	position: absolute;
 	z-index: 110;
 }
-
-.ms-btn-s{
-    padding: 14px 17px;  
-    font-size: 80%;
-    line-height: 0;
-}
-
-.ms-btn-m{
-    padding: 12px 40px;
-}
-
-.ms-btn-n{
-    padding: 8px 25px;
-    font-size: 95%;
-}
-
-.ms-btn-l{
-    padding: 17px 50px;  
-    font-size: 120%;
-}
-
-.ms-btn-box{}
-.ms-btn-round{border-radius: 5px;}
-.ms-btn-circle{border-radius: 100px;}
-.ms-btn-outline-box{}
-.ms-btn-outline-round{border-radius: 5px;}
-.ms-btn-outline-circle{border-radius: 100px;}
-/*-----------------------------------------------------------*/
-
 
 .ms-slide .ms-slide-vpbtn , .ms-slide .ms-video-btn{
 	position:absolute;
