@@ -412,7 +412,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 			"use strict";
 
 			$(function () {
-				var <?php echo $instance_name; ?> = new MasterSliderLite();
+				var <?php echo $instance_name; ?> = new MasterSlider();
 
 				// slider controls
 <?php if($arrows  == 'true' || 'image-gallery' == $template ){ 
@@ -586,8 +586,8 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					echo "\n\t\t\t\t" . sprintf( '$("head").append( "%s" );', $link_tag ) . "\n";
 				}
 				// add slider instance to global scope
-				echo "\n\t\t\t\twindow.masterslider_instances = window.masterslider_instances || {};";
-				echo "\n\t\t\t\twindow.masterslider_instances[\"{$id}_{$instance_suffix}\"] = $instance_name;\n" ;
+				echo "\n\t\t\t\twindow.masterslider_instances = window.masterslider_instances || [];";
+				echo "\n\t\t\t\twindow.masterslider_instances.push( $instance_name );\n";
 				?>
 			 });
 			
@@ -616,12 +616,19 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 					'style' 	=> '',
 
 					'src_blank'	=> MSWP_BLANK_IMG, // url to black image for preloading job
-					'title'     => '', // image and link title
+					
+					'title'     => '', // image title
 					'alt'       => '', // image alternative text
-					'link'      => '',
-					'rel' 		=> '',
+
+					'link'       => '',
+		            'link_title' => '',
+		            'link_class' => '',
+		            'link_id'    => '',
+		            'link_rel'   => '',
+					
 					'target'    => '_blank',
 					'video'     => '', // youtube or vimeo video link
+					'auto_play_video' => '', // autoplay for youtube or vimeo videos
 
 					'mp4'		=> '', // self host video bg
 					'webm'		=> '', // self host video bg
@@ -641,7 +648,9 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 					'tab' 		=> '',
 					'delay'     => '', // data-delay 
 					'bgalign'	=> '',  // data-fill-mode
-					'bgcolor' 	=> ''
+					'bgcolor' 	=> '',
+					'pattern'   => '',
+					'tintcolor' => ''
 				)
 				, $atts, 'masterslider_slide' ) 
 			 );
@@ -706,9 +715,20 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 
 
 	// link markup
-	if( ! empty( $link ) )
-		 $slide_content .= "\t".sprintf('<a href="%s" target="%s" rel="%s" >%s</a>', $link, $target, $rel, $title)."\n";
+	if( ! empty( $link ) ){
+		$link = '{{slide-image-url}}' == $link ? msp_get_the_absolute_media_url( $src_full ) : esc_url($link);
 
+		$att_link_target = $target     ? 'target="'. $target .'"' : '';
+		$att_link_rel    = $link_rel   ? 'rel="'.    $link_rel .'"' : '';
+		$att_link_title  = $link_title ? 'title="'.  $link_title .'"' : '';
+		$att_link_class  = $link_class ? 'class="'.  $link_class .'"' : '';
+		$att_link_id     = $link_id    ? 'id="'.     $link_id .'"' : '';
+		
+		$slide_content .= "\t".sprintf('<a href="%s" %s %s %s %s %s>%s</a>', $link, $att_link_target, 
+		                               			$att_link_rel, $att_link_title, $att_link_class,
+		                               			$att_link_id, $title )."\n";
+	}
+	
 	// add layers that passed as content
 	if( ! empty( $content ) )
 		 $slide_content .= $content."\n";

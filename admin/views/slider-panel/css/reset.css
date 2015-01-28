@@ -28,8 +28,12 @@ html,body { height:100%;}
    border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red;}
 .msp-container .no-boxshadow input:invalid, .msp-container .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 .msp-container ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
-.msp-container a:link { -webkit-tap-highlight-color: #FF5E99; }
+/*.msp-container a:link { -webkit-tap-highlight-color: #FF5E99; }*/
 .msp-container button {  width: auto; overflow: visible; }
+.msp-container a:focus{
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
 /**
  ======================================
  	$Domument
@@ -54,4 +58,4 @@ html,body { height:100%;}
 .msp-container .right 		{ float: right; }
 .msp-container .center		{ margin-left: auto; margin-right: auto; display: block; clear: both; }
 .clear 		{ clear: both; display: block; font-size: 0; height: 0; line-height: 0; width:100%;}
-/*-----------------
+/*----------------- */

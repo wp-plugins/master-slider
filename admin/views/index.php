@@ -17,7 +17,7 @@
 
 function msp_thankyou_footer() {
 	$text  = sprintf( __( 'Thank you for creating with <a href="%s">WordPress</a>.' ), __( 'https://wordpress.org/' ) );
-	$text .= sprintf( __(' and using <a href="%s">Master Slider</a> %s', MSWP_TEXT_DOMAIN ), 'https://wordpress.org/plugins/master-slider/', MSWP_AVERTA_VERSION );
+	$text .= sprintf( __(' and using <a href="%s">Master Slider</a> %s', MSWP_TEXT_DOMAIN ), 'http://masterslider.com/?msl', MSWP_AVERTA_VERSION );
 
 	return '<span id="footer-thankyou">' . $text . '</span>';
 }

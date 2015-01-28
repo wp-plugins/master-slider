@@ -1,10 +1,13 @@
-/*css\masterslider.css 
-*/ 
- 
+/*! 
+ * Master Slider WordPress Lite Main CSS File
+ * @date Jan 2015
+ */
+
+
+
 /** 
  *  Master Slider
- *	version 1.6.0 wp
- * 	Core css file
+ * 	Main css file
  */
 
 .master-slider{
@@ -13,10 +16,26 @@
 	-moz-transform: translate3d(0 , 0 , 0);
 }
 
-.master-slider, .master-slider * {
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
+.master-slider a { 
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+}
+
+.ms-ie img{border:none;}
+.ms-ie8 * {opacity:inherit;filter:inherit;}
+.ms-ie7   {zoom:1;}
+
+.wpb_row .master-slider-parent *,
+.master-slider-parent * {
+	 -webkit-box-sizing: content-box;
+	 -moz-box-sizing: content-box;
+	 box-sizing: content-box;
+}
+
+.master-slider-parent {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .ms-layout-partialview .ms-view {
@@ -27,14 +46,6 @@
 .ms-layout-partialview .ms-container { overflow: hidden; }
 
 .master-slider.before-init{}
-
-.master-slider img {max-width:none;}
-
-.ms-ie img{border:none;}
-.ms-ie8 * {opacity:inherit;filter:inherit;}
-.ms-ie7   {zoom:1;}
-
-.master-slider.ms-fullheight{height: 100%;}
 
 .ms-loading-container{
 	position:absolute;
@@ -61,8 +72,8 @@
 .ms-def-cursor{cursor:auto !important;}
 .ms-grab-cursor{cursor: url(common/grab.png), move;}
 .ms-grabbing-cursor{cursor: url(common/grabbing.png), move;}
-.ms-ie .ms-grab-cursor{cursor: url(common/grab.cur), move;}
-.ms-ie .ms-grabbing-cursor {cursor: url(common/grabbing.cur), move;}
+.ms-ie .ms-grab-cursor{cursor: move;}
+.ms-ie .ms-grabbing-cursor {cursor: move;}
 
 .ms-view { 
 	margin:0px auto;
@@ -79,18 +90,16 @@
 
 .ms-slide {
 	position:absolute;
+	height:100%;
 	-webkit-transform: translateZ(0px);
-	-moz-transform: translateZ(0px);
 	-ms-transform: translateZ(0px);
 	-o-transform: translateZ(0px);
 	transform: translateZ(0px);
-	
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	-ms-transform-style: preserve-3d;
-	transform-style: preserve-3d;
+}
 
-	height:100%;
+.ms-wk .ms-slide {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 
 .ms-slide.selected {}
@@ -102,17 +111,28 @@
 	width: 100%;
 }
 
+.ms-slide .ms-slide-link { 
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	z-index: 110;
+}
+
+.ms-ie .ms-slide-link {
+	background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBR‌​AA7") 0 0 repeat;
+}
+
+
 .ms-slide .ms-slide-bgvideocont{
 	z-index: 105;
 	height: 100%;
 }
 
-.ms-slide .ms-slide-bgvideocont,
-.ms-slide-bgvideocont>video{
+.ms-wk .ms-slide .ms-slide-bgvideocont,
+.ms-wk .ms-slide-bgvideocont>video{
 	-webkit-transform: translateZ(0.3px);
-	-moz-transform: translateZ(0.3px);
-	-ms-transform: translateZ(0.3px);
-	-o-transform: translateZ(0.3px);
 	transform: translateZ(0.3px);
 }
 
@@ -130,17 +150,6 @@
 	user-select:none;
 }
 
-.ms-slide .ms-layer{position:absolute;}
-
-.ms-slide .ms-slide-layers{
-	position: absolute;
-	overflow:hidden;
-	width:100%;
-	height: 100%;
-	z-index: 110;
-	top:0px;
-}
-
 .ms-slide .ms-slide-video{
 	position:absolute;
 	top:0;
@@ -152,70 +161,20 @@
 
 }
 
-.ms-parallax-layer {
+
+.ms-slide .ms-pattern{
+	background-attachment: scroll;
 	width: 100%;
+	height: 100%;
+	z-index: 108;
 	position: absolute;
 	top: 0;
 }
 
-/*-----------------------------------------------------------*/
-.ms-action-layer{cursor: pointer;}
-.ms-btn-container{position: absolute;}
-.ms-btn {
-	text-decoration: none;
-	display: inline-block;
-	color:black;
-	position: relative;
-	padding: 8px 15px;
-	cursor: pointer;
-	white-space: nowrap;
+.ms-wk .ms-pattern{
+	-webkit-transform: translateZ(0.4px);
+	transform: translateZ(0.4px);
 }
-
-.ms-default-btn{
-	background: #0074A2;
-	border-radius: 5px;
-	color: #FFF;
-}
-.ms-default-btn:hover{background-color: #0098D5;}
-.ms-default-btn:active{top:1px;}
-
-.ms-layer.video-box{background:black;}
-.ms-layer.video-box iframe{
-	padding:0;
-	margin: 0;
-	border: none;
-	position: absolute;
-	z-index: 110;
-}
-
-.ms-btn-s{
-    padding: 14px 17px;  
-    font-size: 80%;
-    line-height: 0;
-}
-
-.ms-btn-m{
-    padding: 12px 40px;
-}
-
-.ms-btn-n{
-    padding: 8px 25px;
-    font-size: 95%;
-}
-
-.ms-btn-l{
-    padding: 17px 50px;  
-    font-size: 120%;
-}
-
-.ms-btn-box{}
-.ms-btn-round{border-radius: 5px;}
-.ms-btn-circle{border-radius: 100px;}
-.ms-btn-outline-box{}
-.ms-btn-outline-round{border-radius: 5px;}
-.ms-btn-outline-circle{border-radius: 100px;}
-/*-----------------------------------------------------------*/
-
 
 .ms-slide .ms-slide-vpbtn , .ms-slide .ms-video-btn{
 	position:absolute;
@@ -254,14 +213,12 @@
     margin-top: 7px;
 }
 
-.ms-slide .ms-slide-vcbtn,
-.ms-slide .ms-slide-layers,
-.ms-slide .ms-slide-vpbtn,
-.ms-slide .ms-slide-video {
+.ms-wk .ms-slide .ms-slide-vcbtn,
+.ms-wk .ms-slide .ms-slide-layers,
+.ms-wk .ms-slide .ms-slide-vpbtn,
+.ms-wk .ms-slide .ms-slide-video,
+.ms-wk .ms-slide-link {
 	-webkit-transform: translateZ(0.44px);
-	-moz-transform: translateZ(0.44px);
-	-ms-transform: translateZ(0.44px);
-	-o-transform: translateZ(0.44px);
 	transform: translateZ(0.44px);
 }
 
@@ -321,6 +278,9 @@
 
 .ms-tabs.ms-dir-h .ms-thumb-frame {margin-top: 12px;}
 .ms-tabs.ms-dir-v .ms-thumb-frame {margin-left: 12px;}
+.ms-tabs.ms-dir-v.ms-align-left .ms-thumb-frame {margin-left: 0px;}
+.ms-tabs.ms-dir-h.ms-align-top {z-index: 140;} 
+.ms-tabs.ms-dir-h.ms-align-top  .ms-thumb-frame{margin-top: -12px;} 
 .ms-tabs .ms-thumb{padding: 20px 20px;}
 .ms-tabs .ms-thumb-frame-selected {	opacity: 1; background: #EDEDED;}
 .ms-tabs .ms-thumb-frame .ms-thumb-ol {
@@ -342,10 +302,23 @@
     border-right: solid 12px transparent;
 }
 
-.ms-tabs.ms-dir-h .ms-thumb-frame-selected .ms-thumb-ol{
+.ms-tabs.ms-dir-h.ms-align-bottom .ms-thumb-frame-selected .ms-thumb-ol{
 	opacity: 1;
 	top:-12px;
 	border-bottom-color: #EDEDED;
+}
+
+.ms-tabs.ms-dir-h.ms-align-top .ms-thumb-frame .ms-thumb-ol {
+	bottom: 0px;
+	top:auto;
+	border-bottom:0px;
+	border-top: solid 12px #F6f6f6;
+}
+
+.ms-tabs.ms-dir-h.ms-align-top .ms-thumb-frame-selected .ms-thumb-ol{
+	opacity: 1;
+	bottom:-12px;
+	border-top-color: #EDEDED;
 }
 
 .ms-tabs.ms-dir-v .ms-thumb-frame .ms-thumb-ol {
@@ -357,10 +330,23 @@
     border-bottom: solid 12px transparent;
 }
 
-.ms-tabs.ms-dir-v .ms-thumb-frame-selected .ms-thumb-ol{
+.ms-tabs.ms-dir-v.ms-align-right .ms-thumb-frame-selected .ms-thumb-ol{
 	opacity: 1;
 	left:-12px;
-	border-right-color:white;
+	border-right-color:#EDEDED;
+}
+
+.ms-tabs.ms-dir-v.ms-align-left .ms-thumb-frame .ms-thumb-ol {
+    left: auto;
+    right: 0;
+    border-right: 0;
+    border-left: solid 12px #EDEDED;
+}
+
+.ms-tabs.ms-dir-v.ms-align-left .ms-thumb-frame-selected .ms-thumb-ol{
+	opacity: 1;
+	right:-12px;
+	border-left-color:#EDEDED;
 }
 
 .ms-thumb-alt {
@@ -378,7 +364,15 @@
 	width: 100px;
 }
 
-.ms-bullets-count {
+.ms-bullets.ms-dir-v {
+	position: absolute;
+	top:50%;
+}
+
+.ms-bullets.ms-dir-v .ms-bullet{
+	float: none;
+}
+.ms-bullets.ms-dir-h .ms-bullets-count {
 	position: relative;
 	right: -50%;
 }
@@ -444,26 +438,40 @@
 .ms-slide-info.ms-dir-v {top:0;}
 .ms-slide-info.ms-dir-h {width:100%;}
 
-@keyframes point-anim{
-	0% 		{transform: scale(0.5); -webkit-transform: scale(0.5); -moz-transform: scale(0.5); -o-transform: scale(0.5); -ms-transform: scale(0.5);  opacity: 1; }
-	100% 	{transform: scale(0.5); -webkit-transform: scale(0.5); -moz-transform: scale(1.5); -o-transform: scale(1.5); -ms-transform: scale(1.5);  opacity: 0; }
-}
+.ms-pattern.ms-patt-1  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABRJREFUeNpiYICA/wzoDGTwHyDAADXxAv4Eq8S5AAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-2  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhJREFUeNpiYECA/wxogLAANoBdF0CAAQD+agT8l3ocpQAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-3  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNqU0EENAAAMwkD8m+4s7PhCCmHbGijxE0jS1HOOhxJSUhf9eAIMAI/CEe94Ny14AAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-4  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhJREFUeNpiYGBg+M+ABfxHo3Fz/gMEGACtlgX7j8MuyAAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-5  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABNJREFUeNpiYECA/3CCAV0UIMAANfEC/mOKn1cAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-6  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAABCAYAAADjAO9DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABRJREFUeNpiYGBg+M+AClD4AAEGACn3Af/97SgJAAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-7  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpiYMAE/+EEAy5Z0iUAAgwA/moE/KMl2lgAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-8  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAICAYAAAA4GpVBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABRJREFUeNpiYGBg+M+ACdDFAAIMADP0Af/w5VDVAAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-9  {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABJJREFUeNpiYGBg+M9AGQAIMABABAEA80yJjQAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-10 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpiYGBg+A/FcMDEQH0AEGAAxksCAb3vCDgAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-11 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABxJREFUeNpiZGBg+M+AChhBBBMDDkC6BOkAIMAAlXQBCO9f4icAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-12 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiYGBg+M8AATAaDnAKYEgQBgABBgB6/AT8h9ybfgAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-13 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB1JREFUeNpiYGBg+M+ABJig9H90AbggI7oWgAADAI5xBAIRYsxUAAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-14 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAICAYAAAAx8TU7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABdJREFUeNpiYGBg+M+AA9BSgkQBgAADAJIyB/kDCjAnAAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-15 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpiYGBg+M9ABPhPjPh/YjT9J2AipiRAgAEAhjsH+Utd9Z4AAAAASUVORK5CYII=);}
+/* white patterns */
+.ms-pattern.ms-patt-16 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFAQMAAABCXz8WAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCNdjaGBwZFBiEGHgAAAHPwEAP8TPrwAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-17 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAIAQMAAAALP6d4AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABZJREFUCNdjaGBwYFBgEGDgAGIFBgcADegBabpJ4LsAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-18 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABBJREFUCNdjaGA4wPCA4QMACtgDEQ8Bqx8AAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-19 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFAQMAAAC3obSmAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAA9JREFUCNdjWMDgAMRAAAAKigGBlYsMggAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-20 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGAQMAAADaAn0LAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAA1JREFUCNdj+ACFQAAAHgwDwds/+0oAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-21 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFAQMAAAC3obSmAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAA1JREFUCNdjOACEYAAADAoBgRrgDF0AAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-22 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAxJREFUCNdjaGAAAwADiACBhux1cwAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-23 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAIAQMAAAAC1AcCAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjaGAAAxgNAAsQAQHPxScOAAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-24 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAABAQMAAADZzn0AAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAApJREFUCNdj6AAAAIoAiVWdWYwAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-25 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFAQMAAAC3obSmAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCNdj4GBoYHBgUGAQAAAFggD5HRIFwAAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-26 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADAQMAAABs5if8AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjUGBoYHAAAAJmAOF0EZC+AAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-27 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABBJREFUCNdjaGAIYFBgCAAABcgBQeTzXGUAAAAASUVORK5CYII=);}
+.ms-pattern.ms-patt-28 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKAQMAAAC3/F3+AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACBJREFUCNdjaGBgcHBgUGhgEGRg4GJgYAGRQDZQBCgOAC/KAvtspwwJAAAAAElFTkSuQmCC);}
+.ms-pattern.ms-patt-29 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFAQMAAAC3obSmAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCNdjUGBwYGhg4GAQAAAFkgD5MUFnfgAAAABJRU5ErkJggg==);}
+.ms-pattern.ms-patt-30 {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADAQMAAABs5if8AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjcGBoYFAAAALmAOHcBT11AAAAAElFTkSuQmCC);}
 
-@-webkit-keyframes point-anim{
-	0% 		{-webkit-transform: scale(0.5); opacity: 1; }
-	100% 	{-webkit-transform: scale(1.5);	opacity: 0; }
-}
 
-/* In Android browser, using css animations over slider causes some crashes */
-.ms-android .ms-tooltip-point .ms-point-border{
-	animation:none;
-	-moz-animation:none;
-	-webkit-animation:none;
-	-o-animation:none;
-}
-/*css\default.css 
-*/ 
- 
+
 /**
  *  Master Slider
  *  Default Skin
@@ -632,9 +640,9 @@ only screen and (                min-resolution: 2dppx) {
 		background-size: 152px 225px;
 	}
 	
-}/*css\black-1.css 
-*/ 
- 
+}
+
+
 /**
  *  Master Slider
  *  Black 1
@@ -813,9 +821,9 @@ only screen and (                min-resolution: 2dppx) {
 		background-size: 152px 225px;
 	}
 	
-}/*css\black-2.css 
-*/ 
- 
+}
+
+
 /**
  *  Master Slider
  *  Black 2 Skin
@@ -1043,9 +1051,9 @@ only screen and (                min-resolution: 2dppx) {
 		background-size: 152px 225px;
 	}
 	
-}/*css\light-2.css 
-*/ 
- 
+}
+
+
 /**
  *  Master Slider
  *  Light 2
@@ -1224,9 +1232,9 @@ only screen and (                min-resolution: 2dppx) {
 	}
 	
 }
-/*css\light-3.css 
-*/ 
- 
+
+
+
 /**
  *  Master Slider
  *  Light 3
@@ -1406,9 +1414,9 @@ only screen and (                min-resolution: 2dppx) {
 	}
 	
 }
-/*css\light-4.css 
-*/ 
- 
+
+
+
 /**
  *  Master Slider
  *  Light 4
@@ -1613,9 +1621,9 @@ only screen and (                min-resolution: 2dppx) {
 	}
 	
 }
-/*css\light-5.css 
-*/ 
- 
+
+
+
 /**
  *  Master Slider
  *  Light 5
@@ -1817,9 +1825,9 @@ only screen and (                min-resolution: 2dppx) {
 	}
 	
 }
-/*css\light-6.css 
-*/ 
- 
+
+
+
 /**
  *  Master Slider
  *  Light-6 Skin
@@ -2043,9 +2051,9 @@ only screen and (                min-resolution: 2dppx) {
 	}
 	
 }
-/*css\metro.css 
-*/ 
- 
+
+
+
 /**
  *  Master Slider
  *  Metro Skin
@@ -2224,9 +2232,9 @@ only screen and (                min-resolution: 2dppx) {
 		background-size: 152px 225px;
 	}
 	
-}/*css\contrast.css 
-*/ 
- 
+}
+
+
 /**
  *  Master Slider
  *  Contrast
@@ -2406,575 +2414,4 @@ only screen and (                min-resolution: 2dppx) {
 		background-size: 152px 225px;
 	}
 	
-}/*css\ms-caro3d.css 
-*/ 
- 
-.ms-caro3d-template .ms-container {
-	padding: 10px 0 50px 0;
-}
-
-/* reflect */
-.ms-caro3d-template .ms-slide{
-	-webkit-box-reflect: below 1px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(90%, transparent), to(rgba(255,255,255,0.5)));
-}
-
-.ms-caro3d-template .ms-slide-bgcont{
-	border-radius: 8px;
-}/*css\ms-display-style.css 
-*/ 
- 
-.ms-dis-slider-cont {
-    position: relative;
-    padding: 3.2% 8.5% 24%;
-    max-width: 508px;
-}
-.ms-display-cont .ms-view{
-	background-color: #17171a;
-}
-.ms-display-cont{
-   max-width: 614px;
-	position: relative;
-	margin: 0 auto;
-}
-
-.ms-display-bg {
-    max-width: 100%;
-    position: absolute;
-}
-
-.ms-display-template .ms-nav-prev,
-.ms-display-template .ms-nav-next {
-    background: url(templates/device-skin.png) no-repeat -11px -9px;
-    width: 35px;
-    height: 40px;
-    left: -80px;
-    margin-top: -17px;
-    position: absolute;
-    top:50%;
-    cursor: pointer;
-}
-.ms-display-template .ms-nav-next {
-	background-position: -59px -9px;
-	right: -80px;
-	left:auto;
-}
-
-.ms-display-template .ms-bullets.ms-dir-h {
-	position: absolute;
-	bottom: -50%;
-	right: 50%;
-	width: 100px;
-}
-
-.ms-display-template .ms-bullets.ms-dir-h .ms-bullets-count {
-	position: relative;
-	right: -50%;
-}
-
-.ms-display-template .ms-bullet {
-	width: 10px;
-	height: 10px;
-	background: url(templates/device-skin.png) no-repeat -112px -25px;
-	margin: 4px;
-}
-
-.ms-display-template .ms-bullet-selected {
-    background-position: -143px -25px;
-}/*css\ms-gallery-style.css 
-*/ 
- 
-.ms-gallery-template .ms-gallery-botcont {
-	height: 55px;
-	background: black;
-	color: white;
-	font-weight: 300;
-	font-family: "Lato", sans-serif;
-	font-size: 18px;
-	position: relative;
-}
-.ms-gallery-template .ms-gal-playbtn {
-	width: 55px;
-	height: 100%;
-	float: left;
-	cursor: pointer;
-	background: url(templates/gallery-btns.png) no-repeat 6px 6px;
-}
-.ms-gallery-template .ms-gal-playbtn.btn-pause {
-	background: url(templates/gallery-btns.png) no-repeat -55px 7px;
-}
-
-.ms-gallery-template .ms-gal-thumbtoggle {
-	position: absolute;
-	right: 0;
-	z-index: 110;
-	width: 55px;
-	height: 100%;
-	cursor: pointer;
-	background: url(templates/gallery-btns.png) no-repeat -53px -41px;
-}
-.ms-gallery-template .ms-gal-thumbtoggle.btn-hide {
-	background: url(templates/gallery-btns.png) no-repeat 4px -41px;
-}
-
-.ms-gallery-template .ms-slide-num {
-	float: left;
-	padding: 17px 9px;
-	color: #727272;
-}
-.ms-gallery-template .ms-slide-info {
-	float: left;
-	padding: 18px 4px;
-	position: relative;
-	width: auto;
-}
-
-.ms-gallery-template .ms-bullets.ms-dir-h {
-	position: absolute;
-	bottom: 18px;
-	right: 105px;
-	width: 100px;
-}
-
-.ms-gallery-template .ms-bullet {
-	width: 8px;
-	height: 8px;
-	background: #1e1e1e;
-	margin: 4px;
-	border-radius: 15px;
-}
-
-.ms-gallery-template .ms-bullet-selected {
-	background-color: white;
-}
-
-.ms-gallery-template .ms-timerbar {
-	width: 100%;
-	top: -4px;
-	height: 4px;
-	position: absolute;
-	background: rgba(0, 0, 0, 0.32);
-}
-
-.ms-gallery-template .ms-time-bar {
-	height: 4px;
-	background: rgba(255, 255, 255, 0.7);
-}
-
-.ms-gallery-template .ms-thumb-list.ms-dir-h {
-	width: 100%;
-	background: black;
-	background: rgba(0, 0, 0, 0.95);
-	padding-top: 1px;
-}
-
-.ms-gallery-template .ms-thumb-frame {
-	cursor: pointer;
-	float: left;
-	width: 175px;
-	overflow: hidden;
-	opacity: 0.5;
-	-webkit-transition: opacity 400ms;
-	-moz-transition: opacity 400ms;
-	-ms-transition: opacity 400ms;
-	-o-transition: opacity 400ms;
-	transition: opacity 400ms;
-}
-
-.ms-gallery-template .ms-thumb-frame-selected {
-	opacity: 1;
-}
-
-.ms-gallery-template .ms-gal-thumbcont {
-	overflow: hidden;
-	width: 100%;
-	height: 115px;
-	position: absolute;
-	top: -115px;
-	left: 0;
-	-webkit-transition: all 300ms ease-out;
-	-moz-transition: all 300ms ease-out;
-	-ms-transition: all 300ms ease-out;
-	-o-transition: all 300ms ease-out;
-	transition: all 300ms ease-out;
-}
-
-.ms-gallery-template .ms-gal-thumbcont.hide-thumbs {
-	height: 0;
-	top: 0;
-}
-
-@media (max-width: 570px) {
-	.ms-gallery-template .ms-slide-info {
-		display: none;
-	}
-}/*css\ms-laptop-style.css 
-*/ 
- 
-.ms-laptop-template .ms-laptop-cont .ms-view{
-	background-color: #17171a;
-}
-.ms-laptop-template .ms-laptop-cont{
-   max-width: 645px;
-	position: relative;
-	margin: 0 auto;
-}
-.ms-laptop-template .ms-lt-slider-cont {
-    position: relative;
-    padding: 5% 11.9% 20%;
-    max-width: 492px;
-}
-.ms-laptop-template .ms-laptop-bg {
-    max-width: 100%;
-    position: absolute;
-}
-
-.ms-laptop-template .ms-nav-prev,
-.ms-laptop-template .ms-nav-next {
-    background: url(templates/device-skin.png) no-repeat -11px -9px;
-    width: 35px;
-    height: 40px;
-    left: -80px;
-    margin-top: -17px;
-    position: absolute;
-    top:50%;
-    cursor: pointer;
-}
-.ms-laptop-template .ms-nav-next {
-	background-position: -59px -9px;
-	right: -80px;
-	left:auto;
-}
-
-.ms-laptop-template .ms-bullets.ms-dir-h {
-	position: absolute;
-	bottom: -40%;
-	right: 50%;
-	width: 100px;
-}
-
-.ms-laptop-template .ms-bullets.ms-dir-h .ms-bullets-count {
-	position: relative;
-	right: -50%;
-}
-
-.ms-laptop-template .ms-bullet {
-	width: 10px;
-	height: 10px;
-	background: url(templates/device-skin.png) no-repeat -112px -25px;
-	margin: 4px;
-}
-
-.ms-laptop-template .ms-bullet-selected {
-    background-position: -143px -25px;
-}/*css\ms-tablet-style.css 
-*/ 
- 
-.ms-tablet-template .ms-tablet-cont .ms-view{
-	background-color: #17171a;
-}
-.ms-tablet-template .ms-tablet-cont{
-   	max-width: 500px;
-	position: relative;
-	margin: 0 auto;
-}
-
-.ms-tablet-template.ms-tablet-land .ms-tablet-cont {
-    max-width: 842px;
-}
-
-.ms-tablet-template.ms-tablet-land .ms-lt-slider-cont {
-    padding: 4.1% 12.1% 10%;
-    max-width: 632px;
-}
-
-.ms-tablet-template .ms-lt-slider-cont {
-    position: relative;
-    padding: 11.1% 11% 22%;
-    max-width: 400px;
-}
-.ms-tablet-template .ms-tablet-bg {
-    max-width: 100%;
-    position: absolute;
-}
-
-.ms-tablet-template .ms-nav-prev,
-.ms-tablet-template .ms-nav-next {
-    background: url(templates/device-skin.png) no-repeat -11px -9px;
-    width: 35px;
-    height: 40px;
-    left: -120px;
-    margin-top: -17px;
-    position: absolute;
-    top:50%;
-    cursor: pointer;
-}
-.ms-tablet-template .ms-nav-next {
-	background-position: -59px -9px;
-	right: -120px;
-	left:auto;
-}
-
-.ms-tablet-template .ms-bullets.ms-dir-h {
-	position: absolute;
-	bottom: -18%;
-	right: 50%;
-	width: 100px;
-}
-
-.ms-tablet-template .ms-bullets.ms-dir-h .ms-bullets-count {
-	position: relative;
-	right: -50%;
-}
-
-.ms-tablet-template .ms-bullet {
-	width: 10px;
-	height: 10px;
-	background: url(templates/device-skin.png) no-repeat -112px -25px;
-	margin: 4px;
-}
-
-.ms-tablet-template .ms-bullet-selected {
-    background-position: -143px -25px;
-}/*css\ms-phone-style.css 
-*/ 
- 
-.ms-phone-template .ms-phone-cont .ms-view{
-	background-color: #17171a;
-}
-.ms-phone-template .ms-phone-cont{
-    max-width: 386px;
-	position: relative;
-	margin: 0 auto;
-}
-
-.ms-phone-template.ms-phone-land .ms-phone-cont {
-    max-width: 666px;
-}
-
-.ms-phone-template.ms-phone-land .ms-lt-slider-cont {
-	position: relative;
-	padding: 4.6% 16.1% 10% 15.5%;
-    max-width: 455px;
-}
-
-.ms-phone-template .ms-lt-slider-cont {
-    position: relative;
-    padding: 26.2% 16.5% 33% 16.8%;
-    max-width: 258px;
-}
-.ms-phone-template .ms-phone-bg {
-    max-width: 100%;
-    position: absolute;
-}
-
-.ms-phone-template .ms-nav-prev,
-.ms-phone-template .ms-nav-next {
-    background: url(templates/device-skin.png) no-repeat -11px -9px;
-    width: 35px;
-    height: 40px;
-    left: -120px;
-    margin-top: -17px;
-    position: absolute;
-    top:50%;
-    cursor: pointer;
-}
-.ms-phone-template .ms-nav-next {
-	background-position: -59px -9px;
-	right: -120px;
-	left:auto;
-}
-
-.ms-phone-template .ms-bullets.ms-dir-h {
-	position: absolute;
-	bottom: -30%;
-	right: 50%;
-	width: 100px;
-}
-
-.ms-phone-template .ms-bullets.ms-dir-h .ms-bullets-count {
-	position: relative;
-	right: -50%;
-}
-
-.ms-phone-template .ms-bullet {
-	width: 10px;
-	height: 10px;
-	background: url(templates/device-skin.png) no-repeat -112px -25px;
-	margin: 4px;
-}
-
-.ms-phone-template .ms-bullet-selected {
-    background-position: -143px -25px;
-}
-
-.ms-phone-template.ms-phone-land .ms-bullets.ms-dir-h {
-    bottom: -21%;
-}
-
-.ms-phone-template.ms-phone-land .ms-nav-next {
-    right: -150px;
-}
-
-.ms-phone-template.ms-phone-land .ms-nav-prev {
-    left: -150px;
-}/*css\ms-partialview.css 
-*/ 
- 
-.ms-partialview-template .ms-slide-info {
-	text-align: center;
-	margin-top: 20px;
-	width: 100%;
-}
-
-.ms-partialview-template .ms-slide-info h3 {
-	margin: 5px;
-	font-weight: 300;
-	font-size: 23pt;
-	color: #222;
-}
-
-.ms-partialview-template .ms-slide-info h4 {
-	margin: 5px;
-	font-weight: 300;
-	font-size: 14pt;
-	color: #7A7A7A;
-}
-
-.ms-partialview-template .ms-slide-info p {
-	font-size: 10pt;
-	margin: 6px;
-}/*css\ms-showcase2.css 
-*/ 
- 
-/* .ms-showcase2-template {max-width: 540px; margin: 0 auto;}
-.ms-showcase2-vertical {max-width: 677px;} */
-.ms-showcase2-template .ms-view{background: transparent;}/*css\ms-staff-style.css 
-*/ 
- 
-.master-slider{
-	-moz-transform:translate3d(0,0,1px);
-}
-.ms-staff-carousel{
-	margin: 25px auto;
-	position: relative;
-}
-
-.ms-staff-carousel .ms-view{
-	overflow:visible;
-	background-color: transparent;
-}
-
-.ms-staff-carousel .ms-nav-prev,
-.ms-staff-carousel .ms-nav-next {
-    background: url(templates/staff-arrows.png) white no-repeat -7px -57px;
-    width: 35px;
-    height: 40px;
-    left: -35px;
-    margin-top: -17px;
-    box-shadow: 0px 1px 0px 0px rgb(190, 190, 190);
-    position: absolute;
-    top:50%;
-    cursor: pointer;
-}
-
-.ms-staff-carousel .ms-nav-next {
-	background-position: -6px -7px;
-	right:-35px;
-	left:auto;
-}
-
-.ms-staff-carousel .ms-staff-info{
-	text-align: center;
-	margin:0 auto;
-	max-width: 600px;
-	margin-top:30px;
-	min-height:300px;
-	color:#222222;
-}
-	.ms-staff-carousel .ms-staff-info h3{
-		font-weight: 300;
-		font-size: 22pt;
-		margin:0px;
-	}
-	
-	.ms-staff-carousel .ms-staff-info h4{
-		font-weight: 300;
-		color:#787878;
-		font-size: 15pt;
-		margin:3px;
-	}
-
-.ms-staff-carousel.ms-round .ms-slide-bgcont {
-	border-radius: 5000px;
-	border: solid 8px rgb(230, 230, 230);
-	margin: 0 -8px;
-}
-
-.ms-staff-carousel.ms-round .ms-view{
-	padding-bottom: 8%;
-}
-
-.ms-staff-carousel.ms-round .ms-nav-prev,
-.ms-staff-carousel.ms-round .ms-nav-next {
-    background-color:transparent;
-    box-shadow : none;
-    left:-45px;
- }
- 
-.ms-staff-carousel.ms-round .ms-nav-next {
-    left:auto;
-    right:-45px
-}
-/*css\ms-tabs-style.css 
-*/ 
- 
-.ms-tabs-template .ms-thumb-frame h3 {
-	font-weight: 400;
-	font-size: 13pt;
-	margin:0;
-}
-
-.ms-tabs-template .ms-thumb-frame p {
-	font-size:10pt;
-	margin: 4px 0;
-}
-
-.ms-tabs-template .ms-thumb-frame-selected h3{
-	color:#4b8aac;
-}/*css\ms-vertical.css 
-*/ 
- 
-.ms-vertical-template .ms-nav-prev,
-.ms-vertical-template .ms-nav-next {
-    top: 10px;
-    left: 50%;
-    background: url(templates/vertical-arrows.png) no-repeat;
-    background-position: -11px -6px;
-    width: 40px;
-    height: 30px;
-    margin-left: -20px;
-    margin-top: 0;
-}
-
-.ms-vertical-template .ms-nav-next{
-	top:auto;
-	bottom:10px;
-	background-position: -11px -53px;
-}
-
-.ms-vertical-template .ms-thumblist-fwd,
-.ms-vertical-template .ms-thumblist-bwd {
-    width: 100%;
-	position: absolute;
-	top: 0;
-	height: 15px;
-	cursor: pointer;
-	background: url(templates/vertical-arrows.png) no-repeat;
-	
-    background-position: 50% -106px;
-}
-.ms-vertical-template .ms-thumblist-bwd {
-    top: auto;
-    bottom: 0;
-    background-position: 50% -145px;
 }
