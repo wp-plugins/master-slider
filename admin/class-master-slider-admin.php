@@ -127,7 +127,7 @@ class Master_Slider_Admin {
 			return false;
 
 		msp_save_custom_styles();
-		msp_flush_all_sliders_cache();
+		// msp_flush_all_sliders_cache(); 2.0.0
 		update_option( 'masterslider_lite_plugin_version', MSWP_AVERTA_VERSION );
 		do_action( 'masterslider_after_plugin_updated' );
 

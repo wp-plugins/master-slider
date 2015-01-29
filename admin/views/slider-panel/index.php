@@ -2,7 +2,7 @@
 /**
  * Represents the view for slider panel.
  *
- * @package   MasterSlider Lite
+ * @package   MasterSlider
  * @author    averta [averta.net]
  * @license   LICENSE.txt
  * @link      http://masterslider.com
@@ -12,7 +12,9 @@
 ?>
 
 <!-- markup for slider panel page here. -->
-<?php msp_get_panel_header(); ?>
+<div id="msp-header">
+    <div class="msp-logo"><a href="?page=masterslider"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/masterslider.gif" ></a></div>
+</div>
 <div id="panelLoading" class="msp-loading">
     <img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/loading.gif">
     <?php _e('Loading data...', MSWP_TEXT_DOMAIN); ?>
@@ -24,6 +26,7 @@
 
 <!-- Application Template -->
 <script type="text/x-handlebars">
+    
     {{#if hasError}}
         <div class="msp-error-cont">
             {{partial errorTemplate}}
@@ -32,9 +35,14 @@
         <nav class="msp-main-nav">
             <ul>
                 <li>{{#link-to 'settings'}} <?php _e('Slider Settings', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-settings"></span>{{/link-to}}</li>
+                {{#if isFlickr }}<li>{{#link-to 'flickr'}} <?php _e('Flickr Settings', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-flickr"></span>{{/link-to}}</li>{{/if}}
+                {{#if isFacebook }}<li>{{#link-to 'facebook'}} <?php _e('Facebook Settings', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-facebook"></span>{{/link-to}}</li>{{/if}}
+                {{#if isPost }}<li>{{#link-to 'post'}} <?php _e('Posts Settings', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-posts"></span>{{/link-to}}</li>{{/if}}
+                {{#if isWcproduct }}<li>{{#link-to 'wcproduct'}} <?php _e('Product Slider Settings', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-wooc"></span>{{/link-to}}</li>{{/if}}
                 <li>{{#link-to 'slides'}} <?php _e('Slides', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-slides"></span>{{/link-to}}</li>
                 <li>{{#link-to 'controls'}} <?php _e('Slider Controls', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-controls"></span>{{/link-to}}</li>
                 <li>{{#link-to 'callbacks'}} <?php _e('Slider Callbacks', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-api"></span>{{/link-to}}</li>
+                <li class="msp-upgrade-btn"> <a href="http://avt.li/mslpan" target="_blank">Upgrade to PRO <span class="msp-ico msp-ico-pro"></span></a></li>
             </ul>
         </nav>
         <div class="clear"></div>
@@ -101,9 +109,9 @@
 
     {{/meta-box}} 
 
-    {{#meta-box title="<?php _e('Slider transition', MSWP_TEXT_DOMAIN); ?>"}}
-
+    {{#meta-box title="<?php _e('Slider Transition', MSWP_TEXT_DOMAIN); ?>"}}
         <div class="msp-metabox-row">
+            
             <h4><?php _e('Change slider transition, transition speed and space between slides', MSWP_TEXT_DOMAIN); ?></h4>
 
             <div class="msp-metabox-indented">
@@ -126,13 +134,14 @@
             </div>
         </div>
     {{/meta-box}} 
+    
 
     {{#meta-box title="<?php _e('Navigation', MSWP_TEXT_DOMAIN); ?>"}}
 
         <div class="msp-metabox-row">
             <h4><?php _e('Slideshow behavior and sorting slides', MSWP_TEXT_DOMAIN); ?></h4>
             <div class="msp-metabox-indented"> 
-                {{switch-box value=autoplay}}<label><?php _e('Slideshow', MSWP_TEXT_DOMAIN); ?></label>
+                {{switch-box value=autoplay}}<label><?php _e('Autoplay (Slideshow)', MSWP_TEXT_DOMAIN); ?></label>
                 <span class="msp-form-space"></span>
                 {{switch-box value=loop}}<label><?php _e('Loop navigation', MSWP_TEXT_DOMAIN); ?> </label>
                 <span class="msp-form-space"></span>
@@ -144,7 +153,7 @@
                 {{switch-box value=shuffle}}<label><?php _e('Random order', MSWP_TEXT_DOMAIN); ?></label>
             </div>
             <div class="msp-metabox-indented"> 
-                <label><?php _e('Start with slide', MSWP_TEXT_DOMAIN); ?> </label> {{number-input value=start min=1}}
+                <label><?php _e('Start with slide :', MSWP_TEXT_DOMAIN); ?> </label> {{number-input value=start min=1}}
             </div>
             <h4><?php _e('Slider navigation methods', MSWP_TEXT_DOMAIN); ?></h4>
             <div class="msp-metabox-indented"> 
@@ -183,6 +192,21 @@
                     {{#each skin in sliderSkins}}
                         <option {{bind-attr value=skin.class}}>{{skin.label}}</option>
                     {{/each}}
+                    
+                    {{!-- 
+                    <option value="ms-skin-default"><?php _e('Default', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-light-2"><?php _e('Light 2', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-light-3"><?php _e('Light 3', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-light-4"><?php _e('Light 4', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-light-5"><?php _e('Light 5', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-light-6"><?php _e('Light 6', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-light-6 round-skin"><?php _e('Light 6 Round', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-contrast"><?php _e('Contrast', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-black-1"><?php _e('Black 1', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-black-2"><?php _e('Black 2', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-black-2 round-skin"><?php _e('Black 2 Round', MSWP_TEXT_DOMAIN); ?></option>
+                    <option value="ms-skin-metro"><?php _e('Metro', MSWP_TEXT_DOMAIN); ?></option>
+                    --}}
                 {{/dropdwon-List}}
             </div>
             <div class="msp-metabox-indented"> 
@@ -194,55 +218,64 @@
                 <span class="msp-form-space"></span> 
                 <label><?php _e('Background color :', MSWP_TEXT_DOMAIN); ?> </label> {{color-picker value=bgColor}}
             </div>
-            <h4><?php _e('Slider custom class name and inline style', MSWP_TEXT_DOMAIN); ?></h4>
+            <h4><?php _e('Slider custom class name and style', MSWP_TEXT_DOMAIN); ?></h4>
             <div class="msp-metabox-indented"> 
                 <label><?php _e('Class name :', MSWP_TEXT_DOMAIN); ?> </label> {{input value=className}}
             </div>
-            <div class="msp-metabox-indented">
+            {{!--<div class="msp-metabox-indented">
                 <label><?php _e('Inline style :', MSWP_TEXT_DOMAIN); ?> </label> {{input value=inlineStyle size="50"}}
+            </div>--}} 
+           <div class="msp-metabox-indented">
+                <label><?php _e('Slider custom styles :', MSWP_TEXT_DOMAIN); ?> </label> 
             </div>
+            <div class="msp-metabox-indented">
+                {{#code-mirror width="880" height="250" mode="css" value=customStyle}}{{/code-mirror}}
+            </div>
+            
         </div>
     
     {{/meta-box}} 
 </script>
-
 <!-- Slides Page -->
 <script type="text/x-handlebars" id="slides">
-    <!-- Slides List -->
-    {{#meta-box title="<?php _e('Slides', MSWP_TEXT_DOMAIN); ?>"}}
-    <div class="msp-metabox-row">
-     {{view MSPanel.SlideList}}
-    </div>
-    {{/meta-box}} 
-
-    {{partial "slide-settings"}}  
+    {{#if customSlider}}
+        <!-- Slides List -->
+        {{#meta-box title="<?php _e('Slides', MSWP_TEXT_DOMAIN); ?>"}}
+        <div class="msp-metabox-row">
+         {{view MSPanel.SlideList}}
+        </div>
+        {{/meta-box}} 
+        {{#if length}}
+            {{partial "slide-settings"}}  
+        {{/if}}
+    {{/if}}
 </script>
-
 <!-- Slide Settings Partial -->
 <script type="text/x-handlebars" id="slide-settings">
 
     {{#tabs-panel id="slide-settings"}}
-        <div class="msp-metabox-handle">
+    <div class="msp-metabox-handle">
 
-            <ul class="tabs">
-                <li class="active"><a href="#sl-bg"><?php _e('Background', MSWP_TEXT_DOMAIN); ?></a></li>
-                <li><a href="#sl-val"><?php _e('Video and Link', MSWP_TEXT_DOMAIN); ?></a></li>
-                <li><a href="#sl-inf"><?php _e('Slide Info', MSWP_TEXT_DOMAIN); ?></a></li>
-                <li><a href="#sl-misc"><?php _e('Misc', MSWP_TEXT_DOMAIN); ?></a></li>
-            </ul>
+        <ul class="tabs">
+            <li class="active"><a href="#sl-bg"><?php _e('Background', MSWP_TEXT_DOMAIN); ?></a></li>
+            <li><a href="#sl-val"><?php _e('Video and Link', MSWP_TEXT_DOMAIN); ?></a></li>
+            <li><a href="#sl-inf"><?php _e('Slide Info', MSWP_TEXT_DOMAIN); ?></a></li>
+            <li><a href="#sl-misc"><?php _e('Misc', MSWP_TEXT_DOMAIN); ?></a></li>
+        </ul>
 
-            <div class="msp-metabox-toggle"></div>
-        </div>
+        <div class="msp-metabox-toggle"></div>
+    </div>
 
-        <ul class="tabs-content">
-            <li id="sl-bg">{{partial 'slide-background'}}</li>
-            <li id="sl-val">{{partial 'slide-video-and-link'}}</li>
-            <li id="sl-inf">{{partial 'slide-info'}}</li>
-            <li id="sl-misc">{{partial 'slide-misc'}}</li>
-        </ul> 
+    <ul class="tabs-content">
+        <li id="sl-bg">{{partial 'slide-background'}}</li>
+        <li id="sl-val">{{partial 'slide-video-and-link'}}</li>
+        <li id="sl-inf">{{partial 'slide-info'}}</li>
+        <li id="sl-misc">{{partial 'slide-misc'}}</li>
+    </ul> 
+
     {{/tabs-panel}} 
 
-     {{#meta-box title="Slide"}}
+    {{#meta-box title="Slide"}}
         <div class="msp-metabox-row">
            <div class="msp-metabox-indented">
              <label><?php _e('Slide duration :', MSWP_TEXT_DOMAIN); ?> </label> {{number-input class="msp-number-input" min=0 max=300 step="0.1" value=currentSlide.duration}} s
@@ -250,8 +283,7 @@
         </div>
         <hr class="msp-metabox-hr">   
         {{view MSPanel.StageArea}}
-    {{/meta-box}} 
-    
+    {{/meta-box}}
 </script>
 
 <!-- Slide Background Settings Partial -->
@@ -259,7 +291,7 @@
     <div class="msp-metabox-row">
         <h4><?php _e('Choose slide background and thumbnail', MSWP_TEXT_DOMAIN); ?></h4>
         <div class="msp-metabox-indented">
-            <label><?php _e('Background :', MSWP_TEXT_DOMAIN); ?> </label> {{view MSPanel.ImgSelect value=currentSlide.bg thumb=currentSlide.bgThumb}}
+            <label><?php _e('Background :', MSWP_TEXT_DOMAIN); ?> </label> {{view MSPanel.ImgSelect value=currentSlide.bg thumb=currentSlide.bgThumb }}
             <span class="msp-form-space"></span>
             <label><?php _e('Fillmode :', MSWP_TEXT_DOMAIN); ?> </label> {{view MSPanel.Fillmode value=currentSlide.fillMode}}
             <span class="msp-form-space"></span>
@@ -267,7 +299,6 @@
         </div>
     </div>
 </script>
-
 <!-- Slide Embeded Video and Link -->
 <script type="text/x-handlebars" id="slide-video-and-link">
     <div class="msp-metabox-row">
@@ -276,9 +307,19 @@
             <label><?php _e('URL :', MSWP_TEXT_DOMAIN); ?> </label> {{input class="msp-path-input" value=currentSlide.link}}
             {{view MSPanel.URLTarget  value=currentSlide.linkTarget }}
         </div>
+        <div class="msp-metabox-indented">
+            <label><?php _e('Link id :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=20 value=currentSlide.linkId}}
+             <span class="msp-form-space"></span> 
+            <label><?php _e('Link class :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=20 value=currentSlide.linkClass}}
+        </div>
+        <div class="msp-metabox-indented">
+            <label><?php _e('Link rel :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=20 value=currentSlide.linkRel}}
+             <span class="msp-form-space"></span> 
+            <label><?php _e('Link title :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=20 value=currentSlide.linkTitle}}
+        </div>
         <h4><?php _e('Youtube or Vimeo video as slide', MSWP_TEXT_DOMAIN); ?></h4>
         <div class="msp-metabox-indented">
-            <label><?php _e('Video embed url :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=60 value=currentSlide.video}}
+            <label><?php _e('Video embed src :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=60 value=currentSlide.video}}
             <span class="msp-form-space"></span>
             <label><?php _e('Autoplay video :', MSWP_TEXT_DOMAIN); ?> </label>  {{switch-box value=currentSlide.autoplayVideo}}
         </div>
@@ -323,9 +364,14 @@
              <span class="msp-form-space"></span> 
             <label><?php _e('Alt text :', MSWP_TEXT_DOMAIN); ?> </label> {{input size=30 value=currentSlide.bgAlt}}
         </div>
+        <h4><?php _e('Slide color and pattern overlay ', MSWP_TEXT_DOMAIN); ?></h4>
+        <div class="msp-metabox-indented">
+           <label><?php _e('Color overlay :', MSWP_TEXT_DOMAIN); ?> </label> {{color-picker value=currentSlide.colorOverlay}}
+           <div class="msp-form-space-med"></div>
+           <label><?php _e('Pattern overlay :', MSWP_TEXT_DOMAIN); ?> </label> {{pattern-picker value=currentSlide.pattern}}
+        </div>
     </div>
 </script>
-
 <!-- Slider Controls -->
 <script type="text/x-handlebars" id="controls">
 {{#if controllers.application.disableControls}}

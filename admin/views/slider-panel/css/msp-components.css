@@ -35,9 +35,6 @@
 	position: relative; 
 	left:0;
 	-webkit-transition: all 0.25s;
-	-moz-transition: all 0.25s;
-	-ms-transition: all 0.25s;
-	-o-transition: all 0.25s;
 	transition: all 0.25s;
 } 
 .msp-switchbox.switched .msp-switch-cont{left:40px;}
@@ -53,9 +50,6 @@
 	border-radius: 44px;
 	border:solid 1px #dedede;
 	-webkit-transition: all 0.25s;
-	-moz-transition: all 0.25s;
-	-ms-transition: all 0.25s;
-	-o-transition: all 0.25s;
 	transition: all 0.25s;
 }
 
@@ -94,6 +88,7 @@
 	height: auto;
 	box-shadow: none;
 	padding: 8px;
+	height: 34px;
 	outline: none;
 }
 

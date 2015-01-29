@@ -76,6 +76,8 @@ class MSP_Parser {
 	        'class'         => isset( $setting['className'] ) ? (string) $setting['className'] : '',      // a class that adds to slider wrapper
 	        'margin'        => 0,
 
+	        'custom_style'  => isset( $setting['customStyle'] ) ? esc_attr( $setting['customStyle'] ) : '',
+
 	        'inline_style'  => isset( $setting['inlineStyle'] ) ? esc_attr( $setting['inlineStyle'] ) : '',
 	        'bg_color'  	=> isset( $setting['bgColor'] ) ? (string) $setting['bgColor'] : '',
 	        'bg_image'  	=> isset( $setting['bgImage'] ) ? msp_get_the_relative_media_url( $setting['bgImage'] ) : '',
@@ -312,9 +314,16 @@ class MSP_Parser {
 
             'title'     => '', // image title
             'alt'       => isset( $slide['bgAlt'] ) ? esc_attr($slide['bgAlt']) : '', // image alternative text
-            'link'      => isset( $slide['link'] ) ? esc_url( $slide['link'] ) : '',
-            'target'    => isset( $slide['linkTarget'] ) ? (string) $slide['linkTarget'] : '',
+
+            'link'       => isset( $slide['link']      ) ? esc_attr( $slide['link'] ) : '',
+            'target'     => isset( $slide['linkTarget']) ? (string) $slide['linkTarget'] : '',
+            'link_title' => isset( $slide['linkTitle'] ) ? (string) $slide['linkTitle'] : '',
+            'link_class' => isset( $slide['linkClass'] ) ? (string) $slide['linkClass'] : '',
+            'link_id'    => isset( $slide['linkId']    ) ? (string) $slide['linkId'] : '',
+            'link_rel'   => isset( $slide['linkRel']   ) ? (string) $slide['linkRel'] : '',
+
             'video'     => isset( $slide['video'] ) ? esc_attr( $slide['video'] ) : '', // youtube or vimeo video link
+            'auto_play_video' => $this->is_key_true( $slide, 'autoplayVideo', 'false' ), // autoplay for youtube or vimeo videos
 
             'info'      => wp_slash( do_shortcode( $info ) ), // image alternative text
 
@@ -330,7 +339,10 @@ class MSP_Parser {
             'tab'		=> 'true' == $slider_setting['thumbs'] && 'tabs' == $slider_setting['thumbs_type'] ? str_replace( '"', '&quote;', $info ) : '',
             'delay'     => isset( $slide['duration'] ) ? (string) $slide['duration'] : '', // data-delay 
             'bgalign'   => isset( $slide['fillMode'] ) ? (string) $slide['fillMode'] : 'fill', // data-fill-mode
-            'bgcolor'   => isset( $slide['bgColor']  ) ? (string) $slide['bgColor'] : ''
+            'bgcolor'   => isset( $slide['bgColor']  ) ? (string) $slide['bgColor'] : '',
+
+            'pattern'   => isset( $slide['pattern']  ) ? (string) $slide['pattern'] : '',
+            'tintcolor' => isset( $slide['colorOverlay']  ) ? (string) $slide['colorOverlay'] : '',
         );
 
 		return $slides;
@@ -771,6 +783,11 @@ class MSP_Parser {
 
 	public function get_styles( $force_new_parse = false ) {
 		$styles_list = $this->get_styles_list();
+		
+		// custom css code for sliders added
+		$setting     = $this->get_slider_setting();
+		$styles_list[] = $setting['custom_style'];
+
 		return implode( $this->join_char, $styles_list );
 	}
 

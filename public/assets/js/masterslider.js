@@ -1,15 +1,14 @@
-//dev\slider\header.js 
- 
-/*!
- * Master Slider Lite
- * @author Averta (www.averta.net)
- * Copyright © All Rights Reserved, Averta Ltd.
+/*! 
+ * Master Slider – Responsive Touch Swipe Slider [lite version]
+ * Copyright © 2015 All Rights Reserved. 
  *
- * @version 1.1.0
- * @date Sept 2014
+ * @author Averta [www.averta.net]
+ * @version 2.0
+ * @date Jan 2015
  */
-//dev\slider\tools\base.js 
- 
+
+
+/* ================== bin-debug/js/lite/tools/base.js =================== */
 window.averta = {};
 
 ;(function($){
@@ -44,14 +43,14 @@ window.averta = {};
 		'Icab'   : '-icab-'
 	};
 	
+	window._mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+	window._touch  = 'ontouchstart' in document;
 	$(document).ready(function(){
 		window._jcsspfx 		= getVendorPrefix();	   // JS CSS VendorPrefix
 		window._csspfx 			= trans[window._jcsspfx];  // CSS VendorPrefix
 		window._cssanim 		= supportsTransitions();
 		window._css3d   		= supports3DTransforms();
 		window._css2d   		= supportsTransforms();
-		window._mobile			= /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-		window._touch			= 'ontouchstart' in document;
 	});
 	
 	
@@ -65,9 +64,11 @@ window.averta = {};
 	
 		var someScript = document.getElementsByTagName('script')[0];
 	
-		for(var prop in someScript.style)
-			if(regex.test(prop))
+		for(var prop in someScript.style){
+			if(regex.test(prop)){
 				return arguments.callee.result = prop.match(regex)[0];
+			}
+		}
 	
 		if('WebkitOpacity' in someScript.style) return arguments.callee.result = 'Webkit';
 		if('KhtmlOpacity' in someScript.style) return arguments.callee.result = 'Khtml';
@@ -267,6 +268,8 @@ window.averta = {};
 					$this.attr('src' , src);
 					event.width = img.width;
 					event.height = img.height;
+					$this.data('width', img.width);
+					$this.data('height', img.height);
 					setTimeout(function(){_event.call(self , event);},50);
 					img = null;
 				};
@@ -276,8 +279,8 @@ window.averta = {};
 		};
 	}
 })(jQuery);
-//dev\slider\tools\EventDispatcher.js 
- 
+
+/* ================== bin-debug/js/lite/tools/EventDispatcher.js =================== */
 ;(function(){
 	
 	"use strict";
@@ -304,28 +307,31 @@ window.averta = {};
 		
 		removeEventListener : function(event , listener , ref){
 			if(this.listeners[event]){
-				for(var i = 0 , l = this.listeners[event].length; i < l ; ++i)
-					if(listener == this.listeners[event][i].listener && ref == this.listeners[event][i].ref){	
-						this.listeners[event].splice(i,0);
+				for(var i = 0 , l = this.listeners[event].length; i < l ; ++i){
+					if(listener === this.listeners[event][i].listener && ref === this.listeners[event][i].ref){	
+						this.listeners[event].splice(i,1);
 					}
+				}
 				
-				if (this.listeners[event].length == 0)
-					delete this.listeners[event];
+				if (this.listeners[event].length === 0){
+					this.listeners[event] = null;
+				}
 			}
 		},
 		
 		dispatchEvent : function (event) {
 			event.target = this;
-			if(this.listeners[event.type])
+			if(this.listeners[event.type]){
 				for(var i = 0 , l = this.listeners[event.type].length; i < l ; ++i){
 					this.listeners[event.type][i].listener.call(this.listeners[event.type][i].ref , event);	
 				}
+			}
 		}
 	};
 
 })();
-//dev\slider\tools\TouchSwipe.js 
- 
+
+/* ================== bin-debug/js/lite/tools/TouchSwipe.js =================== */
 ;(function($){
 	
 	"use strict";
@@ -351,7 +357,8 @@ window.averta = {};
 		
 		this.onSwipe    = null;
 		this.swipeType  = 'horizontal';
-		
+		this.noSwipeSelector = 'input, textarea, button, .no-swipe, .ms-no-swipe';
+
 		this.lastStatus = {};
 	
 	};
@@ -423,6 +430,11 @@ window.averta = {};
 		var swipe = event.data.target;
 		var jqevt = event;
 		if(!swipe.enabled) return;
+
+		if ( $(event.target).closest(swipe.noSwipeSelector, swipe.$element).length > 0 ) {
+			return;
+		}
+
 		event = event.originalEvent;
 		
 		if( usePointer ) {
@@ -530,8 +542,8 @@ window.averta = {};
 	};
 	
 })(jQuery);
-//dev\slider\tools\Timer.js 
- 
+
+/* ================== bin-debug/js/lite/tools/Timer.js =================== */
 /**
  * 	Ticker Class
  * 	Author: Averta Ltd
@@ -652,8 +664,8 @@ window.averta = {};
 		
 	};
 })();
-//dev\slider\tools\CSSTweener.js 
- 
+
+/* ================== bin-debug/js/lite/tools/CSSTweener.js =================== */
 ;(function(){
 	
 	"use strict";
@@ -709,12 +721,13 @@ window.averta = {};
 	};
 	
 	p.reset = function(){
-		//this.$element[0].removeEventListener(evt , this.onTransComplete , true);
+		//element.removeEventListener(evt , this.onTransComplete , true);
 		clearTimeout(this.start_to);
 		clearTimeout(this.end_to);
 	};
 	
 	p.start = function(){
+		var element = this.$element[0];
 	
 		clearTimeout(this.start_to);
 		clearTimeout(this.end_to);
@@ -722,7 +735,7 @@ window.averta = {};
 		this.fresh = true;
 		
 		if(this.fr_cb){
-			this.$element.css(window._jcsspfx + 'TransitionDuration' , '0ms');
+			element.style[window._jcsspfx + 'TransitionDuration'] = '0ms';
 			this.fr_cb.call(this.fr_cb_target);
 		}
 		
@@ -735,14 +748,14 @@ window.averta = {};
 			//that.$element[0].removeEventListener(evt , this.onTransComplete, true);
 			//event.stopPropagation();
 			
+
 			that.reset();
 			
-			this.$element.css(window._jcsspfx + 'TransitionDuration' , '').
-						  css(window._jcsspfx + 'TransitionProperty' , '').
-						  css(window._jcsspfx + 'TransitionTimingFunction' , '').
-						  css(window._jcsspfx + 'TransitionDelay' , '');
-			
-			
+			element.style[window._jcsspfx + 'TransitionDuration'] = '';
+			element.style[window._jcsspfx + 'TransitionProperty'] = '';
+			element.style[window._jcsspfx + 'TransitionTimingFunction'] = '';
+			element.style[window._jcsspfx + 'TransitionDelay'] = '';
+						
 			that.fresh = false;
 			if(that.chained_tween) that.chained_tween.start();
 			if(that.oc_fb)	that.oc_fb.call(that.oc_fb_target);
@@ -750,14 +763,14 @@ window.averta = {};
 		};
 			
 		this.start_to = setTimeout(function(){
-			
-			that.$element.css(window._jcsspfx + 'TransitionDuration' , that.duration + 'ms').
-						  css(window._jcsspfx + 'TransitionProperty' , 'all');
+			if ( !that.$element ) return;
+			element.style[window._jcsspfx + 'TransitionDuration'] = that.duration + 'ms';
+			element.style[window._jcsspfx + 'TransitionProperty'] = that.transProperty || 'all';
 						  
-			if(that.delay > 0)	that.$element.css(window._jcsspfx + 'TransitionDelay' , that.delay + 'ms');
-			else				that.$element.css(window._jcsspfx + 'TransitionDelay' , '');
+			if(that.delay > 0)	element.style[window._jcsspfx + 'TransitionDelay'] = that.delay + 'ms';
+			else				element.style[window._jcsspfx + 'TransitionDelay'] = '';
 					
-			that.$element.css(window._jcsspfx + 'TransitionTimingFunction' , that.ease);
+			element.style[window._jcsspfx + 'TransitionTimingFunction'] = that.ease;
 
 			if(that.to_cb)	that.to_cb.call(that.to_cb_target);
 			
@@ -826,6 +839,9 @@ window.averta = {};
 		
 		if(_cssanim){
 			var tween = new CSSTween(element , duration , options.delay , EaseDic[options.ease]);
+			if ( options.transProperty ) {
+				tween.transProperty = options.transProperty;
+			}
 			tween.to(function(){ element.css(properties);});	
 			if(options.complete) tween.onComplete(options.complete , options.target);
 			tween.start();
@@ -848,13 +864,20 @@ window.averta = {};
 	
 	CTween.fadeOut = function(target , duration , remove) {
 		var options = {};
-		if(remove) options.complete = function(){target.remove();};		
+		if(remove === true) {
+			options.complete = function(){target.remove();};
+		} else if ( remove === 2 ) {
+			options.complete = function(){target.css('display', 'none');};		
+		}	
 		
 		CTween.animate(target , duration || 1000 , {opacity : 0} , options);
 	};
 	
-	CTween.fadeIn = function(target , duration){
-		target.css('opacity' , 0);
+	CTween.fadeIn = function(target , duration, reset){
+		if( reset !== false ) {
+			target.css('opacity' , 0).css('display', '');
+		}
+		
 		CTween.animate(target , duration || 1000 , {opacity : 1});
 	};
 	
@@ -899,8 +922,7 @@ window.averta = {};
 	};
 })();
 
-//dev\slider\tools\Aligner.js 
- 
+/* ================== bin-debug/js/lite/tools/Aligner.js =================== */
 ;(function(){
 	
 	"use strict";
@@ -997,8 +1019,8 @@ window.averta = {};
 	}
 	
 })();
-//dev\slider\controls\controller.js 
- 
+
+/* ================== bin-debug/js/lite/controls/controller.js =================== */
 /**
  *  Touch List Control
  * 	version 1.1.2
@@ -1425,28 +1447,30 @@ window.averta = {};
 	
 	window.Controller = Controller;
 	
-})();//dev\slider\SliderEvent.js 
- 
-window.MSLSliderEvent = function (type){
+})();
+
+/* ================== bin-debug/js/lite/SliderEvent.js =================== */
+window.MSSliderEvent = function (type){
 	this.type = type;
 };
 
-MSLSliderEvent.CHANGE_START      	= 'changeStart';
-MSLSliderEvent.CHANGE_END       		= 'changeEnd';
-MSLSliderEvent.WAITING		      	= 'waiting';
-MSLSliderEvent.AUTOPLAY_CHANGE   	= 'autoplayChange';
-MSLSliderEvent.VIDEO_PLAY		   	= 'videoPlay';
-MSLSliderEvent.VIDEO_CLOSE		   	= 'videoClose';
-MSLSliderEvent.INIT					= 'init';
-MSLSliderEvent.RESIZE				= 'resize';
-MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
-//dev\slider\Slide.js 
- 
+MSSliderEvent.CHANGE_START      	= 'ms_changestart';
+MSSliderEvent.CHANGE_END       		= 'ms_changeend';
+MSSliderEvent.WAITING		      	= 'ms_waiting';
+MSSliderEvent.AUTOPLAY_CHANGE   	= 'ms_autoplaychange';
+MSSliderEvent.VIDEO_PLAY		   	= 'ms_videoPlay';
+MSSliderEvent.VIDEO_CLOSE		   	= 'ms_videoclose';
+MSSliderEvent.INIT					= 'ms_init';
+MSSliderEvent.RESIZE				= 'ms_resize';
+MSSliderEvent.RESERVED_SPACE_CHANGE = 'ms_rsc'; // internal use
+MSSliderEvent.DESTROY				= 'ms_destroy';
+
+/* ================== bin-debug/js/lite/Slide.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	window.MSLSlide = function(){
+	window.MSSlide = function(){
 		
 		this.$element = null;
 		
@@ -1470,7 +1494,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		this.moz = $.browser.mozilla;
 	};
 	
-	var p = MSLSlide.prototype;
+	var p = MSSlide.prototype;
 		
 	/*-------------- METHODS --------------*/
 	
@@ -1483,16 +1507,53 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		if(this.link)  this.linkdis = true;
 		if(this.video) this.videodis = true;
 	};
+
+	p.onSwipeMove = function (e) {
+		var move = Math.max(Math.abs(e.data.distanceX), Math.abs(e.data.distanceY));
+		this.swipeMoved = move > 4;
+	};
 		
-	p.onSwipeCancel = function(){
+	p.onSwipeCancel = function(e){
+		//console.log(e.data)
+		if ( this.swipeMoved ) { 
+			this.swipeMoved = false;
+			return;
+		}
+
 		if(this.link) this.linkdis = false;
 		if(this.video) this.videodis = false;
 		//this.$layers.css(window._csspfx + 'transition-duration' , this.view.__slideDuration + 'ms');
 	};
 
+	// This method will be called by the last layer after loading all of layers.
+	p.___onlayersReady = function(){
+		this.ready = true;
+		this.slider.api._startTimer();
+		
+		if(!this.isSleeping)
+			this.setup();
 
-	/* -----------------------------------------------------*/
-	
+		CTween.fadeOut(this.$loading , 300 , true);
+		
+		//sequence loading
+		if((this.slider.options.preload === 0 || this.slider.options.preload === 'all') && this.index < this.view.slideList.length - 1){
+			this.view.slideList[this.index + 1].loadImages();
+		}
+		else if(this.slider.options.preload === 'all' && this.index === this.view.slideList.length - 1)
+			this.slider._removeLoading();
+		
+	};
+
+	/*
+	p.updateLayers = function(){
+		if(!this.hasLayers) return;
+		
+		var value = -parseInt(this.$element.css('left')) - this.view.__contPos;
+		
+		this.$layers[0].style.opacity = (1 - Math.abs(value / this.__width));
+		//this.$layers.css('opacity' ,  1 - Math.abs(value / this.__width));
+	};
+	*/
 	p.setBG = function(img){
 		this.hasBG = true;	
 		var that = this;
@@ -1532,8 +1593,9 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			this.$bg_img.on('dragstart', function(event) { event.preventDefault(); }); // disables native dragging
 		
 		this.preloadCount--;
+		
 		if(this.preloadCount === 0){
-			this.___onReady();
+			this.___onlayersReady();
 		}
 	};
 	
@@ -1542,12 +1604,11 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 
 		this.ls = true;
 		
+		// @since 1.7.0 
+		// There is nothing to preload? so slide is ready to show.
 		if( this.preloadCount === 0 ){
-			this.___onReady();
+			this.___onlayersReady();
 		}
-
-		if(this.bgvideo)
-			this.bgvideo.load();
 
 		if(this.hasBG && this.bg_src){
 			var that = this;
@@ -1555,30 +1616,11 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		}
 
 	};
-
-	// This method will be called by the last layer after loading all of layers.
-	p.___onReady = function(){
-		this.ready = true;
-		this.slider.api._startTimer();
-		
-		if(!this.isSleeping)
-			this.setup();
-
-		CTween.fadeOut(this.$loading , 300 , true);
-		
-		//sequence loading
-		if((this.slider.options.preload === 0 || this.slider.options.preload === 'all') && this.index < this.view.slideList.length - 1){
-			this.view.slideList[this.index + 1].loadImages();
-		}
-		else if(this.slider.options.preload === 'all' && this.index === this.view.slideList.length - 1)
-			this.slider._removeLoading();
-		
-	};
-
-	/* -----------------------------------------------------*/
 	
+	/* -----------------------------------------------------*/
+
 	p.setSize = function(width , height , hard){
-		
+
 		this.__width  = width;
 		
 		if(this.slider.options.autoHeight){
@@ -1594,9 +1636,9 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	
 		this.__height = height;
 		this.$element.width(width).height(height);
-			
+
 		if(this.hasBG && this.bgLoaded)this.bgAligner.align();
-				
+		
 	};
 
 	
@@ -1620,9 +1662,13 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		CTween.fadeIn(this.vframe 	, 500);
 		this.vframe.css('display' , 'block').attr('src' , this.video + '&autoplay=1');
 		this.view.$element.addClass('ms-def-cursor');
-		this.view.swipeControl.disable();
 		
-		this.slider.slideController.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.VIDEO_PLAY));
+		// if swipe navigation enabled		
+		if ( this.view.swipeControl ) {
+			this.view.swipeControl.disable();
+		}
+		
+		this.slider.slideController.dispatchEvent(new MSSliderEvent(MSSliderEvent.VIDEO_PLAY));
 	};
 	
 	p.__closeVideo = function(){
@@ -1636,9 +1682,13 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		CTween.animate(this.vcbtn   , 500 , {opacity:0} , {complete:function(){	that.vcbtn.css  ('display'  , 'none'); }});
 		CTween.animate(this.vframe  , 500 , {opacity:0} , {complete:function(){	that.vframe.attr('src'  , 'about:blank').css('display'  , 'none');}});
 		
-		this.view.swipeControl.enable();
+		// if swipe navigation enabled		
+		if ( this.view.swipeControl ) {
+			this.view.swipeControl.enable();
+		}
+		
 		this.view.$element.removeClass('ms-def-cursor');
-		this.slider.slideController.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.VIDEO_CLOSE));
+		this.slider.slideController.dispatchEvent(new MSSliderEvent(MSSliderEvent.VIDEO_CLOSE));
 	};
 
 	/* -----------------------------------------------------*/
@@ -1647,8 +1697,14 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		var that = this;
 
 		if(this.link){
-			this.$element.css('cursor' , 'pointer')
-						 .click(function(){ if(!that.linkdis) window.open(that.link , that.link_targ || '_self'); });
+			this.link.addClass('ms-slide-link').html('').click(function(e){
+				if ( that.linkdis ) {
+					e.preventDefault();
+				}
+			});
+
+			// this.$element.css('cursor' , 'pointer')
+			// 			 .click(function(){ if(!that.linkdis) window.open(that.link , that.link_targ || '_self'); });
 		}
 		
 		if(this.video){
@@ -1658,6 +1714,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 						  .addClass('ms-slide-video')
 						  .css({width:'100%' , height:'100%' , display:'none'})
 						  .attr('src' , 'about:blank')
+						  .attr('allowfullscreen', 'true')
 						  .appendTo(this.$element);
 			
 			this.vpbtn = $('<div></div>')
@@ -1713,10 +1770,11 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 
 			CTween.fadeIn(this.$imgcont , 300);	
 
-			if(this.slider.options.autoHeight)
-			this.$imgcont.height(this.bgHeight * this.ratio);
+			if(this.slider.options.autoHeight){
+				this.$imgcont.height(this.bgHeight * this.ratio);
+			}
 			
-			this.bgAligner.init(this.bgWidth  , this.bgHeight );
+			this.bgAligner.init(this.bgWidth  , this.bgHeight);
 			this.setSize(this.__width , this.__height);
 			
 			if(this.slider.options.autoHeight && (this.pselected || this.selected))
@@ -1726,12 +1784,17 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	};
 
 	p.prepareToSelect = function(){
+
+
 		if(this.pselected || this.selected) return;
 		this.pselected = true;		
 		
 		if(this.link || this.video){
-			this.view.addEventListener(MSLViewEvents.SWIPE_START  , this.onSwipeStart  , this);
-			this.view.addEventListener(MSLViewEvents.SWIPE_CANCEL , this.onSwipeCancel , this);
+			this.view.addEventListener(MSViewEvents.SWIPE_START  , this.onSwipeStart  , this);
+			this.view.addEventListener(MSViewEvents.SWIPE_MOVE  , this.onSwipeMove  , this);
+			this.view.addEventListener(MSViewEvents.SWIPE_CANCEL , this.onSwipeCancel , this);
+			this.linkdis = false;
+			this.swipeMoved = false;	
 		}
 
 		this.loadImages();
@@ -1739,6 +1802,8 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		if( this.moz ){
 			this.$element.css('margin-top' , '');
 		}
+
+
 	};
 	
 	/*p.prepareToUnselect = function(){
@@ -1753,24 +1818,33 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		this.selected = true;
 		this.pselected = false;
 		this.$element.addClass('ms-sl-selected');
+		
+		
+		// @since 1.8.0 
+		// Autoplay iframe video
+		if ( this.videoAutoPlay ) {
+			this.videodis = false;
+			this.vpbtn.trigger('click');
+		}
+
 	};
 	
 	p.unselect = function(){
 		this.pselected = false;
-
 		if(this.moz)
 			this.$element.css('margin-top' , '0.1px');
 
 		if(this.link || this.video){
-			this.view.removeEventListener(MSLViewEvents.SWIPE_START 	, this.onSwipeStart  , this);
-			this.view.removeEventListener(MSLViewEvents.SWIPE_CANCEL  , this.onSwipeCancel , this);
+			this.view.removeEventListener(MSViewEvents.SWIPE_START 	 , this.onSwipeStart  , this);
+			this.view.removeEventListener(MSViewEvents.SWIPE_MOVE  , this.onSwipeMove  , this);
+			this.view.removeEventListener(MSViewEvents.SWIPE_CANCEL  , this.onSwipeCancel , this);
 		}
+
 			
 		if(!this.selected) return;
 		this.selected = false;
 
 		this.$element.removeClass('ms-sl-selected');		
-		
 		if(this.video && this.vplayed){
 			this.__closeVideo();
 			this.roc = false;
@@ -1802,15 +1876,16 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			this.bgAligner.align();
 	};
 
-})(jQuery);//dev\slider\SlideController.js 
- 
+})(jQuery);
+
+/* ================== bin-debug/js/lite/SlideController.js =================== */
 ;(function($){
 	
 	"use strict";
 	
 	var SliderViewList = {};
 	
-	window.MSLSlideController = function(slider){
+	window.MSSlideController = function(slider){
 		
 		this._delayProgress		= 0;
 		
@@ -1827,7 +1902,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		
 	};
 	
-	MSLSlideController.registerView = function(name , _class){
+	MSSlideController.registerView = function(name , _class){
 		if(name in SliderViewList){
 			 throw new Error( name + ', is already registered.');
 			 return;
@@ -1836,17 +1911,17 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		SliderViewList[name] = _class;
 	};
 	
-	MSLSlideController.SliderControlList = {};
-	MSLSlideController.registerControl = function(name , _class){
-		if(name in MSLSlideController.SliderControlList){
+	MSSlideController.SliderControlList = {};
+	MSSlideController.registerControl = function(name , _class){
+		if(name in MSSlideController.SliderControlList){
 			 throw new Error( name + ', is already registered.');
 			 return;
 		}
 		
-		MSLSlideController.SliderControlList[name] = _class;
+		MSSlideController.SliderControlList[name] = _class;
 	};	
 	
-	var p = MSLSlideController.prototype;
+	var p = MSSlideController.prototype;
 	
 	/*-------------- METHODS --------------*/
 	
@@ -1868,9 +1943,9 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			autoHeight:		this.so.autoHeight,
 			swipe:			this.so.swipe,
 			speed:			this.so.speed,
-			dir:			this.so.dir,
+			dir:			this.so.dir, 
 			viewNum: 		this.so.inView,
-			critMargin: 	this.so.critMargin  	
+			critMargin: 	this.so.critMargin
 		};	
 		
 		if(this.so.viewOptions)
@@ -1880,8 +1955,8 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	
 		//this.view.slideDuration = this.so.duration;
 
-		var viewClass = SliderViewList[this.slider.options.view] || MSLBasicView;
-		if(viewClass._3dreq && (!window._css3d || $.browser.msie) ) viewClass = viewClass._fallback || MSLBasicView;
+		var viewClass = SliderViewList[this.slider.options.view] || MSBasicView;
+		if(viewClass._3dreq && (!window._css3d || $.browser.msie) ) viewClass = viewClass._fallback || MSBasicView;
 		
 		this.view = new viewClass(viewOptions);
 
@@ -1895,7 +1970,6 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 				that._startTimer();
 			});
 		}
-
 	};
 
 	p.onChangeStart = function(){
@@ -1916,7 +1990,11 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			this.slider.setHeight(this.currentSlide.getHeight());
 		}
 
-		this.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.CHANGE_START));
+		if ( this.so.deepLink ) {
+			this.__updateWindowHash();
+		}
+
+		this.dispatchEvent(new MSSliderEvent(MSSliderEvent.CHANGE_START));
 	};
 	
 	p.onChangeEnd = function(){
@@ -1965,7 +2043,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			}
 		}
 		
-		this.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.CHANGE_END));
+		this.dispatchEvent(new MSSliderEvent(MSSliderEvent.CHANGE_END));
 		
 	};
 		
@@ -1977,7 +2055,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	p.skipTimer = function(){
 		this._timer.reset();
 		this._delayProgress  = 0;
-		this.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.WAITING));
+		this.dispatchEvent(new MSSliderEvent(MSSliderEvent.WAITING));
 	};
 
 	p.onTimer = function(time) {
@@ -1989,8 +2067,13 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			this.hideCalled = false;
 		}
 		this._delayProgress = this._timer.getTime() / (this.view.currentSlide.delay * 10);
-
-		this.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.WAITING));
+		
+		if(this.so.hideLayers && !this.hideCalled && this.view.currentSlide.delay * 1000 - this._timer.getTime() <= 300){
+			this.view.currentSlide.hideLayers();
+			this.hideCalled = true;
+		}
+		
+		this.dispatchEvent(new MSSliderEvent(MSSliderEvent.WAITING));
 	};
 	
 	p._stopTimer = function(){
@@ -2072,9 +2155,8 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			this.width = Math.min(this.width , this.so.width);
 			//this.view.$element.css('left' , (this.slider.$element[0].clientWidth - this.width) / 2 + 'px');
 		}
-		
-		this.height = this.width / this.slider.aspect;
-		
+
+		this.height = this.width / this.slider.aspect;	
 		if( this.so.autoHeight ){
 			this.currentSlide.setSize(this.width , null , hard);
 			this.view.setSize(this.width , this.currentSlide.getHeight() , hard);
@@ -2088,30 +2170,33 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			}
 		}
 		
-		this.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.RESIZE));
+		this.dispatchEvent(new MSSliderEvent(MSSliderEvent.RESIZE));
 	};
 
 	p.__dispatchInit = function(){
-		this.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.INIT));
+		this.dispatchEvent(new MSSliderEvent(MSSliderEvent.INIT));
 	};
-		
+
 	p.setup = function(){
 		
 		this.created = true;
 		this.paused = !this.so.autoplay;
 
 		//this.slider.$element.append(this.view.$element);
-		this.view.addEventListener(MSLViewEvents.CHANGE_START , this.onChangeStart , this);
-		this.view.addEventListener(MSLViewEvents.CHANGE_END   , this.onChangeEnd   , this);
-		this.view.addEventListener(MSLViewEvents.SWIPE_START  , this.onSwipeStart  , this);	
+		this.view.addEventListener(MSViewEvents.CHANGE_START , this.onChangeStart , this);
+		this.view.addEventListener(MSViewEvents.CHANGE_END   , this.onChangeEnd   , this);
+		this.view.addEventListener(MSViewEvents.SWIPE_START  , this.onSwipeStart  , this);	
 		
 		//this.currentSlide = this.view.slides[this.so.start - 1];
 		this.currentSlide = this.view.slideList[this.so.start - 1];
 		this.__resize();
-		this.view.create(this.so.start - 1);
+
+		var startSlide = this.so.start - 1;
+		this.view.create(startSlide);
 		
-		if(this.so.preload === 0)
+		if(this.so.preload === 0){
 			this.view.slideList[0].loadImages();
+		}
 			
 		this.scroller = this.view.controller;
 
@@ -2119,13 +2204,31 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			var that = this;
 			var last_time = new Date().getTime();
 			this.wheellistener = function(event){
-				var current_time = new Date().getTime();
-				if(current_time - last_time < 350) return;
-				last_time = current_time;
 				var e = window.event || event.orginalEvent || event;
-				var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-				if(delta < 0)		that.next();
-				else if(delta > 0)	that.previous();
+				e.preventDefault();
+				
+				var current_time = new Date().getTime();
+				if(current_time - last_time < 400) return;
+				last_time = current_time;
+				//var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+				var delta = Math.abs(e.detail || e.wheelDelta);
+				var scrollThreshold = 15; 
+				
+				// --- Scrolling up ---
+				if (e.detail < 0 || e.wheelDelta > 0) {
+					if ( delta >= scrollThreshold) {
+						that.previous(true);
+					}
+				}
+				// --- Scrolling down ---
+				else {
+					if (delta >= scrollThreshold) {
+						that.next(true);
+					}
+				}
+
+				//if(delta < 0)		that.next();
+				//else if(delta > 0)	that.previous();
 				return false;
 			};
 			
@@ -2133,10 +2236,29 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			else this.slider.$element.bind('mousewheel', this.wheellistener);
 		}
 
+		// if(this.so.wheel){
+		// 	var that = this;
+		// 	var last_time = new Date().getTime();
+		// 	this.wheellistener = function(event){
+		// 		var current_time = new Date().getTime();
+		// 		if(current_time - last_time < 550) return;
+		// 		last_time = current_time;
+		// 		var e = window.event || event.orginalEvent || event;
+		// 		var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+		// 		if(delta < 0)		that.next();
+		// 		else if(delta > 0)	that.previous();
+		// 		return false;
+		// 	};
+			
+		// 	if($.browser.mozilla) this.slider.$element[0].addEventListener('DOMMouseScroll' , this.wheellistener);
+		// 	else this.slider.$element.bind('mousewheel', this.wheellistener);
+		// }
+
 		if(this.slider.$element[0].clientWidth === 0)
 			this.slider.init_safemode = true;
 
 		this.__resize();
+
 	};
 	
 	p.index = function(){
@@ -2147,14 +2269,14 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		return this.view.slidesCount;
 	};
 	
-	p.next = function(){
+	p.next = function(checkLoop){
 		this.skipTimer();
-		this.view.next();
+		this.view.next(checkLoop);
 	};
 	
-	p.previous = function(){
+	p.previous = function(checkLoop){
 		this.skipTimer();
-		this.view.previous();
+		this.view.previous(checkLoop);
 	};
 	
 	p.gotoSlide = function(index) {
@@ -2164,6 +2286,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	};
 
 	p.destroy = function(reset){
+		this.dispatchEvent(new MSSliderEvent(MSSliderEvent.DESTROY));
 		this.slider.destroy(reset);
 	};
 
@@ -2185,8 +2308,9 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	};
 
 	/**
+	 * run layer actions like next, previous,...
 	 * @param  {String} action
-	 * @since v1.0 
+	 * @since v1.7.2 
 	 */
 	p.runAction = function(action){
 		var actionParams = [];
@@ -2232,19 +2356,19 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	
 	averta.EventDispatcher.extend(p);
 })(jQuery);
-//dev\slider\MasterSliderLite.js 
- 
+
+/* ================== bin-debug/js/lite/MasterSlider.js =================== */
 /**
- * Master Slider Lite Main JavaScript File
- * @version 1.1.0
+ * Master Slider Main JavaScript File
+ * @version 2.2.0
  * @author Averta Ltd.
  */
 
 ;(function($){
 	
 	"use strict";
-	
-	window.MasterSliderLite = function(){
+
+	window.MasterSlider = function(){
 		
 		// Default Options
 		this.options = {
@@ -2267,6 +2391,8 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			fullwidth			: false,	  // It enables the slider to adapt width to its parent element. It's very useful for creating full-width sliders. In default it takes max width as its base width value.
 			fullheight			: false,	  // It enables the slider to adapt height to its parent element.
 			autofill			: false,	  // It enables the slider to adapt width and height to its parent element, It's very useful for creating fullscreen or fullwindow slider.
+			layersMode			: 'center',	  // It accepts two values "center" and "full". The "center" value indicates that the slider aligns layers to the center. This option is only effective in full width mode.
+			hideLayers			: false,	  // Whether the slider hides all layers before changing slide.
 			endPause			: false,	  // Whether the slider pauses slideshow when it stays at the last slide.
 			centerControls 		: true,		  // Whether the slider aligns UI controls to center. This option is only effective in full width mode.
 			overPause			: true,		  // Whether the slider pauses slideshow on hover.
@@ -2275,7 +2401,13 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			dir					: 'h',		  // Specifies slide changing direction. It accepts two values "h" (horizontal) and "v" (vertical).
 			preload				: 0,		  // Specifies number of slides which will be loaded by slider. 0 value means the slider loads slides in sequence.
 			wheel				: false,	  // Whether slider uses mouse wheel for navigation.
-			layout				: 'boxed'	  // It accepts 'fullwidth', 'fullscreen', 'fillwidth', 'autofill', 'partialview', 'boxed'. It overrides 'fullwidth' and 'autofill' (added in v1.5.6)
+			layout				: 'boxed',	  // It accepts 'fullwidth', 'fullscreen', 'fillwidth', 'autofill', 'partialview', 'boxed'. It overrides 'fullwidth' and 'autofill' (added in v1.5.6)
+			fullscreenMargin	: 0,		
+			instantStartLayers	: false, 	  // @since 1.5.0, Whether instantly shows slide layers.
+			parallaxMode 		: 'mouse',	  // @since 1.6.0, Specifies mode of parallax effect accepts: "mouse", "mouse:x-only", "mouse:y-only" and "swipe"
+			rtl 				: false,	  // @since 1.8.0, Whether Right-to-left direction slider.
+			deepLink			: null,       // @since 2.1.0, null value disables slider deep-linking any string values identifies the slider in page's url like /#msslider-1
+			deepLinkType 		: 'path' 	  // @since 2.1.0, type of hash value in page's url possible values, path and query (  #gallery/1 || #gallery=4 )
 		};
 		
 		this.slides = [];		
@@ -2296,11 +2428,11 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 				
 	};
 	
-	MasterSliderLite.author  		= 'Averta Ltd. (www.averta.net)';
-	MasterSliderLite.version 		= '1.1.0';
-	MasterSliderLite.releaseDate 	= 'Sept 2014';
+	MasterSlider.author  		= 'Averta Ltd. (www.averta.net)';
+	MasterSlider.version 		= '2.0';
+	MasterSlider.releaseDate 	= 'Jan 2015';
 	
-	var p = MasterSliderLite.prototype;
+	var p = MasterSlider.prototype;
 	
 	/*-------------- METHODS --------------*/
 
@@ -2318,7 +2450,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			
 			var $slide_ele = $(this);
 			
-			new_slide 			= new MSLSlide();
+			new_slide 			= new MSSlide();
 			new_slide.$element 	= $slide_ele;
 			new_slide.slider 	= that;
 			new_slide.delay  	= $slide_ele.data('delay') 		!== undefined ? $slide_ele.data('delay') 		: 3;
@@ -2341,12 +2473,15 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			var slide_link = $slide_ele.children('a').each(function(index) {
 			  var $this = $(this);
 			  if(this.getAttribute('data-type') === 'video'){
-			  	new_slide.video = this.getAttribute('href');
-			  	$this.remove();
+				new_slide.video = this.getAttribute('href');
+
+				new_slide.videoAutoPlay = $this.data('autoplay');
+				
+				$this.remove();
 			  }else if(!$this.hasClass('ms-layer')) {
-			  	new_slide.link  = this.getAttribute('href');
-			  	new_slide.link_targ = this.getAttribute('target');
-			  	$this.remove();
+				new_slide.link  = $(this);
+				//new_slide.link_targ = this.getAttribute('target');
+				//$this.remove();
 			  }
 			});//.remove();
 			
@@ -2356,6 +2491,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		});
 	};
 	
+	
 	/**
 	 * remove slider initialize loading
 	 * @since 1.0
@@ -2363,10 +2499,10 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	 */
 	p._removeLoading = function(){
 		$(window).unbind('resize', this.resize_listener);
-		this.$element = $('#' + this.id).removeClass('before-init')
-										.css('visibility', 'visible')
-										.css('height','')
-										.css('opacity' , 0);
+		this.$element.removeClass('before-init')
+					.css('visibility', 'visible')
+					.css('height','')
+					.css('opacity' , 0);
 		CTween.fadeIn(this.$element);
 		this.$loading.remove();
 
@@ -2409,7 +2545,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 
 	/**
 	 * New method of setting up the layout of slider
-	 * @since 1.0
+	 * @since 1.5.6 
 	 */
 	p._setupSliderLayout = function(){
 
@@ -2419,11 +2555,11 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		
 		var lo = this.options.layout;
 
-		if( lo !== 'boxed' ){
+		
+		if( lo !== 'boxed' && lo !== 'partialview' ){
 			this.options.fullwidth = true;  // enable slider fullscreen for fullwidth, fillwidth, autofill and fullscreen layouts.
 		} 
-
-		if( lo === 'fullwidth' ){
+		if( lo === 'fullscreen' ||  lo === 'fullwidth' ){
 			$(window).bind('resize', {that:this}, this._updateLayout);
 			this._updateLayout();
 		}
@@ -2435,19 +2571,20 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	/**
 	 * updates layout of slider based on window size
 	 * @param  {Event} event
-	 * @since 1.0
+	 * @since 1.5.6
 	 */
 	p._updateLayout = function(event){
 		var that = event? event.data.that : this,
 			lo = that.options.layout,
 			$element = that.$element;
 
+		
 		// width 
-		$element.width($('body').innerWidth() - that.leftSpace - that.rightSpace);
+		$element.width($('body').width() - that.leftSpace - that.rightSpace);
 		var margin = -$element.offset().left + that.leftSpace + that.lastMargin;
 		$element.css('margin-left', margin );
 		that.lastMargin = margin;
-
+//
 	};
 
 
@@ -2463,8 +2600,9 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		
 		this.initialized = true;
 
-		if(this.options.preload !== 'all')
+		if(this.options.preload !== 'all'){
 			this._removeLoading();
+		}
 		//else
 		//	this.$element.css('width' , this.$loading[0].clientWidth);
 		
@@ -2487,8 +2625,6 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 				this.controls[i].setup();
 			}
 		}	
-
-
 		/*else{
 			this.$element.append(this.view.$element);
 		}*/
@@ -2501,7 +2637,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			for(i = 0 , l = this.controls.length; i<l ; ++i)
 				this.controls[i].create();
 		}
-		
+			
 		if(this.options.autoHeight){
 			this.slideController.view.$element.height(this.slideController.currentSlide.getHeight());
 		}
@@ -2530,9 +2666,8 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 
 			});
 		}
-		
+
 		this.slideController.__dispatchInit();
-		
 	};
 	
 	/**
@@ -2557,7 +2692,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	 * @param  {String} side  left|right|top|bottom
 	 * @param  {Number} space 
 	 * @returns {Number} start position in space.
-	 * @since 1.0
+	 * @since 1.5.7
 	 * @public
 	 */
 	p.reserveSpace = function(side, space){
@@ -2571,6 +2706,21 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		return pos;
 	};
 
+	/**
+	 * returns the reserved space, it used by controls and called when aligned control hides
+	 * @param  {String} side  
+	 * @param  {Number} space 
+	 * @since 1.5.7
+	 * @public 
+	 */
+	/*p.returnSpace = function(side, space){
+		var sideSpace = side+'Space';
+		this[sideSpace] = Math.max(0 , this[sideSpace] - space);
+
+		this.api.dispatchEvent(new MSSliderEvent(MSSliderEvent.RESERVED_SPACE_CHANGE));
+		this._updateSideMargins();
+	};*/
+
 	p._updateSideMargins = function(){
 		this.$element.css('margin', this.topSpace + 'px ' + this.rightSpace + 'px ' + this.bottomSpace + 'px ' + this.leftSpace + 'px');
 	}
@@ -2578,7 +2728,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	p._realignControls = function(){
 		this.rightSpace = this.leftSpace = this.topSpace = this.bottomSpace = 0;
 		this._updateSideMargins();
-		this.api.dispatchEvent(new MSLSliderEvent(MSLSliderEvent.RESERVED_SPACE_CHANGE));
+		this.api.dispatchEvent(new MSSliderEvent(MSSliderEvent.RESERVED_SPACE_CHANGE));
 	};
 
 	/*------------------------- Public Methods -----------------------*/
@@ -2591,9 +2741,9 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	 * @public
 	 */
 	p.control = function(control , options){
-		if(!(control in MSLSlideController.SliderControlList)) return;
+		if(!(control in MSSlideController.SliderControlList)) return;
 		if(!this.controls) this.controls = [];
-		var ins = new MSLSlideController.SliderControlList[control](options);
+		var ins = new MSSlideController.SliderControlList[control](options);
 		ins.slider = this;
 		this.controls.push(ins);
 		
@@ -2607,17 +2757,17 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	 * @since 1.0
 	 * @public
 	 */
-	p.setup = function(id , options){
-		this.id = id;
-		if(typeof id === 'string')
-			this.$element = $('#' + id);
-		else 
-			this.$element = id.eq(0);
+	p.setup = function(target , options){
+		if(typeof target === 'string'){
+			this.$element = $('#' + target);
+		} else {
+			this.$element = target.eq(0);
+		}
 
 		//create a copy from slider markup, it will be used in destroy method.
 		this.setupMarkup = this.$element.html();
 
-		if(this.$element.length === 0){
+		if( this.$element.length === 0 ){
 			//if(console) console.log('Master Slider Error: #'+id+' not found.');
 			return;
 		}
@@ -2625,10 +2775,16 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		this.$element.addClass('master-slider').addClass('before-init');
 
 		// IE prefix class
+		// add browser prefix class name
 		if($.browser.msie){
 			this.$element.addClass('ms-ie')
 						 .addClass('ms-ie' + $.browser.version.slice(0 , $.browser.version.indexOf('.')));
+		} else if ( $.browser.webkit ) {
+			this.$element.addClass('ms-wk');
+		} else if ( $.browser.mozilla ) { 
+			this.$element.addClass('ms-moz');
 		}
+
 		
 		// Android prefix class
 		var ua = navigator.userAgent.toLowerCase();
@@ -2648,8 +2804,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 						append($('<div></div>').addClass('ms-loading'));
 
 		this.$loading.parent().css('position' , 'relative');
-		
-		
+				
 		// old methods 
 		if(this.options.autofill){
 			this.options.fullwidth = true;
@@ -2664,7 +2819,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 		this._resize();
 		
 		// define slide controller and api
-		this.slideController = new MSLSlideController(this);
+		this.slideController = new MSSlideController(this);
 		this.api = this.slideController;
 
 		$(document).ready(function(){that._init();});
@@ -2675,7 +2830,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	/**
 	 * destroy the slider instance 
 	 * @param  {Boolean} insertMarkup	 whether add slider markup after destroy.
-	 * @since 1.0
+	 * @since 1.4
 	 * @public
 	 */
 	p.destroy = function(insertMarkup){
@@ -2695,7 +2850,7 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 			this.$element.remove();
 
 		var lo = this.options.layout;
-		if( lo === 'fullwidth' ){
+		if( lo === 'fullscreen' ||  lo === 'fullwidth' ){
 			$(window).unbind('resize', this._updateLayout);
 		}
 
@@ -2708,27 +2863,139 @@ MSLSliderEvent.RESERVED_SPACE_CHANGE = 'rsc'; // internal use
 	};
 		
 })(jQuery);
-//dev\slider\views\ViewEvents.js 
- 
-window.MSLViewEvents = function (type){
+
+/**
+ * Master Slider jQuery Plugin
+ * @author Averta
+ */
+(function ( $, window, document, undefined ) {
+
+		var pluginName = "masterslider",
+			defaults = {
+				controls:{}
+			};
+
+		function MasterSliderPlugin ( element, options ) {
+			this.element = element;
+			this.$element = $(element);
+			this.settings = $.extend( {}, defaults, options );
+			this._defaults = defaults;
+			this._name = pluginName;
+			this.init();
+		}
+
+		$.extend(MasterSliderPlugin.prototype, {
+			init : function () {
+
+				var self = this;
+				
+				// create new instance form Master Slider	
+				this._slider = new MasterSlider();
+
+				// add controls
+				for ( var control in this.settings.controls ){
+					this._slider.control(control, this.settings.controls[control]);
+				}
+
+				this._slider.setup(this.$element, this.settings);
+
+				// override api eventdisaptcher method
+				var _superDispatch = this._slider.api.dispatchEvent;
+				this._slider.api.dispatchEvent = function(event){
+					self.$element.trigger(event.type);
+					_superDispatch.call(this, event);
+				};
+
+			},
+
+			api : function() { 
+				return this._slider.api; 
+			},
+			
+			slider : function() {
+				return this._slider;
+			}
+		
+		});
+
+		$.fn[pluginName] = function ( options ) {
+			var args = arguments,
+				plugin = 'plugin_' + pluginName;
+
+			// Is the first parameter an object (options), or was omitted,
+			// instantiate a new instance of the plugin.
+			if (options === undefined || typeof options === 'object') {
+				return this.each(function () {
+
+					// Only allow the plugin to be instantiated once,
+					// so we check that the element has no plugin instantiation yet
+					if (!$.data(this, plugin)) {
+						$.data(this, plugin, new MasterSliderPlugin( this, options ));
+					}
+				});
+
+			// If the first parameter is a string and it doesn't start
+			// with an underscore or "contains" the `init`-function,
+			// treat this as a call to a public method.
+			} else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
+
+				// Cache the method call
+				// to make it possible
+				// to return a value
+				var returns;
+
+				this.each(function () {
+					var instance = $.data(this, plugin);
+
+					// Tests that there's already a plugin-instance
+					// and checks that the requested public method exists
+					if (instance instanceof MasterSliderPlugin && typeof instance[options] === 'function') {
+
+						// Call the method of our plugin instance,
+						// and pass it the supplied arguments.
+						returns = instance[options].apply( instance, Array.prototype.slice.call( args, 1 ) );
+					} 
+
+					// Map slider api functions to slider jq plugin
+					if ( instance instanceof MasterSliderPlugin && typeof instance._slider.api[options] === 'function' ) {
+						returns = instance._slider.api[options].apply( instance._slider.api, Array.prototype.slice.call( args, 1 ) );
+					}
+
+					// Allow instances to be destroyed via the 'destroy' method
+					if (options === 'destroy') {
+					  $.data(this, plugin, null);
+					}
+				});
+
+				// If the earlier cached method
+				// gives a value back return the value,
+				// otherwise return this to preserve chainability.
+				return returns !== undefined ? returns : this;
+			}
+		};
+
+})( jQuery, window, document );
+
+/* ================== bin-debug/js/lite/views/ViewEvents.js =================== */
+window.MSViewEvents = function (type, data){
 	this.type = type;
+	this.data = data;
 };
 
-MSLViewEvents.SWIPE_START      = 'swipeStart';
-MSLViewEvents.SWIPE_END        = 'swipeEnd';
-MSLViewEvents.SWIPE_MOVE		 = 'swipeMove';
-MSLViewEvents.SWIPE_CANCEL   	 = 'swipeCancel';
-MSLViewEvents.SCROLL 			 = 'scoll';
-MSLViewEvents.CHANGE_START     = 'slideChangeStart';
-MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
+MSViewEvents.SWIPE_START      = 'swipeStart';
+MSViewEvents.SWIPE_END        = 'swipeEnd';
+MSViewEvents.SWIPE_MOVE		 = 'swipeMove';
+MSViewEvents.SWIPE_CANCEL   	 = 'swipeCancel';
+MSViewEvents.SCROLL 			 = 'scoll';
+MSViewEvents.CHANGE_START     = 'slideChangeStart';
+MSViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
-//dev\slider\views\BasicView.js 
- 
+/* ================== bin-debug/js/lite/views/BasicView.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	window.MSLBasicView = function(options){
+	window.MSBasicView = function(options){
 		
 		this.options = {
 			loop 			: false,
@@ -2739,7 +3006,6 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			swipe			: true,
 			speed			: 17,
 			minSlideSpeed	: 2,
-
 			viewNum			: 20,
 			critMargin		: 1
 		};
@@ -2774,6 +3040,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.start_buffer = 0;
 		this.firstslide_snap = 0;
 		
+		this.slideChanged 	= false;
+
 		this.controller 	 = new Controller(0 , 0 , {
 			snapping	     : true,
 			snapsize		 : 100,
@@ -2790,7 +3058,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		averta.EventDispatcher.call(this);
 	};
 	
-	var p = MSLBasicView.prototype;
+	var p = MSBasicView.prototype;
 		
 	/*-------------- METHODS --------------*/
 	
@@ -2799,13 +3067,17 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		// 	this.__locateSlides();
 		// 	this.gotoSlide(this.index , true);
 		// }
+		// 
 
+		if ( !this.slideChanged ) {
+			return;
+		}
+
+		this.slideChanged = false;
+		
 		this.__locateSlides();
 		this.start_buffer = 0;
-		
-		//console.log(this.currentSlide.index);
-
-		this.dispatchEvent(new MSLViewEvents(MSLViewEvents.CHANGE_END));	
+		this.dispatchEvent(new MSViewEvents(MSViewEvents.CHANGE_END));	
 	};
 	
 	p.__snapUpdate = function(controller , snap , change){
@@ -2835,8 +3107,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		if(new_slide === this.currentSlide)return;
 		this.currentSlide = new_slide;
 		this.__updateSlidesZindex();
-
-		this.dispatchEvent(new MSLViewEvents(MSLViewEvents.CHANGE_START));	
+		this.slideChanged = true;
+		this.dispatchEvent(new MSViewEvents(MSViewEvents.CHANGE_START));	
 	};
 
 
@@ -2868,7 +3140,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	p._vertiUpdate = function(controller , value){
 		
 		this.__contPos = value;
-		this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SCROLL));
+		this.dispatchEvent(new MSViewEvents(MSViewEvents.SCROLL));
 		
 		if(this.css3){
 			this.$slideCont[0].style[window._jcsspfx + 'Transform'] = 'translateY('+-value+'px)' + this.__translate_end;
@@ -2882,7 +3154,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	p._horizUpdate = function(controller , value){
 
 		this.__contPos = value;
-		this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SCROLL));
+		this.dispatchEvent(new MSViewEvents(MSViewEvents.SCROLL));
 		
 		if(this.css3) {
 			this.$slideCont[0].style[window._jcsspfx + 'Transform'] = 'translateX('+-value+'px)'+ this.__translate_end;
@@ -3057,12 +3329,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
 	p.addSlide = function(slide){ 
 		slide.view = this;
-
-		//this.$slideCont.append(slide.$element);
-
 		this.slides.push(slide);
 		this.slideList.push(slide);
-		
 		this.slidesCount++;
 	};
 	
@@ -3083,30 +3351,36 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p.gotoSlide = function(index , fast){
 		this.updateLoop(index);
-
 		this.index = index;
 		
-		var target_slide = this.slideList[this.index];
+		var target_slide = this.slideList[index];
 
 		this._checkCritMargins();
 
-		//this.controller.changeTo( target_slide.$element[0][this.__offset] , !fast , null , null , false);
 		this.controller.changeTo( target_slide.position , !fast , null , null , false);
 		if(target_slide === this.currentSlide) return;
-		
-		//if(this.currentSlide) this.currentSlide.unselect();
-		
+		this.slideChanged = true;
 		this.currentSlide = target_slide;
 		this.__updateSlidesZindex();
-		this.dispatchEvent(new MSLViewEvents(MSLViewEvents.CHANGE_START));
-		if(fast)this.dispatchEvent(new MSLViewEvents(MSLViewEvents.CHANGE_END));	
+		this.dispatchEvent(new MSViewEvents(MSViewEvents.CHANGE_START));
+		if(fast)this.dispatchEvent(new MSViewEvents(MSViewEvents.CHANGE_END));	
 	}; 
 	
-	p.next = function(){ 
+	p.next = function(checkLoop){ 
+		if ( checkLoop && !this.loop && this.index + 1 >= this.slidesCount ) {
+			this.controller.bounce(10);
+			return;
+		}
+
 		this.gotoSlide((this.index + 1 >= this.slidesCount)? 0 : this.index + 1);
 	};
 	
-	p.previous = function(){ 
+	p.previous = function(checkLoop){ 
+		if ( checkLoop && !this.loop && this.index - 1 < 0 ) {
+			this.controller.bounce(-10);
+			return;
+		}
+
 		this.gotoSlide((this.index - 1 < 0)? this.slidesCount - 1 : this.index - 1);
 	};
 	
@@ -3134,9 +3408,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		var phase = status.phase;
 		if(phase === 'start'){
 			this.controller.stop();
-			this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SWIPE_START));		
+			this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_START, status));		
 		}else if(phase === 'move' && (!this.loop || Math.abs(this.currentSlide.position - this.controller.value + status.moveY ) < this.cont_size / 2)){
 			this.controller.drag(status.moveY);
+			this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_MOVE, status));
 		}else if(phase === 'end' || phase === 'cancel'){
 			
 			var speed = status.distanceY / status.duration * 50/3;
@@ -3144,10 +3419,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			if(Math.abs(speed) > 0.1){
 				this.controller.push(-speed);
 				if(speed > this.controller.options.snappingMinSpeed)
-					this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SWIPE_END));
-			}else{
+				this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_END, status));
+			}else {
 				this.controller.cancel();
-				this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SWIPE_CANCEL));
+				this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_CANCEL, status));
 			}
 			
 		}
@@ -3158,9 +3433,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		//console.log(this.loop)
 		if(phase === 'start'){
 			this.controller.stop();
-			this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SWIPE_START));		
+			this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_START, status));		
 		}else if(phase === 'move' && (!this.loop || Math.abs(this.currentSlide.position - this.controller.value + status.moveX ) < this.cont_size / 2)){
 			this.controller.drag(status.moveX);
+			this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_MOVE, status));
 		}else if(phase === 'end' || phase === 'cancel'){
 			
 			var speed = status.distanceX / status.duration * 50/3;
@@ -3168,10 +3444,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			if(Math.abs(speed) > 0.1){
 				this.controller.push(-speed );
 				if(speed > this.controller.options.snappingMinSpeed)
-					this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SWIPE_END));
+				this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_END, status));
 			}else{
 				this.controller.cancel();
-				this.dispatchEvent(new MSLViewEvents(MSLViewEvents.SWIPE_CANCEL));
+				this.dispatchEvent(new MSViewEvents(MSViewEvents.SWIPE_CANCEL, status));
 			}
 			
 		}
@@ -3210,7 +3486,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.__created = true;
 		
 		this.index = Math.min((index || 0), this.slidesCount - 1);
-		
+		this.lastSnap = this.index; // it will be used to check snap changed or not on snap complete
+
 		if(this.loop)
 			this.slides = this.__createLoopList();
 
@@ -3247,25 +3524,25 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	averta.EventDispatcher.extend(p);
 	
-	MSLSlideController.registerView('basic' , MSLBasicView);
+	MSSlideController.registerView('basic' , MSBasicView);
 	
 })(jQuery);
-//dev\slider\views\FadeView.js 
- 
+
+/* ================== bin-debug/js/lite/views/FadeView.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	window.MSLFadeView = function(options){
-		MSLBasicView.call(this , options);
+	window.MSFadeView = function(options){
+		MSBasicView.call(this , options);
 		this.$element.removeClass('ms-basic-view').addClass('ms-fade-view');
 		this.controller.renderCallback(this.__update , this);
 	};
 	
-	MSLFadeView.extend(MSLBasicView);
+	MSFadeView.extend(MSBasicView);
 	
-	var p  = MSLFadeView.prototype;
-	var _super  = MSLBasicView.prototype;
+	var p  = MSFadeView.prototype;
+	var _super  = MSBasicView.prototype;
 	 
 	/*-------------- METHODS --------------*/
 	
@@ -3333,9 +3610,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.controller.options.minValidDist = 10;
 	};
 	
-	MSLSlideController.registerView('fade' , MSLFadeView);
-})(jQuery);//dev\slider\uicontrols\BaseControl.js 
- 
+	MSSlideController.registerView('fade' , MSFadeView);
+})(jQuery);
+
+/* ================== bin-debug/js/lite/uicontrols/BaseControl.js =================== */
 ;(function($){
 	
 	"use strict";
@@ -3359,6 +3637,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	p.setup = function(){		
 		this.cont = this.options.insertTo ? $(this.options.insertTo) : this.slider.$controlsCont;
 		if(!this.options.overVideo) this._hideOnvideoStarts();
+
+		
+
+
 	};
 
 	p.checkHideUnder = function(){
@@ -3408,7 +3690,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
 			$(document).mouseup($.proxy(this._onMouseUp, this));
 		}
-
+		
+		if ( this.options.align ) {
+			this.$element.addClass('ms-align-' + this.options.align);
+		}
 	};
 
 	/**
@@ -3477,12 +3762,12 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p._hideOnvideoStarts = function(){
 		var that = this;
-		slider.api.addEventListener(MSSliderEvent.VIDEO_PLAY , function(){
+		this.slider.api.addEventListener(MSSliderEvent.VIDEO_PLAY , function(){
    			 that._disableAH = true;
    			 that.hide();
 		});
 		 
-		slider.api.addEventListener(MSSliderEvent.VIDEO_CLOSE , function(){
+		this.slider.api.addEventListener(MSSliderEvent.VIDEO_CLOSE , function(){
 		     that._disableAH = false;
    			 that.visible();
 		});
@@ -3521,20 +3806,20 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	window.BaseControl = BaseControl;
 	
 })(jQuery);
-//dev\slider\uicontrols\Arrows.js 
- 
+
+/* ================== bin-debug/js/lite/uicontrols/Arrows.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	var MSLArrows = function(options){
+	var MSArrows = function(options){
 		BaseControl.call(this);
 		$.extend(this.options , options);
 	};
 	
-	MSLArrows.extend(BaseControl);
+	MSArrows.extend(BaseControl);
 	
-	var p = MSLArrows.prototype;
+	var p = MSArrows.prototype;
 	var _super = BaseControl.prototype;
 	
 	/* -------------------------------- */
@@ -3546,10 +3831,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					.addClass(this.options.prefix + 'nav-next')
 					//.appendTo(this.cont)
 					.bind('click' , function(){
-						if(!that.slider.options.loop && that.slider.api.index() === that.slider.api.count() - 1)
-							that.slider.view.controller.bounce(10);
-						else
-							that.slider.api.next();
+							that.slider.api.next(true);
 					});
 				
 		
@@ -3557,10 +3839,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					.addClass(this.options.prefix + 'nav-prev')
 					//.appendTo(this.cont)
 					.bind('click' , function(){
-						if(!that.slider.options.loop && that.slider.api.index() === 0)
-							that.slider.view.controller.bounce(-10);
-						else
-							that.slider.api.previous();
+						that.slider.api.previous(true);
 					});
 		
 		_super.setup.call(this);
@@ -3599,16 +3878,16 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.$prev.remove();
 	};
 	
-	window.MSLArrows = MSLArrows;
-	MSLSlideController.registerControl('arrows' , MSLArrows);
+	window.MSArrows = MSArrows;
+	MSSlideController.registerControl('arrows' , MSArrows);
 })(jQuery);
-//dev\slider\uicontrols\Thumblist.js 
- 
+
+/* ================== bin-debug/js/lite/uicontrols/Thumblist.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	var MSLThumblist = function(options){
+	var MSThumblist = function(options){
 		BaseControl.call(this);
 		
 		// default options
@@ -3639,9 +3918,9 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
 	};
 	
-	MSLThumblist.extend(BaseControl);
+	MSThumblist.extend(BaseControl);
 	
-	var p = MSLThumblist.prototype;
+	var p = MSThumblist.prototype;
 	var _super = BaseControl.prototype;
 	
 	/* -------------------------------- */
@@ -3691,7 +3970,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					'position': 'relative'
 				});
 			}else{
-				this.slider.api.addEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+				this.slider.api.addEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
 				this.align();
 			}
 
@@ -3701,11 +3980,13 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 				this.$element.height(this.options.height);
 			}
 		}
+
 		this.checkHideUnder(); // super method
+	
 	};
 	
 	/**
-	 * calls by "RESERVED_SPACE_CHGANE" realigns the control in slider
+	 * calls by "RESERVED_SPACE_CHANGE" realigns the control in slider
 	 * @since 1.5.7
 	 */
 	p.align = function(event){
@@ -3727,7 +4008,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					.bind('click' , function(){that.changeSlide(thumb_frame);});
 
 		if( this.options.align ){
-			thumb_frame.width(this.options.width)
+			thumb_frame.width(this.options.width - (this.options.dir === 'v' ? 12 : 0))  // less arrow size 12px
 					.height(this.options.height)
 					.css('margin-'+(this.options.dir === 'v' ? 'bottom' : 'right'), this.options.space); 
 		}			
@@ -3791,7 +4072,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			else this.$element.bind('mousewheel', this.wheellistener);
 		}
 		
-		this.slider.api.addEventListener(MSLSliderEvent.CHANGE_START , this.update , this);
+		this.slider.api.addEventListener(MSSliderEvent.CHANGE_START , this.update , this);
 		this.cindex =  this.slider.api.index();
 		this.select(this.thumbs[this.cindex]);
 		
@@ -3947,21 +4228,21 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
 		this.$element.remove();
 
-		this.slider.api.removeEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
-		this.slider.api.removeEventListener(MSLSliderEvent.CHANGE_START , this.update , this);
+		this.slider.api.removeEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+		this.slider.api.removeEventListener(MSSliderEvent.CHANGE_START , this.update , this);
 	};
 	
-	window.MSLThumblist = MSLThumblist;
-	MSLSlideController.registerControl('thumblist' , MSLThumblist);
+	window.MSThumblist = MSThumblist;
+	MSSlideController.registerControl('thumblist' , MSThumblist);
 	
 })(jQuery);
-//dev\slider\uicontrols\Bullets.js 
- 
+
+/* ================== bin-debug/js/lite/uicontrols/Bullets.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	var MSLBulltes = function(options){
+	var MSBulltes = function(options){
 		BaseControl.call(this);
 		
 		this.options.dir 	= 'h';
@@ -3976,9 +4257,9 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		
 	};
 	
-	MSLBulltes.extend(BaseControl);
+	MSBulltes.extend(BaseControl);
 	
-	var p = MSLBulltes.prototype;
+	var p = MSBulltes.prototype;
 	var _super = BaseControl.prototype;
 	
 	/* -------------------------------- */
@@ -4005,14 +4286,13 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		}
 
 		this.checkHideUnder(); // super method
-
 	};
 	
 	p.create = function(){
 		_super.create.call(this);
 		var that = this;
 									
-		this.slider.api.addEventListener(MSLSliderEvent.CHANGE_START , this.update , this);
+		this.slider.api.addEventListener(MSSliderEvent.CHANGE_START , this.update , this);
 		this.cindex =  this.slider.api.index();
 		for(var i = 0; i < this.slider.api.count(); ++i){
 			var bullet = $('<div></div>').addClass('ms-bullet');
@@ -4060,22 +4340,22 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p.destroy = function(){
 		_super.destroy();
-		this.slider.api.removeEventListener(MSLSliderEvent.CHANGE_START , this.update , this);
+		this.slider.api.removeEventListener(MSSliderEvent.CHANGE_START , this.update , this);
 		this.$element.remove();
 	};
 	
-	window.MSLBulltes = MSLBulltes;
+	window.MSBulltes = MSBulltes;
 	
-	MSLSlideController.registerControl('bullets' , MSLBulltes);
+	MSSlideController.registerControl('bullets' , MSBulltes);
 	
 })(jQuery);
-//dev\slider\uicontrols\Scrollbar.js 
- 
+
+/* ================== bin-debug/js/lite/uicontrols/Scrollbar.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	var MSLScrollbar = function(options){
+	var MSScrollbar = function(options){
 		BaseControl.call(this);
 		
 		this.options.dir 		= 'h';
@@ -4092,9 +4372,9 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		this.__translate_start	= this.options.dir === 'h' ? ' translateX(' : 'translateY(';
 	};
 	
-	MSLScrollbar.extend(BaseControl);
+	MSScrollbar.extend(BaseControl);
 	
-	var p = MSLScrollbar.prototype;
+	var p = MSScrollbar.prototype;
 	var _super = BaseControl.prototype;
 	
 	/* -------------------------------- */
@@ -4118,7 +4398,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					.appendTo(this.$element);
 					
 		if(this.slider.options.loop){
-			console.log('WARNING, MSLScrollbar cannot work with looped slider.');
+			console.log('WARNING, MSScrollbar cannot work with looped slider.');
 			this.disable = true;
 			this.$element.remove();
 		}
@@ -4143,12 +4423,12 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			if( this.options.dir === 'v' ){
 				this.$element.css({
 					right:'auto',
-					left:'auto',
+					left:'auto'
 				});
 			} else {
 				this.$element.css({
 					top:'auto',
-					bottom:'auto',
+					bottom:'auto'
 				});
 			}
 
@@ -4166,7 +4446,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					'position': 'relative'
 				});
 			}else{
-				this.slider.api.addEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+				this.slider.api.addEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
 				this.align();
 			}
 		}
@@ -4197,8 +4477,8 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		
 		this.scroller = this.slider.api.scroller;
 		
-		this.slider.api.view.addEventListener(MSLViewEvents.SCROLL , this._update , this);		
-		this.slider.api.addEventListener(MSLSliderEvent.RESIZE , this._resize , this);
+		this.slider.api.view.addEventListener(MSViewEvents.SCROLL , this._update , this);		
+		this.slider.api.addEventListener(MSSliderEvent.RESIZE , this._resize , this);
 		
 		this._resize();
 		
@@ -4248,23 +4528,23 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p.destroy = function(){
 		_super.destroy();
-		this.slider.api.view.removeEventListener(MSLViewEvents.SCROLL , this._update , this);		
-		this.slider.api.removeEventListener(MSLSliderEvent.RESIZE , this._resize , this);
-		this.slider.api.removeEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+		this.slider.api.view.removeEventListener(MSViewEvents.SCROLL , this._update , this);		
+		this.slider.api.removeEventListener(MSSliderEvent.RESIZE , this._resize , this);
+		this.slider.api.removeEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
 
 		this.$element.remove();
 	};
 	
-	window.MSLScrollbar = MSLScrollbar;
-	MSLSlideController.registerControl('scrollbar' , MSLScrollbar);
+	window.MSScrollbar = MSScrollbar;
+	MSSlideController.registerControl('scrollbar' , MSScrollbar);
 })(jQuery);
-//dev\slider\uicontrols\Timebar.js 
- 
+
+/* ================== bin-debug/js/lite/uicontrols/Timebar.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	var MSLTimerbar = function(options){
+	var MSTimerbar = function(options){
 		BaseControl.call(this);
 
 		this.options.autohide = false;
@@ -4276,9 +4556,9 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		$.extend(this.options , options);
 	};
 	
-	MSLTimerbar.extend(BaseControl);
+	MSTimerbar.extend(BaseControl);
 	
-	var p = MSLTimerbar.prototype;
+	var p = MSTimerbar.prototype;
 	var _super = BaseControl.prototype;
 	
 	/* -------------------------------- */
@@ -4318,7 +4598,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			
 			this.$element.css({
 				top:'auto',
-				bottom:'auto',
+				bottom:'auto'
 			});
 
 			var align = this.options.align;
@@ -4335,11 +4615,13 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					'position': 'relative'
 				});
 			}else{
-				this.slider.api.addEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+				this.slider.api.addEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
 				this.align();
 			}
 		}
+
 		this.checkHideUnder(); // super method
+		
 	};
 
 	/**
@@ -4358,7 +4640,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p.create = function(){
 		_super.create.call(this);
-		this.slider.api.addEventListener(MSLSliderEvent.WAITING , this._update , this);
+		this.slider.api.addEventListener(MSSliderEvent.WAITING , this._update , this);
 		this._update();
 	};
 	
@@ -4368,21 +4650,21 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p.destroy = function(){
 		_super.destroy();
-		this.slider.api.removeEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
-		this.slider.api.removeEventListener(MSLSliderEvent.WAITING , this._update , this);
+		this.slider.api.removeEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+		this.slider.api.removeEventListener(MSSliderEvent.WAITING , this._update , this);
 		this.$element.remove();
 	};
 	
-	window.MSLTimerbar = MSLTimerbar;
-	MSLSlideController.registerControl('timebar' , MSLTimerbar);
+	window.MSTimerbar = MSTimerbar;
+	MSSlideController.registerControl('timebar' , MSTimerbar);
 })(jQuery);
-//dev\slider\uicontrols\CircleTimer.js 
- 
+
+/* ================== bin-debug/js/lite/uicontrols/CircleTimer.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	var MSLCircleTimer = function(options){
+	var MSCircleTimer = function(options){
 		BaseControl.call(this);
 		
 		this.options.color 	= '#A2A2A2';
@@ -4393,9 +4675,9 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		$.extend(this.options , options);
 	};
 	
-	MSLCircleTimer.extend(BaseControl);
+	MSCircleTimer.extend(BaseControl);
 	
-	var p = MSLCircleTimer.prototype;
+	var p = MSCircleTimer.prototype;
 	var _super = BaseControl.prototype;
 	
 	/* -------------------------------- */
@@ -4436,7 +4718,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	p.create = function(){
 		if(this.disable) return;
 		_super.create.call(this);
-		this.slider.api.addEventListener(MSLSliderEvent.WAITING , this._update , this);
+		this.slider.api.addEventListener(MSSliderEvent.WAITING , this._update , this);
 		
 		var that = this;
 		this.$element.click(function(){
@@ -4469,20 +4751,20 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		_super.destroy();
 		if(this.disable) return;
 		$(this).stop(true);
-		this.slider.api.removeEventListener(MSLSliderEvent.WAITING , this._update , this);
+		this.slider.api.removeEventListener(MSSliderEvent.WAITING , this._update , this);
 		this.$element.remove();
 	};
 	
-	window.MSLCircleTimer = MSLCircleTimer;
-		MSLSlideController.registerControl('circletimer' , MSLCircleTimer);
+	window.MSCircleTimer = MSCircleTimer;
+		MSSlideController.registerControl('circletimer' , MSCircleTimer);
 })(jQuery);
-//dev\slider\uicontrols\SlideInfo.js 
- 
+
+/* ================== bin-debug/js/lite/uicontrols/SlideInfo.js =================== */
 ;(function($){
 	
 	"use strict";
 	
-	window.MSLSlideInfo = function(options){
+	window.MSSlideInfo = function(options){
 		BaseControl.call(this , options);
 		
 		this.options.autohide	= false;
@@ -4496,10 +4778,10 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
 		this.data_list = [];
 	};
-	MSLSlideInfo.fadeDuratation = 400;
-	MSLSlideInfo.extend(BaseControl);
+	MSSlideInfo.fadeDuratation = 400;
+	MSSlideInfo.extend(BaseControl);
 	
-	var p = MSLSlideInfo.prototype;
+	var p = MSSlideInfo.prototype;
 	var _super = BaseControl.prototype;
 	
 	/* -------------------------------- */	
@@ -4511,7 +4793,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		_super.setup.call(this);	
 
 		if( this.slider.$controlsCont === this.cont ){
-			this.$element.appendTo(this.slider.$element); // insert in outter container out of overflow hidden
+			this.$element.appendTo(this.slider.$element); // insert in outer container out of overflow hidden
 		}else{
 			this.$element.appendTo(this.cont);
 		}
@@ -4532,7 +4814,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 					'position': 'relative'
 				});
 			}else{
-				this.slider.api.addEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+				this.slider.api.addEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
 				this.align();
 			}
 
@@ -4544,7 +4826,6 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 		}
 
 		this.checkHideUnder(); // super method
-
 	};
 
 	/**
@@ -4570,7 +4851,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 	
 	p.create = function(){
 		_super.create.call(this);
-		this.slider.api.addEventListener(MSLSliderEvent.CHANGE_START , this.update , this);
+		this.slider.api.addEventListener(MSSliderEvent.CHANGE_START , this.update , this);
 		this.cindex =  this.slider.api.index();
 		this.switchEle(this.data_list[this.cindex]);
 	};
@@ -4586,7 +4867,7 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			var that = this;
 			
 			if(this.current_ele[0].tween)this.current_ele[0].tween.stop(true);
-			this.current_ele[0].tween = CTween.animate(this.current_ele , MSLSlideInfo.fadeDuratation  , {opacity:0} , {complete:function(){
+			this.current_ele[0].tween = CTween.animate(this.current_ele , MSSlideInfo.fadeDuratation  , {opacity:0} , {complete:function(){
 				this.detach();
 				this[0].tween = null; 
 				ele.css('position', 'relative');
@@ -4609,9 +4890,9 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 
 		clearTimeout(this.tou);
 		this.tou = setTimeout(function(){
-			CTween.fadeIn(ele , MSLSlideInfo.fadeDuratation );
+			CTween.fadeIn(ele , MSSlideInfo.fadeDuratation );
 			ele.css('height', '');	
-		}, MSLSlideInfo.fadeDuratation);
+		}, MSSlideInfo.fadeDuratation);
 
 
 		if(ele[0].tween)ele[0].tween.stop(true);
@@ -4625,9 +4906,15 @@ MSLViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			this.current_ele[0].tween.stop('true');
 		}
 		this.$element.remove();
-		this.slider.api.removeEventListener(MSLSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
-		this.slider.api.removeEventListener(MSLSliderEvent.CHANGE_START , this.update , this);
+		this.slider.api.removeEventListener(MSSliderEvent.RESERVED_SPACE_CHANGE, this.align, this);
+		this.slider.api.removeEventListener(MSSliderEvent.CHANGE_START , this.update , this);
 	};
 	
-	MSLSlideController.registerControl('slideinfo' , MSLSlideInfo);
+	MSSlideController.registerControl('slideinfo' , MSSlideInfo);
+})(jQuery);
+/**
+ * Addon file, it will be appended to master slider front-end main js file.
+ */
+;( function ($) { 
+	window.msCli = function(f){f=f||'pause';var m=masterslider_instances;for(var i in m){m[i].api[f]();}}
 })(jQuery);
