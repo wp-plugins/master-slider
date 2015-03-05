@@ -64,11 +64,17 @@ class MSP_Shortcode_Factory {
 			if( 'src' == $attr && in_array( $this->parsed_slider_data['setting']['slider_type'], array( "flickr", "facebook", "instagram" ) ) ) {
 				$attrs .= sprintf( '%s="%s" ', $attr, '{{image}}' );
 
-			} elseif( 'alt' == $attr && in_array( $this->parsed_slider_data['setting']['slider_type'], array( "flickr", "facebook", "instagram" ) ) ) {
-				$attrs .= sprintf( '%s="%s" ', $attr, '{{title}}' );
-
-			} elseif( 'title' == $attr && in_array( $this->parsed_slider_data['setting']['slider_type'], array( "flickr", "facebook", "instagram" ) ) ) {
-				$attrs .= sprintf( '%s="%s" ', $attr, '{{title}}' );
+			} elseif( 'alt' == $attr || 'title' == $attr ) {
+				
+				if( in_array( $this->parsed_slider_data['setting']['slider_type'], array( "flickr", "facebook", "instagram" ) ) ){
+					$attrs .= sprintf( '%s="%s" ', $attr, '{{title}}' );
+				} else {
+					$attrs .= sprintf( '%s="%s" ', $attr, $this->escape_square_brackets( $attr_value ) );
+				}
+			
+			// encode backets ([]) to prevent any conflict while generating slider shortcode
+			} elseif( 'link_title' == $attr || 'link_rel' == $attr ) {
+				$attrs .= sprintf( '%s="%s" ', $attr, $this->escape_square_brackets( $attr_value ) );
 
 			} elseif( 'thumb' == $attr && ! empty( $attr_value ) && in_array( $this->parsed_slider_data['setting']['slider_type'], array( "flickr", "facebook", "instagram" ) ) ) {
 				$attrs .= sprintf( '%s="%s" ', $attr, '{{thumb}}' );
@@ -99,6 +105,14 @@ class MSP_Shortcode_Factory {
 		return sprintf( '[%1$s %2$s]%4$s%3$s[/%1$s]%4$s', $shortcode_name, $attrs, $the_content, "\n" );
 	}
 
+
+	public function escape_square_brackets( $context ){
+		if( is_null( $context ) ){
+			return $content;
+		}
+
+		return str_replace( array('[', ']'), array( "%5B", "%5D" ), $context );
+	}
 
 
 	public function get_ms_slides_shortcode() {

@@ -1,6 +1,6 @@
 /*! 
  * Master Slider WordPress Lite Main CSS File
- * @date Jan 2015
+ * @date Mar 2015
  */
 
 
@@ -25,6 +25,8 @@
 .ms-ie img{border:none;}
 .ms-ie8 * {opacity:inherit;filter:inherit;}
 .ms-ie7   {zoom:1;}
+
+.ms-moz .ms-slide-bgcont>img { transform: translateX(0px); }
 
 .wpb_row .master-slider-parent *,
 .master-slider-parent * {

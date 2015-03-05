@@ -3,12 +3,12 @@ Contributors: averta
 Donate link: http://averta.net/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
-Requires at least: 3.8
-Tested up to: 4.1.0
-Stable tag: 2.0.3
+Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, best slider, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
+Requires at least: 4.0
+Tested up to: 4.1.1
+Stable tag: 2.1.1
 
-The Most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
+The most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
 == Description ==
 
@@ -137,6 +137,10 @@ If you have any question about working with "Master Slider", you can take a look
 
 = Translation =
 
+French. Special thanks to [Thomas](http://www.thomasgrimaud.fr)
+Brazilian Portuguese. Special thanks to [WebPress](http://www.themeforest.net/user/WebPress-CodeLayer)
+Serbian. Special thanks to [Borisa Djuraskovic](http://www.webhostinghub.com)
+
 You can start translating Master Slider by our [online translation service](http://translate.averta.net/projects/masterslider/free-version).
 
 
@@ -226,6 +230,17 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Changelog ==
 
+= Version 2.1.0 / (5.3.2015) =
+- [Fix]: Address an issue with rendering 3D transitions on firefox and mouse wheel
+- [New]: French. Special thanks to Thomas:www.thomasgrimaud.fr
+- [New]: Brazilian Portuguese. Special thanks to WebPress
+- [New]: Serbian. Special thanks to Borisa Djuraskovic:www.webhostinghub.com
+- [Fix]: Throwing error after destroying slider with API destroy method.
+- [Fix]: Addressed a Javascript error in IE9.
+- [Fix]: Addressed a bug which prevents using bracket in slide title and alt
+
+= Version 2.0.4 / (1.2.2015) =
+- [New]: New API added to let developers change default values in admin panel
 
 = Version 2.0.0 / (28.1.2015) =
 - [New]: Introducing multiple image Upload
@@ -332,24 +347,6 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 2.0.3 =
-- [New]: Introducing multiple image Upload
-- [New]: Autoplay option for video slides added
-- [New]: Custom css editor added to admin panel
-- [Improvement]: Major improvement in linking slides 
-- [Improvement]: Some improvement in API for managing front end assets
-- [Improvement]: improvement in aligning the content of tab control
-- [Improvement]: User interface improvement
-- [Improvement]: Lots of improvement in slider performance
-- [Improvement]: Adding compatibility with wheel navigation by Magic Mouse or Trackpad in OS X
-- [Fix]: Addressed and issue with rendering issue in latest version of Firefox
-- [Fix]: An issue with slide link in latest version of Firefox fixed
-- [Fix]: An conflict with modal window in WordPress 4.1 fixed
-- [Fix]: An issue with a missing file fixed
-- [Fix]: An issue with slider fallbacks fixed
-- [Fix]: An issue with wheel navigation with non-loop slider fixed
-- [Fix]: Fixed unexpected js errors when swipe navigation is disabled
-- [Fix]: An issue removeEventListener method fixed
-- [Update]: Annoying glow on buttons and links in admin panel removed 
-- [Update]: Slider base styles updated
-- [Update]: Translate files updated
+= 2.1.0 =
+- [Fix]: Address an issue with rendering 3D transitions on firefox and mouse wheel
+- [Fix]: Addressed a Javascript error in IE9.
