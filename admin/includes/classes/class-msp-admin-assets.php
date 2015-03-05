@@ -163,6 +163,54 @@ class MSP_Admin_Assets {
 		// define panel directory path
 		wp_localize_script( 'jquery', '__MSP_PATH', MSWP_AVERTA_ADMIN_URL . '/views/slider-panel/' );
 
+		$slider_panel_default_setting = array(
+
+	        'width'         => 1000, 
+	        'height'        => 500, 
+
+	        'autoCrop' 		=> false,
+	        'autoplay'      => false,
+	        'layout' 		=> 'boxed',
+	        'autoHeight'    => false,
+	        'transition' 	=> 'basic',
+	        'speed'         => 20,
+	        'className' 	=> '',
+
+
+	        'start'         => 1,
+	        'space'         => 0,
+
+	        'grabCursor'    => true, 
+	        'swipe'         => true,
+
+	        'wheel'         => false,
+	        'mouse'         => true,
+
+	        'loop'          => false, 
+	        'shuffle'       => false,
+	        'preload'       => '-1',
+
+	        'overPause'     => true,
+	        'endPause'      => false,
+
+	        'hideLayers'    => false,
+	        'dir' 			=> 'h',
+	        'parallaxMode'  => 'swipe',
+	        'centerControls'=> true,
+	        'instantShowLayers' => false,
+
+	        'skin'          => 'ms-skin-default',
+	        'duration' 		=> 3,
+	        'slideFillMode' => 'fill',
+	        'sliderVideoFillMode' => 'fill',
+	        'slideVideoLoop'=> true,
+	        'slideVideoMute'=> true,
+	        'slideVideoAutopause'=> false,
+	        'layerContent'  => 'Lorem Ipsum'
+	    );
+		
+		wp_localize_script( 'jquery', '__MSP_DEF_OPTIONS', apply_filters( 'masterslider_panel_default_setting', $slider_panel_default_setting ) );
+
 		do_action( 'masterslider_admin_add_panel_variables', $slider_type );
 	}
 
