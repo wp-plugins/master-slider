@@ -3,10 +3,10 @@ Contributors: averta
 Donate link: http://averta.net/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, css3, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
-Requires at least: 3.8
-Tested up to: 4.1.0
-Stable tag: 2.0.4
+Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, best slider, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
+Requires at least: 4.0
+Tested up to: 4.1.1
+Stable tag: 2.1.2
 
 The most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
 
@@ -137,6 +137,10 @@ If you have any question about working with "Master Slider", you can take a look
 
 = Translation =
 
+French. Special thanks to [Thomas](http://www.thomasgrimaud.fr)
+Brazilian Portuguese. Special thanks to [WebPress](http://www.themeforest.net/user/WebPress-CodeLayer)
+Serbian. Special thanks to [Borisa Djuraskovic](http://www.webhostinghub.com)
+
 You can start translating Master Slider by our [online translation service](http://translate.averta.net/projects/masterslider/free-version).
 
 
@@ -225,6 +229,15 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 
 == Changelog ==
+
+= Version 2.1.2 / (5.3.2015) =
+- [Fix]: Address an issue with rendering 3D transitions on firefox and mouse wheel
+- [New]: French. Special thanks to Thomas:www.thomasgrimaud.fr
+- [New]: Brazilian Portuguese. Special thanks to WebPress
+- [New]: Serbian. Special thanks to Borisa Djuraskovic:www.webhostinghub.com
+- [Fix]: Throwing error after destroying slider with API destroy method.
+- [Fix]: Addressed a Javascript error in IE9.
+- [Fix]: Addressed a bug which prevents using bracket in slide title and alt
 
 = Version 2.0.4 / (1.2.2015) =
 - [New]: New API added to let developers change default values in admin panel
@@ -334,5 +347,6 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 2.0.4 =
-- [New]: New API added to let developers change default values in admin panel
+= 2.1.0 =
+- [Fix]: Address an issue with rendering 3D transitions on firefox and mouse wheel
+- [Fix]: Addressed a Javascript error in IE9.

@@ -555,15 +555,24 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 				if( ! empty( $on_video_close ) )
 					printf( "\t\t\t\t$instance_name.api.addEventListener(MSSliderEvent.VIDEO_CLOSE, %s );\n" , msp_maybe_base64_decode( $on_video_close ) ) ;
 
-				if( ! empty( $on_swipe_start ) )
-					printf( "\t\t\t\t$instance_name.api.addEventListener(MSSliderEvent.SWIPE_START, %s );\n" , msp_maybe_base64_decode( $on_swipe_start ) ) ;
+				if( $on_swipe_start || $on_swipe_move || $on_swipe_end ){
 
-				if( ! empty( $on_swipe_move ) )
-					printf( "\t\t\t\t$instance_name.api.addEventListener(MSSliderEvent.SWIPE_MOVE, %s );\n"  , msp_maybe_base64_decode( $on_swipe_move ) ) ;
+					echo "\t\t\t\t$instance_name.api.addEventListener(MSSliderEvent.INIT, function(){\n";
 
-				if( ! empty( $on_swipe_end ) )
-					printf( "\t\t\t\t$instance_name.api.addEventListener(MSSliderEvent.SWIPE_END, %s );\n"   , msp_maybe_base64_decode( $on_swipe_end ) ) ;
+					if( ! empty( $on_swipe_start ) ){
+						printf( "\t\t\t\t\t$instance_name.api.view.addEventListener(MSSliderEvent.SWIPE_START, %s );\n" , msp_maybe_base64_decode( $on_swipe_start ) ) ;
+					}
 
+					if( ! empty( $on_swipe_move ) ){
+						printf( "\t\t\t\t\t$instance_name.api.view.addEventListener(MSSliderEvent.SWIPE_MOVE, %s );\n"  , msp_maybe_base64_decode( $on_swipe_move ) ) ;
+					}
+
+					if( ! empty( $on_swipe_end ) ){
+						printf( "\t\t\t\t\t$instance_name.api.view.addEventListener(MSSliderEvent.SWIPE_END, %s );\n"   , msp_maybe_base64_decode( $on_swipe_end ) ) ;
+					}
+
+					echo "\t\t\t\t});\n";
+				}
 
 				if ( 'image-gallery' == $template ) { 
 					printf( "new MSGallery( '%s' , %s).setup();", $puid, $instance_name );
@@ -681,6 +690,11 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 
 	// if blank image is not set use original img instead
 	$src_blank 	= empty( $src_blank ) ? $src : $src_blank;
+	
+	// decode escaped square brackets
+	$title 		= str_replace( array( "%5B", "%5D" ), array('[', ']'), $title 		);
+	$alt   		= str_replace( array( "%5B", "%5D" ), array('[', ']'), $alt   		);
+	$link_title = str_replace( array( "%5B", "%5D" ), array('[', ']'), $link_title  );
 	
 	// main image markup
 	if( ! empty( $src ) ) {

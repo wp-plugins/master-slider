@@ -141,7 +141,7 @@ class MSP_Frontend_Assets {
 	    // if custom.css is not writable, print css styles in page header
 	    if( ! empty( $inline_css ) ) {
 	    	if( current_user_can( 'manage_options' ) )
-	    		printf( "<!-- Note for admin: The custom.css file in [%s] is not writeable, so masterslider uses inline css callback instead. -->\n", MSWP_AVERTA_URL . '/assets/custom.css' );
+	    		printf( "<!-- Note for admin: The custom.css file in [%s] is not writeable, so masterslider uses inline css callback instead. -->\n", 'wp-content/uploads/'.MSWP_SLUG.'/custom.css' );
 	    	printf( "<style>%s</style>\n", $inline_css );
 	    }
 

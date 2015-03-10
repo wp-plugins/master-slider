@@ -3,8 +3,8 @@
  * Copyright © 2015 All Rights Reserved. 
  *
  * @author Averta [www.averta.net]
- * @version 2.0
- * @date Jan 2015
+ * @version 2.0.5
+ * @date Mar 2015
  */
 
 
@@ -307,9 +307,11 @@ window.averta = {};
 		
 		removeEventListener : function(event , listener , ref){
 			if(this.listeners[event]){
-				for(var i = 0 , l = this.listeners[event].length; i < l ; ++i){
+
+				for(var i = 0; i < this.listeners[event].length ; ++i){
+					
 					if(listener === this.listeners[event][i].listener && ref === this.listeners[event][i].ref){	
-						this.listeners[event].splice(i,1);
+						this.listeners[event].splice(i--,1);
 					}
 				}
 				
@@ -2204,14 +2206,20 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 			var that = this;
 			var last_time = new Date().getTime();
 			this.wheellistener = function(event){
+				
 				var e = window.event || event.orginalEvent || event;
 				e.preventDefault();
 				
 				var current_time = new Date().getTime();
 				if(current_time - last_time < 400) return;
 				last_time = current_time;
-				//var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+				
 				var delta = Math.abs(e.detail || e.wheelDelta);
+				
+				if ( $.browser.mozilla ) {
+					delta *= 100;
+				}
+
 				var scrollThreshold = 15; 
 				
 				// --- Scrolling up ---
@@ -2227,8 +2235,6 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 					}
 				}
 
-				//if(delta < 0)		that.next();
-				//else if(delta > 0)	that.previous();
 				return false;
 			};
 			
@@ -2407,10 +2413,12 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 			parallaxMode 		: 'mouse',	  // @since 1.6.0, Specifies mode of parallax effect accepts: "mouse", "mouse:x-only", "mouse:y-only" and "swipe"
 			rtl 				: false,	  // @since 1.8.0, Whether Right-to-left direction slider.
 			deepLink			: null,       // @since 2.1.0, null value disables slider deep-linking any string values identifies the slider in page's url like /#msslider-1
-			deepLinkType 		: 'path' 	  // @since 2.1.0, type of hash value in page's url possible values, path and query (  #gallery/1 || #gallery=4 )
+			deepLinkType 		: 'path', 	  // @since 2.1.0, type of hash value in page's url possible values, path and query (  #gallery/1 || #gallery=4 )
+			disablePlugins      : []		  // @since 2.9.6, list of disabled Master Slider plugin names for this instance.
 		};
 		
-		this.slides = [];		
+		this.slides = [];
+		this.activePlugins = [];	
 		this.$element = null;
 
 		// used by new layout method. to force fullwidth or fullscreen
@@ -2429,9 +2437,18 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 	};
 	
 	MasterSlider.author  		= 'Averta Ltd. (www.averta.net)';
-	MasterSlider.version 		= '2.0';
-	MasterSlider.releaseDate 	= 'Jan 2015';
+	MasterSlider.version 		= '2.0.5';
+	MasterSlider.releaseDate 	= 'Mar 2015';
 	
+	// Master Slider plugins.
+	MasterSlider._plugins = []
+	var MS = MasterSlider;
+	MS.registerPlugin = function ( plugin ) {
+		if ( MS._plugins.indexOf(plugin) === -1 ) {
+			MS._plugins.push(plugin);
+		}
+	};
+
 	var p = MasterSlider.prototype;
 	
 	/*-------------- METHODS --------------*/
@@ -2555,7 +2572,7 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 		
 		var lo = this.options.layout;
 
-		
+	
 		if( lo !== 'boxed' && lo !== 'partialview' ){
 			this.options.fullwidth = true;  // enable slider fullscreen for fullwidth, fillwidth, autofill and fullscreen layouts.
 		} 
@@ -2822,6 +2839,15 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 		this.slideController = new MSSlideController(this);
 		this.api = this.slideController;
 
+		// setup plugins
+		for ( var i = 0, l = MS._plugins.length; i !== l; i++ ) {
+			var plugin = MS._plugins[i];
+
+			if ( this.options.disablePlugins.indexOf(plugin.name) === -1 ) {
+				this.activePlugins.push(new plugin(this));
+			}
+		}
+
 		$(document).ready(function(){that._init();});
 
 		return this;
@@ -2834,6 +2860,11 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 	 * @public
 	 */
 	p.destroy = function(insertMarkup){
+		
+		// destroy active plugins
+		for ( var j = 0, l2 = this.activePlugins.length; j !== l2; j++ ) {
+			this.activePlugins[i].destroy();
+		}
 		
 		if(this.controls){
 			for(var i = 0 , l = this.controls.length; i!==l ; i++)
@@ -2860,6 +2891,9 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 		this.slideController = null;
 		this.api = null;
 		this.resize_listener = null;
+
+
+		this.activePlugins = null;
 	};
 		
 })(jQuery);
@@ -3779,9 +3813,10 @@ MSViewEvents.CHANGE_END	     = 'slideChangeEnd';
 			this.$element.css('display' , 'none');
 		} else {
 			clearTimeout(this.hideTo);
-			this.hideTo = setTimeout(function($element){
+			var $element = this.$element;
+			this.hideTo = setTimeout(function(){
 				CTween.fadeOut($element , 400 , false);
-			}, 20 , this.$element);
+			}, 20);
 		}
 
 		this.$element.addClass('ms-ctrl-hide');
