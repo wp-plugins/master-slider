@@ -136,6 +136,7 @@ class MSP_Parser {
 
 	        'parallax_mode' => isset( $setting['parallaxMode'] ) ? (string) $setting['parallaxMode'] : 'swipe',
 
+	        'start_on_appear' => $this->is_key_true( $setting, 'startOnAppear', 'false' ),
 
 	        'flickr_key'    => isset( $setting['apiKey'] ) ? (string) $setting['apiKey'] : '',
 	        'flickr_id'     => $setid,

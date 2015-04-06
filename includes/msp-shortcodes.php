@@ -127,6 +127,8 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 
 	        		'parallax_mode' => 'swipe',
 
+	        		'start_on_appear'=> 'false',
+
 					'flickr_key'    => '',
 					'flickr_id'     => '',
 		      		'flickr_count'  => 10,
@@ -525,6 +527,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 						overPause       : <?php msp_is_true_e($over_pause); ?>,
 						fillMode        : "<?php echo $fill_mode; ?>", 
 						centerControls  : <?php msp_is_true_e($center_controls); ?>,
+						startOnAppear   : <?php msp_is_true_e($start_on_appear); ?>,
 						layersMode      : "<?php echo $layers_mode; ?>", 
 						hideLayers      : <?php msp_is_true_e($hide_layers); ?>, 
 						fullscreenMargin: <?php echo (int) $fullscreen_margin;  ?>,

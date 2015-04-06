@@ -58,6 +58,10 @@
     background: white;
 }
 
+.msp-save-cont {
+
+}
+
 /* Icons */
 .msp-ico { background: url(../images/ui-spritesheet.png) no-repeat; display: inline-block;}
 .msp-ico-settings { 

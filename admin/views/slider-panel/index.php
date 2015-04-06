@@ -51,13 +51,15 @@
             <span><?php _e('Shortcode :', MSWP_TEXT_DOMAIN); ?> </span> {{view MSPanel.SimpleCodeBlock value=shortCode width=120}}
             <span><?php _e('PHP function :', MSWP_TEXT_DOMAIN); ?> </span> {{view MSPanel.SimpleCodeBlock value=phpFunction width=160}}
         </div>
-        <button id="msp-preview-btn" {{action showPreview}} class="msp-blue-btn msp-save-changes"> <?php _e('Preview', MSWP_TEXT_DOMAIN); ?></button>
-        {{#if isSending}}
-            <button class="msp-blue-btn msp-save-changes disabled"> <?php _e('Saving...', MSWP_TEXT_DOMAIN); ?></button>
-        {{else}}
-            <button class="msp-blue-btn msp-save-changes" {{action "saveAll"}}> <?php _e('Save Changes', MSWP_TEXT_DOMAIN); ?></button>
-        {{/if}}
-        <span class="msp-save-status">{{statusMsg}}</span>
+        <div class="msp-save-cont">
+            <button id="msp-preview-btn" {{action showPreview}} class="msp-blue-btn msp-save-changes"> <?php _e('Preview', MSWP_TEXT_DOMAIN); ?></button>
+            {{#if isSending}}
+                <button class="msp-blue-btn msp-save-changes disabled"> <?php _e('Saving...', MSWP_TEXT_DOMAIN); ?></button>
+            {{else}}
+                <button class="msp-blue-btn msp-save-changes" {{action "saveAll"}}> <?php _e('Save Changes', MSWP_TEXT_DOMAIN); ?></button>
+            {{/if}}
+            <span class="msp-save-status">{{statusMsg}}</span>
+        </div>
     {{/if}}
 </script>
 
@@ -165,6 +167,9 @@
             </div>
             <div class="msp-metabox-indented"> 
                 {{switch-box value=wheel}}<label><?php _e('Mouse wheel navigation', MSWP_TEXT_DOMAIN); ?></label>
+            </div>
+            <div class="msp-metabox-indented"> 
+                {{switch-box value=startOnAppear}}<label><?php _e('Start slider when appears in browser window.', MSWP_TEXT_DOMAIN); ?></label>
             </div>
             <h4><?php _e('Slide preloading', MSWP_TEXT_DOMAIN); ?></h4>
             <div class="msp-metabox-indented"> 
