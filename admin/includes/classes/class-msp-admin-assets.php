@@ -341,6 +341,9 @@ class MSP_Admin_Assets {
 		 	'ui_019' => __( 'Align horizontal center', MSWP_TEXT_DOMAIN ),
 		 	'ui_020' => __( 'Align right', MSWP_TEXT_DOMAIN ),
 		 	
+		 	'ui_030' => __( 'Scroll to an element in page :', MSWP_TEXT_DOMAIN ),
+			'ui_031' => __( 'Target element :', MSWP_TEXT_DOMAIN ),
+		 	
 		 	// ApplicationController.js
 		 	'ap_001' => __( 'Sending data...', MSWP_TEXT_DOMAIN ),
 		 	'ap_002' => __( 'An Error accorded, please try again.', MSWP_TEXT_DOMAIN ),
