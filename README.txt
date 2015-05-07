@@ -5,18 +5,14 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, best slider, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
 Requires at least: 4.0
-Tested up to: 4.1.1
-Stable tag: 2.2.1
+Tested up to: 4.2.1
+Stable tag: 2.4.0
 
-The most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
+The most advanced responsive and HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on desktop and devices.
 
 == Description ==
 
-= Demo =
-
-* [Master Slider Demo Sliders](http://avt.li/mswftem)
-* [Master Slider Features](http://avt.li/mswfea)
-* [Master Slider Manual](http://avt.li/mswfdoc)
+>[Demo sliders](http://avt.li/mswftem "Live demos of Master Slider free version") | [Features](http://avt.li/mswfea "All features") | [Documentation](http://avt.li/mswfdoc "Master Slider documentation") | [Video tutorials](http://avt.li/msfvids "Watch all video tutorials") | [Support forum](http://wpbookingcalendar.com/support/ "Free support") 
 
 
 = Overview =
@@ -232,6 +228,27 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Changelog ==
 
+
+= Version 2.4.0 / (7.5.2015) =
+- [New]: Arrows for the thumblist control added.
+- [New]: Search box for searching through the sliders added.
+- [New]: New option `minHeight` added which specifies min height value for the slider, it prevents slider to be displayed tiny in small screens.
+- [New]: New option for thumblist to change the slides while moving mouse cursor over thumbnails.
+- [New]: Brand new sticky preview and save button with new interface in admin panel.
+- [Fix]: A conflict with new API changes in WP 4.2 for gallery fixed.
+- [Fix]: An issue with some special characters in slide info fixed.
+- [Improvement]: Interface improvement for slider box.
+- [Improvement]: Improvement in slider performance.
+- [Fix]: An issue with sorting sliders base on date_modified fixed.
+- [Fix]: Escaping the brackets for rel attribute on slides.
+- [Fix]: Addressed an issue while auto hide in controls did not function properly on touch devices.
+- [Fix]: Addressed an issue while inserting larger numbers than slides number in preload field.
+- [Fix]: An issue with encoding brackets in custom styles fixed
+- [Fix]: An issue in calculating thumbnails width fixed.
+- [Fix]: An issue in aligning thumbnails which doesn't have fillMode option fixed.
+- [Improvement]: Improvements under the hood.
+- Master Slider is 100% secure in vulnerability check
+
 = Version 2.2.1 / (6.4.2015) =
 - [Fix]: Some minor bugs fixed.
 
@@ -357,6 +374,6 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 2.2.1 =
-- [New]: Introducing "Start On Hover" feature, to display the slider when it appears in browser viewport.
-- [Improvement]: API methods updated
+= 2.4.0 =
+- [New]: Arrows for the thumblist control added.
+- [New]: Search box for searching through the sliders added.

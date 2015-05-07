@@ -268,6 +268,18 @@ tbody .latest-updates {
 	line-height:100%;
 }
 
+#msp-header + #ms-search-form .search-box{
+	margin-bottom:10px;
+}
+
+#msp-header + #msp-root{
+	margin-top:20px;
+}
+
+#wpbody-content #msp-header{
+	margin-bottom:10px;
+}
+
 /** slider type selector **/
 
 #msp-slider-type-select {  

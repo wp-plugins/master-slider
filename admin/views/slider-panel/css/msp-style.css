@@ -4,6 +4,9 @@
  * @version 1.0
  * @autor averta
  */
+
+/* import featherlight css*/
+@import url(featherlight.min.css);
 .msp-container{
 	min-width: 920px;
 }
@@ -231,6 +234,17 @@
     vertical-align: top !important;
     top: -3px;
 }
+
+.msp-ico.msp-ico-testdrive {
+    width: 42px;
+    height: 25px;
+    background: url(../images/pro-features/key.png) no-repeat;
+    vertical-align: top;
+    top: 10px;
+    display: inline-block;
+    position: relative;
+}
+
 /*------------------------------*/
 /* Main Navigation */
 .msp-main-nav ul {list-style: none; margin:0;padding: 0;}
@@ -257,6 +271,156 @@
 .msp-main-nav ul li.msp-upgrade-btn a:hover {
     background-color: #5FC524;
 }
+.msp-main-nav ul li.msp-upgrade-btn a.active:hover { 
+	background-color: white;
+}
+
+.msp-metabox-row.msp-pro-tab {
+    margin: 0;
+    clear: both;
+    text-align: center;
+}
+
+.msp-pro-tab h2 {
+    margin: 40px 0 20px 0;
+    font-size: 30px;
+    color: #444;
+}
+
+.msp-pro-tab h3 {
+    text-align: center;
+    margin: 35px 0 20px;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.msp-pro-tab p {
+    font-size: 14px;
+    color: #444;
+}
+
+.msp-pro-featurs {
+    max-width: 877px;
+    margin: 0 auto;
+}
+
+.msp-pf-figure {
+    float: left;
+    margin: 20px 5px 20px 0;
+}
+
+.msp-pf-figure h6 {
+    font-size: 15px;
+    color: #444;
+    margin: 15px 0 0;
+}
+
+
+.msp-pro-tab.msp-pf-admin-section {
+    background: #e7e7e7;
+    padding: 40px 0;
+    margin-top: 20px;
+}
+
+.msp-pf-admin-ss {
+    max-width: 877px;
+    margin: 0 auto;
+}
+
+.msp-pf-admin-ss .msp-pf-figure { margin: 0 3px; position: relative;}
+.msp-pf-admin-ss .msp-pf-figure>img {
+	border: solid 1px #CDCDCD;
+}
+
+.msp-pf-thumb-ol {
+	overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.53);
+    top: 0;
+    opacity: 0;
+}
+
+.msp-pf-thumb-ol>img {
+    position: relative;
+    top: 40%;
+    -webkit-transform: scale(2) rotate(80deg);
+    -o-transform: scale(2) rotate(80deg);
+    transform: scale(2) rotate(80deg);
+}
+
+.msp-pf-thumb-ol, .msp-pf-thumb-ol>img {
+	-webkit-transition: all 260ms ease-out;
+	-o-transition: all 260ms ease-out;
+	transition: all 260ms ease-out;
+}
+
+.msp-pf-thumb-ol:hover{
+	opacity: 1;
+}
+
+.msp-pf-thumb-ol:hover >img {
+    -webkit-transform: scale(1) rotate(0);
+    -o-transform: scale(1) rotate(0);
+    transform: scale(1) rotate(0);
+}
+
+
+
+a.msp-blue-btn.msp-pf-testdrive{
+	display: inline-block;
+	cursor: pointer;
+	padding: 0 25px;
+	margin-top: 20px;
+	font-weight: 800;
+	font-size: 15px;
+	line-height: 40px;
+	border-bottom: solid 4px #2a95bc;
+}
+
+a.msp-blue-btn.msp-pf-testdrive:hover {
+    background: #33AFDB;
+}
+
+.msp-pro-tab.msp-pf-join-section {
+    background: #ED686E;
+  	padding: 40px 0;
+  	margin-bottom: -20px;
+}
+
+.msp-pro-tab.msp-pf-join-section p,
+.msp-pro-tab.msp-pf-join-section h3 {
+    color: white;
+}
+
+a.msp-pf-btn {
+    display: inline-block;
+    padding: 0 20px;
+    background: white;
+    color: #6B6B6B;
+    line-height: 34px;
+    margin: 5px 3px;
+    border-bottom: solid 3px #f3f3f3;
+}
+
+a.msp-pf-btn.msp-pf-upgrade-btn {
+    background: #444;
+    color: white;
+    border-bottom-color: #222;
+}
+
+.msp-pf-btn.msp-pf-upgrade-btn:hover {
+    background: #4C4C4C;
+}
+
+a.msp-pf-btn.msp-pf-more-btn:hover {
+    background: #f2f2f2;
+    border-bottom-color: #DBDBDB;
+}
+
+
+
 .msp-main-nav ul li a>.msp-ico{
 	display: inline-block;
 	margin-left: 10px;
@@ -278,6 +442,87 @@
 .msp-main-nav ul li a.active .msp-ico-facebook { background-position: -250px -200px; }
 .msp-main-nav ul li a.active .msp-ico-posts { background-position: -250px -225px; }
 .msp-main-nav ul li a.active .msp-ico-wooc { background-position: -200px -200px; }
+
+.msp-main-nav ul li a.active .msp-ico-pro { background-position: -250px -252px; }
+.msp-save-bar-placeholder { 
+	height: 35px;
+}
+
+.msp-save-bar.msp-sticky-bar{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.9);
+	z-index: 700;
+	margin-left: -20px;
+	padding: 9px 20px;
+	border-top: solid 1px #DEDEDE;
+}
+
+.msp-save-bar.msp-sticky-bar button{
+	padding: 6px 30px 4px;
+ 	border-bottom-width: 4px;
+}
+
+.msp-save-status,
+.msp-time-ago { 
+	display: inline-block;
+	margin-left: 5px;
+	-webkit-transition: opacity 500ms;
+	-o-transition: opacity 500ms;
+	transition: opacity 500ms;
+	opacity: 100;
+}
+
+.msp-time-ago{
+	opacity: 0;
+	position: absolute;
+	left: 0;
+	top:1px;
+}
+
+.msp-save-status:before,
+.msp-time-ago:before{
+	content: '';
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+}
+
+.msp-time-ago:before{
+	margin: -3px 5px;
+	background: url(../images/info.png);
+}
+
+.msp-saving-msg-cont { 
+	position: relative; 
+	display: inline-block;
+	width: 50%;
+}
+
+.msp-save-status.msp-save-hide {
+	opacity: 0;
+}
+
+.msp-time-ago.msp-save-hide{
+	opacity: 100;
+}
+
+.msp-save-status.msp-saving:before {
+	margin: -2px 5px;
+	background: url(../images/saving.gif);
+}
+
+.msp-save-status.msp-save-error:before {
+	margin: -2px 5px;
+	background: url(../images/cross.png);
+}
+
+
+.msp-save-status.msp-save-succeed:before {
+  	margin: -2px 5px;
+	background: url(../images/check.png);
+}
 
 /* MSP Meta Box */
 
@@ -1138,6 +1383,14 @@ button.msp-img-btn {
 	float: left;
 	overflow: hidden;
 }
+
+.msp-static-notice {
+  margin: 0;
+  line-height: 34px;
+  color: #A8A8A8;
+  font-style: italic;
+}
+
 .msp-tl-frames-cont {
 	position: absolute;
 	left: 241px;
@@ -1596,11 +1849,6 @@ button.msp-img-btn {
     position: absolute;
     right: 15px;
     top: 10px;
-}
-
-.msp-save-status { 
-	display: inline-block;
-	margin-left: 5px;
 }
 
 button.msp-savepreset, button.msp-applystyle, button.msp-applyeffect {

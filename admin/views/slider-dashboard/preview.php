@@ -64,7 +64,14 @@ html.wp-toolbar {
 	margin:0; 
 	display:block; 
 }
-
+#ms-preview-wrapper{
+	width:100%;
+	max-width:100%;
+	min-height: 400px;
+}
+#wpcontent {
+  padding-left: 0;
+}
 </style>
 <?php 
 }

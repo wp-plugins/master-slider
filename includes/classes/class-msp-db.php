@@ -458,41 +458,80 @@ class MSP_DB {
 	/**
 	 * Get an array containing row results (serialized) from sliders table 
 	 * 
-	 * @param  int $perpage     Maximum number of rows to return - 0 means no limit
-     * @param  int $offset      The offset of the first row to return
-     * @param  string $orderby  The field name to order results by
-     * @param  string $sort     The sort type. 'DESC' or 'ASC'
-     * @param  string $where    The sql filter to get results by
+	 * @param  int $args        The query args    
 	 * @return array|null 	    Sliders data in an array or null if no result found
 	 */
-	public function get_sliders_list( $perpage = 0, $offset  = 0, $orderby = 'ID', $sort = 'DESC', $where = "status='published'" ) {
+	public function ms_query( $args = array() ) {
 		global $wpdb;
 
+		$default_args = array(
+			'perpage' => 0,
+			'offset'  => 0,
+			'orderby' => 'ID',
+			'order'   => 'DESC',
+			'where'   => "status='published'",
+			'like' 	  => ''
+		);
+
+		$args = wp_parse_args( $args, $default_args );
+
+
 		// convert perpage type to number
-		$limit = (int) $perpage;
+		$limit_num = (int) $args['perpage'];
 
 		// convert offset type to number
-		$offset = (int) $offset;
+		$offset_num = (int) $args['offset'];
 
 		// remove limit if limit number is set to 0
-		$limit = ( 1 > $limit) ? '' : 'LIMIT '.$limit; 
+		$limit  = ( 1 > $limit_num ) ? '' : 'LIMIT '. $limit_num; 
 
 		// remove offect if offset number is set to 0
-		$offset = ( 0 == $offset)?'':'OFFSET '.$offset; 
+		$offset = ( 0 == $offset_num )? '' : 'OFFSET '. $offset_num; 
+
+		// add LIKE if defined
+		$like  = empty( $args['like'] ) ? '' : 'LIKE '. $args['like']; 
+
+		$where = empty( $args['where'] ) ? '' : 'WHERE '. $args['where']; 
 
 		// sanitize sort type
-		$sort = ($sort == 'DESC' || $sort == 'ASC')?$sort:'DESC';
+		$order   = strtolower( $args['order'] ) === 'desc' ? 'DESC' : 'ASC';
+		$orderby = $args['orderby'];
 
 		$sql = "
 			SELECT *
 			FROM {$this->sliders}
-			WHERE $where
-			ORDER BY $orderby $sort
+			$where
+			ORDER BY $orderby $order
 			$limit 
 			$offset
 			";
 		
 		return $wpdb->get_results( $sql, ARRAY_A );
+	}
+
+
+	/**
+	 * Get an array containing row results (serialized) from sliders table 
+	 * 
+	 * @param  int $perpage     Maximum number of rows to return - 0 means no limit
+     * @param  int $offset      The offset of the first row to return
+     * @param  string $orderby  The field name to order results by
+     * @param  string $order    The sort type. 'DESC' or 'ASC'
+     * @param  string $where    The sql filter to get results by
+	 * @return array|null 	    Sliders data in an array or null if no result found
+	 */
+	public function get_sliders_list( $perpage = 0, $offset  = 0, $orderby = 'ID', $order = 'DESC', $where = "status='published'" ) {
+		global $wpdb;
+
+		$args = array(
+			'perpage' => $perpage,
+			'offset'  => $offset,
+			'orderby' => $orderby,
+			'order'   => $order,
+			'where'   => $where
+		);
+		
+		return $this->ms_query( $args );
 	}
 
 	

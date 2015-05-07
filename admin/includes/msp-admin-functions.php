@@ -26,8 +26,8 @@ function msp_get_sliders_custom_css( $slider_status = 'published' ) {
 	
 	if( $sliders_result ) {
 		foreach ( $sliders_result as $slider ) {
-			$sliders_custom_css[] = $slider['custom_styles'];
 			$sliders_custom_css[] = msp_get_slider_background_css( $slider['ID'] );
+			$sliders_custom_css[] = $slider['custom_styles'];
 		}
 		// remove empty records from array
 		$sliders_custom_css = array_filter( $sliders_custom_css );

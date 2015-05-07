@@ -17,13 +17,14 @@ class MSP_List_Table extends Axiom_List_Table {
 
 	function get_columns(){
 	  $columns = array(
-	    'ID' 			=> 'ID',
-	    'title' 		=> 'Name',
-	    'shortcode'    	=> 'Shortcode',
-	    'slides_num'	=> 'Slides',
-	    'date_modified' => 'Last Modify',
-	    'date_created' 	=> 'Date Created',
-	    'action' 		=> 'Action'
+	    'ID' 			=> __('ID'   , MSWP_TEXT_DOMAIN ),
+	    'title' 		=> __('Name' , MSWP_TEXT_DOMAIN ),
+	    'shortcode'    	=> __('Shortcode', MSWP_TEXT_DOMAIN ),
+	    'slides_num'	=> __('Slides', MSWP_TEXT_DOMAIN ),
+	    'type'      	=> __('Type', MSWP_TEXT_DOMAIN ),
+	    'date_modified' => __('Last Modify', MSWP_TEXT_DOMAIN ),
+	    'date_created' 	=> __('Date Created', MSWP_TEXT_DOMAIN ),
+	    'action' 		=> __('Action', MSWP_TEXT_DOMAIN )
 	  );
 	  return $columns;
 	}
@@ -33,8 +34,8 @@ class MSP_List_Table extends Axiom_List_Table {
 	function get_sortable_columns() {
 	  $sortable_columns = array(
 	    'ID'  			=> array('ID',false),
-	    'date_created'  => array('date_created',false),
-	    'date_modified' => array('date_created',false)
+	    'date_created'  => array('date_created' ,false),
+	    'date_modified' => array('date_modified',false)
 	  );
 	  return $sortable_columns;
 	}
@@ -146,20 +147,24 @@ class MSP_List_Table extends Axiom_List_Table {
 	}
 
 
-	function get_records( $perpage = 20, $paged  = 1, $orderby = 'ID', $sort = 'DESC'  ){
+	function get_records( $perpage = 20, $paged  = 1, $orderby = 'ID', $order = 'DESC', $where = "status='published'" ){
 		global $mspdb;
 		
 		$offset  = ( (int)$paged - 1 ) * $perpage;
 		$orderby = isset( $_REQUEST['orderby'] ) ? $_REQUEST['orderby'] : 'ID';
-		$sort 	 = isset( $_REQUEST['order'] ) ? $_REQUEST['order'] : 'ASC';
+		$order 	 = isset( $_REQUEST['order'] ) ? $_REQUEST['order'] : 'ASC';
 		
-		return $mspdb->get_sliders( $perpage, $offset, $orderby, $sort );
+		$search  = isset( $_REQUEST['s'] ) ? " AND title LIKE '%%" . $_REQUEST['s'] . "%%'" : '';
+
+		return $mspdb->get_sliders( $perpage, $offset, $orderby, $order, $where.$search );
 	}
 
 
 	function get_total_count(){
 		global $mspdb;
-		return $mspdb->get_total_sliders_count();
+		
+		$all_items = $this->get_records( 0 );
+		return count( $all_items );
 	}
 
 
@@ -177,11 +182,11 @@ class MSP_List_Table extends Axiom_List_Table {
 		$perpage 		= (int) apply_filters( 'masterslider_admin_sliders_per_page', 10 );
 		$current_page 	= $this->get_pagenum();
 		$orderby 		= 'ID';
-		$sort 			= 'DESC';
+		$order 			= 'DESC';
 		$total_items 	=  $this->get_total_count();
 
 
-		$this->items 	= $this->get_records( $perpage, $current_page, $orderby, $sort );
+		$this->items 	= $this->get_records( $perpage, $current_page, $orderby, $order );
 		// echo '<pre>'; print_r( $this->items ); echo '</pre>';
 
 		// tell the class the total number of items and how many items to show on a page

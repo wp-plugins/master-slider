@@ -33,9 +33,12 @@ class MSP_Shortcode_Factory {
 		// get the parsed slider setting
 		$setting = $this->parsed_slider_data['setting'];
 
+		$exclude_attrs = array( 'custom_style' );
+
 		// create ms_slider shortcode
 		$attrs = '';
 		foreach ( $setting as $attr => $attr_value ) {
+			if( in_array( $attr, $exclude_attrs ) ){ continue; }
 			$attrs .= sprintf( '%s="%s" ', $attr, esc_attr( $attr_value ) );
 		}
 
@@ -57,9 +60,14 @@ class MSP_Shortcode_Factory {
 		// stores shortcode attributes
 		$attrs = '';
 
+		// the list of attributes which should be excluded from slide shortcode 
+		$exclude_slide_attrs = array( 'layers', 'layer_ids', 'ishide', 'info' );
+
 		foreach ( $slide as $attr => $attr_value ) {
-			if( 'layers' == $attr || 'layer_ids' == $attr || 'ishide' == $attr )
+
+			if( in_array( $attr, $exclude_slide_attrs ) ){
 				continue;
+			}
 
 			if( 'src' == $attr && in_array( $this->parsed_slider_data['setting']['slider_type'], array( "flickr", "facebook", "instagram" ) ) ) {
 				$attrs .= sprintf( '%s="%s" ', $attr, '{{image}}' );
@@ -79,6 +87,17 @@ class MSP_Shortcode_Factory {
 			} elseif( 'thumb' == $attr && ! empty( $attr_value ) && in_array( $this->parsed_slider_data['setting']['slider_type'], array( "flickr", "facebook", "instagram" ) ) ) {
 				$attrs .= sprintf( '%s="%s" ', $attr, '{{thumb}}' );
 
+			} elseif( 'tab' == $attr ) {
+
+				$tab_content = '<div class="ms-tab-context">' . $attr_value . '</div>';
+
+				// if "insert thumb" option was enabled append the thumbnail tag
+				if( 'true' == $this->parsed_slider_data['setting']['thumbs_in_tab'] ) {
+					$thumb_height  = $this->parsed_slider_data['setting']['thumbs_height'];
+					$tab_content = sprintf( '{{thumb%s}}', $thumb_height ) . $tab_content;
+				}
+				$attrs .= sprintf( '%s="%s" ', $attr, esc_attr( $tab_content ) );
+			
 			} else {
 				$attrs .= sprintf( '%s="%s" ', $attr, esc_attr( $attr_value ) );
 			}
