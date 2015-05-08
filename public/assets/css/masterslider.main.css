@@ -16,23 +16,20 @@
 	-moz-transform: translate3d(0 , 0 , 0);
 }
 
-.master-slider a { 
-	-webkit-transition: none;
-	-o-transition: none;
-	transition: none;
-}
 
-.master-slider a,
-.master-slider a:hover {
-  background-color: inherit;
-  color: inherit;
-}
 
 .ms-ie img{border:none;}
 .ms-ie8 * {opacity:inherit;filter:inherit;}
 .ms-ie7   {zoom:1;}
 
 .ms-moz .ms-slide-bgcont>img { transform: translateX(0px); }
+.master-slider a,
+.master-slider a:hover {
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+  	background: transparent;
+}
 
 .wpb_row .master-slider-parent *,
 .master-slider-parent * {

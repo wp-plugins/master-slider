@@ -351,7 +351,7 @@ function msp_the_absolute_media_url( $url ){
             if( msp_is_absolute_url( $url ) || msp_contains_upload_dir( $url ) ) return $url;
             
             $uploads = wp_upload_dir();
-            return $uploads['baseurl'] . $url;
+            return set_url_scheme( $uploads['baseurl'] . $url );
         }
 
     }

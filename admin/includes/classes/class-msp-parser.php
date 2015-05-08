@@ -89,7 +89,7 @@ class MSP_Parser {
 
 	        'width'         => isset( $setting['width'] )  ? (int) rtrim($setting['width'] , 'px' ) : 300,     // base width of slides. It helps the slider to resize in correct ratio.
 	        'height'        => isset( $setting['height'] ) ? (int) rtrim($setting['height'], 'px' ) : 150,     // base height of slides, It helps the slider to resize in correct ratio.
-	        'min_height'    => isset( $setting['minHeight'] ) ? (int) rtrim($setting['minHeight'], 'px' ) : 400,
+	        'min_height'    => isset( $setting['minHeight'] ) ? (int) rtrim($setting['minHeight'], 'px' ) : 0,
 
 	        'start'         => isset( $setting['start'] ) ? (int) $setting['start'] : 1,
 	        'space'         => isset( $setting['space'] ) ? (int) $setting['space'] : 0,

@@ -3,8 +3,8 @@
  * Copyright © 2015 All Rights Reserved. 
  *
  * @author Averta [www.averta.net]
- * @version 2.9.4
- * @date Apr 2015
+ * @version 2.9.5
+ * @date May 2015
  */
 
 
@@ -2620,8 +2620,8 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 	};
 	
 	MasterSlider.author  		= 'Averta Ltd. (www.averta.net)';
-	MasterSlider.version 		= '2.9.4';
-	MasterSlider.releaseDate 	= 'Apr 2015';
+	MasterSlider.version 		= '2.9.5';
+	MasterSlider.releaseDate 	= 'May 2015';
 	
 	// Master Slider plugins.
 	MasterSlider._plugins = []

@@ -120,5 +120,5 @@ function msp_aq_resize( $url, $width, $height = null, $crop = null, $quality = 1
 		);
 	}
 	
-	return $image;
+	return set_url_scheme( $image );
 }

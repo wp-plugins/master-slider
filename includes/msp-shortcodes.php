@@ -72,7 +72,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 
 					'width'         => 300,     // base width of slides. It helps the slider to resize in correct ratio.
 					'height'        => 150,     // base height of slides, It helps the slider to resize in correct ratio.
-					'min_height' 	=> 400,
+					'min_height' 	=> 0,
 
 					'start'         => 1,
 					'space'         => 0,
