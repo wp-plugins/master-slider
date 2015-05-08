@@ -1,6 +1,6 @@
 /*! 
  * Master Slider WordPress Lite Main CSS File
- * @date Mar 2015
+ * @date May 2015
  */
 
 
@@ -16,17 +16,20 @@
 	-moz-transform: translate3d(0 , 0 , 0);
 }
 
-.master-slider a { 
-	-webkit-transition: none;
-	-o-transition: none;
-	transition: none;
-}
+
 
 .ms-ie img{border:none;}
 .ms-ie8 * {opacity:inherit;filter:inherit;}
 .ms-ie7   {zoom:1;}
 
 .ms-moz .ms-slide-bgcont>img { transform: translateX(0px); }
+.master-slider a,
+.master-slider a:hover {
+	-webkit-transition: none;
+	-o-transition: none;
+	transition: none;
+  	background: transparent;
+}
 
 .wpb_row .master-slider-parent *,
 .master-slider-parent * {
@@ -278,6 +281,7 @@
     transition: all 300ms ease-out;
 }
 
+.ms-tabs.ms-has-thumb .ms-tab-thumb{ width:auto; }
 .ms-tabs.ms-dir-h .ms-thumb-frame {margin-top: 12px;}
 .ms-tabs.ms-dir-v .ms-thumb-frame {margin-left: 12px;}
 .ms-tabs.ms-dir-v.ms-align-left .ms-thumb-frame {margin-left: 0px;}
@@ -357,6 +361,85 @@
 	font-size: 14px;
 	font-weight: 600; 
 }
+
+/* horizontal thumblist arrows*/
+.ms-thumb-list.ms-dir-h .ms-thumblist-fwd, .ms-thumb-list.ms-dir-h .ms-thumblist-bwd {
+    height: 100%;
+    width: 20px;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    background: rgba(128, 128, 128, 0.5);
+    text-align: center;
+    color: white;
+}
+
+.ms-thumb-list.ms-dir-h .ms-thumblist-bwd {
+    right: 0;
+    left: auto;
+}
+
+.ms-thumb-list.ms-dir-h .ms-thumblist-fwd:after, .ms-thumb-list.ms-dir-h .ms-thumblist-bwd:after {
+  content: close-quote;
+  top: 43%;
+  position: relative;
+  border: solid rgba(0, 0, 0, 0);
+  border-width: 5px 5px 5px 0px;
+  display: block;
+  border-right-color: #FFF;
+  width: 6px;
+  height: 1px;
+}
+
+.ms-thumb-list.ms-dir-h .ms-thumblist-bwd:after {
+  border-width: 5px 0px 5px 5px;
+  border-left-color: #FFF;
+  left: 7px;
+}
+
+/* vertical thumblist arrows */
+.ms-thumb-list.ms-dir-v .ms-thumblist-fwd, .ms-thumb-list.ms-dir-v .ms-thumblist-bwd {
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    background: rgba(128, 128, 128, 0.5);
+    text-align: center;
+    color: white;
+}
+
+.ms-thumb-list.ms-dir-v .ms-thumblist-bwd {
+    bottom: 0;
+    top: auto;
+}
+
+.ms-thumb-list.ms-dir-v .ms-thumblist-fwd:after, .ms-thumb-list.ms-dir-v .ms-thumblist-bwd:after {
+  content: close-quote;
+  left: 43%;
+  position: relative;
+  border: solid rgba(0, 0, 0, 0);
+  border-width: 0px 5px 5px 5px;
+  display: block;
+  border-bottom-color: #FFF;
+  height: 1px;
+  top: 5px;
+  width: 0;
+}
+
+.ms-thumb-list.ms-dir-v .ms-thumblist-bwd:after {
+  border-width: 5px 5px 0px 5px;
+  border-top-color: #FFF;
+  top: 7px;
+}
+
+/* Thumb in tab styles */
+.ms-tabs.ms-dir-v.ms-has-thumb .ms-thumbs-cont{ top:0 !important; }
+.ms-tabs.ms-has-thumb .ms-thumb-frame{ height: auto !important; }
+.ms-tabs.ms-has-thumb .ms-thumb{ padding:0; }
+.ms-tabs.ms-has-thumb .ms-tab-context{ padding:20px; }
+.ms-tabs.ms-align-left  .ms-tab-thumb{ float:left;  margin-right:20px; }
+.ms-tabs.ms-align-right .ms-tab-thumb{ float:right; margin-left: 20px; }
 
 .ms-bullet{cursor:pointer;float: left;}
 .ms-bullets.ms-dir-h {

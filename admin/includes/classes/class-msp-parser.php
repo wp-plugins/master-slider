@@ -76,7 +76,7 @@ class MSP_Parser {
 	        'class'         => isset( $setting['className'] ) ? (string) $setting['className'] : '',      // a class that adds to slider wrapper
 	        'margin'        => 0,
 
-	        'custom_style'  => isset( $setting['customStyle'] ) ? esc_attr( $setting['customStyle'] ) : '',
+	        'custom_style'  => isset( $setting['customStyle'] ) ? $setting['customStyle'] : '',
 
 	        'inline_style'  => isset( $setting['inlineStyle'] ) ? esc_attr( $setting['inlineStyle'] ) : '',
 	        'bg_color'  	=> isset( $setting['bgColor'] ) ? (string) $setting['bgColor'] : '',
@@ -89,6 +89,7 @@ class MSP_Parser {
 
 	        'width'         => isset( $setting['width'] )  ? (int) rtrim($setting['width'] , 'px' ) : 300,     // base width of slides. It helps the slider to resize in correct ratio.
 	        'height'        => isset( $setting['height'] ) ? (int) rtrim($setting['height'], 'px' ) : 150,     // base height of slides, It helps the slider to resize in correct ratio.
+	        'min_height'    => isset( $setting['minHeight'] ) ? (int) rtrim($setting['minHeight'], 'px' ) : 0,
 
 	        'start'         => isset( $setting['start'] ) ? (int) $setting['start'] : 1,
 	        'space'         => isset( $setting['space'] ) ? (int) $setting['space'] : 0,
@@ -121,7 +122,7 @@ class MSP_Parser {
 	        'end_pause'     => $this->is_key_true( $setting, 'endPause' , 'false' ),
 	        'over_pause'    => $this->is_key_true( $setting, 'overPause', 'false' ),
 
-	        'fill_mode'     => apply_filters( 'masterslider_params_default_fill_mode', 'fill' ), 
+	        'fill_mode'     => apply_filters( 'masterslider_params_default_fill_mode', 'fill' ),
 	        'center_controls'=> $this->is_key_true( $setting, 'centerControls', 'true' ),
 
 	        'speed'         => isset( $setting['speed'] ) ? (int) $setting['speed'] : 17,
@@ -136,6 +137,7 @@ class MSP_Parser {
 
 	        'parallax_mode' => isset( $setting['parallaxMode'] ) ? (string) $setting['parallaxMode'] : 'swipe',
 
+	        'start_on_appear' => $this->is_key_true( $setting, 'startOnAppear', 'false' ),
 
 	        'flickr_key'    => isset( $setting['apiKey'] ) ? (string) $setting['apiKey'] : '',
 	        'flickr_id'     => $setid,
@@ -194,6 +196,9 @@ class MSP_Parser {
 	        'thumbs_height'    => 80,
 	        'thumbs_space'     => 5,
 	        'thumbs_hideunder' => '',
+	        'thumbs_arrows'    => 'false',
+			'thumbs_in_tab'    => 'false',
+			'thumbs_hoverchange'=> 'false',
 
 	        'scroll'           => 'false',  // display scrollbar?
 	        'scroll_autohide'  => 'true',   // auto hide scroll?
@@ -271,6 +276,8 @@ class MSP_Parser {
 			msp_get_the_resized_image_src( $slide_src, 150, 150, true );
 		}
 
+		
+		// stores a URL for thumbnail in thumbnail list
 		$thumb = '';
 
 		// add thumb just if thumblist is added to controls list
@@ -293,10 +300,27 @@ class MSP_Parser {
 
 				$thumb = msp_get_the_relative_media_url( $thumb );
 
-			} else {
-				$thumb = '';
 			}
 
+		}
+
+		// stores a URL for thumbnail in tab
+		$tab_thumb = '';
+
+		// get thumb for tab if thumblist is added to controls list 
+		if( ( 'true' == $slider_setting['thumbs'] && 
+		   	  'tabs' == $slider_setting['thumbs_type'] ) &&
+			  'true' == $slider_setting['thumbs_in_tab'] ){
+
+			if( isset( $slide['thumb'] ) && ! empty( $slide['thumb'] ) ) {
+				$tab_thumb = $slide['thumb'];
+				$tab_thumb = msp_get_the_relative_media_url( $tab_thumb );
+
+			} elseif( isset( $slide['bg'] ) ) {
+				// generate a square thumb for tab
+				$tab_thumb = msp_get_the_resized_image_src( $slide_src, $slider_setting['thumbs_height'], $slider_setting['thumbs_height'], true );
+				$tab_thumb = msp_get_the_relative_media_url( $tab_thumb );
+			}
 		}
 
 
@@ -337,6 +361,7 @@ class MSP_Parser {
 
             'thumb'     => $thumb,
             'tab'		=> 'true' == $slider_setting['thumbs'] && 'tabs' == $slider_setting['thumbs_type'] ? str_replace( '"', '&quote;', $info ) : '',
+            'tab_thumb' => $tab_thumb,
             'delay'     => isset( $slide['duration'] ) ? (string) $slide['duration'] : '', // data-delay 
             'bgalign'   => isset( $slide['fillMode'] ) ? (string) $slide['fillMode'] : 'fill', // data-fill-mode
             'bgcolor'   => isset( $slide['bgColor']  ) ? (string) $slide['bgColor'] : '',
@@ -557,7 +582,11 @@ class MSP_Parser {
 			        'thumbs_height'    => isset( $control['height'] ) ? (int) $control['height'] : 80,
 			        'thumbs_space'     => isset( $control['space'] ) ? (int) $control['space'] : 5,
 			        'thumbs_hideunder' => isset( $control['hideUnder'] ) ? (int) $control['hideUnder'] : '',
-			        'thumbs_fillmode'  => isset( $control['fillMode'] ) ? (string) $control['fillMode'] : 'fill'
+			        'thumbs_fillmode'  => isset( $control['fillMode'] ) ? (string) $control['fillMode'] : 'fill',
+			        'thumbs_custom_class' => isset( $control['customClass'] ) ? (string) $control['customClass'] : 'ms-tab-thumb',
+			        'thumbs_arrows' 	  => $this->is_key_true( $control, 'arrows' , 'false' ),
+			        'thumbs_in_tab'    	  => $this->is_key_true( $control, 'insertThumb' , 'false' ),
+			        'thumbs_hoverchange'  => $this->is_key_true( $control, 'hoverChange' , 'false' )
 				);
 			case 'bullets':
 				return array(

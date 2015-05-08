@@ -72,6 +72,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 
 					'width'         => 300,     // base width of slides. It helps the slider to resize in correct ratio.
 					'height'        => 150,     // base height of slides, It helps the slider to resize in correct ratio.
+					'min_height' 	=> 0,
 
 					'start'         => 1,
 					'space'         => 0,
@@ -126,6 +127,8 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					'gfonts' 		=> '',
 
 	        		'parallax_mode' => 'swipe',
+
+	        		'start_on_appear'=> 'false',
 
 					'flickr_key'    => '',
 					'flickr_id'     => '',
@@ -183,6 +186,9 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					'thumbs_space'     => 5,
 					'thumbs_hideunder' => '',
 					'thumbs_fillmode'  => 'fill',
+					'thumbs_arrows'    => 'false',
+					'thumbs_in_tab'    => 'false',
+					'thumbs_hoverchange'=> 'false',
 
 					'scroll'           => 'false',  // display scrollbar?
 					'scroll_autohide'  => 'true',   // auto hide scroll?
@@ -434,14 +440,19 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 									$bullets_hideunder
 								);
 } ?>
+
 <?php if($thumbs  == 'true'){ 
-						printf( "\t\t\t\t$instance_name.control('%s'  ,{ autohide:%s, overVideo:%s, dir:'%s', speed:%d, inset:%s, align:'%s',type:'%s', margin:%d, width:%d, height:%d, space:%d, fillMode:'%s' %s });\n",
+						$thumbs_custom_class = 'true' == $thumbs_in_tab ? 'ms-has-thumb' : '';
+						printf( "\t\t\t\t$instance_name.control('%s'  ,{ autohide:%s, overVideo:%s, dir:'%s', speed:%d, inset:%s, arrows:%s, hover:%s, customClass:'%s', align:'%s',type:'%s', margin:%d, width:%d, height:%d, space:%d, fillMode:'%s' %s });\n",
 									'thumblist',
-									msp_is_true($thumbs_autohide  ),
-									msp_is_true($thumbs_overvideo ),
+									msp_is_true( $thumbs_autohide  ),
+									msp_is_true( $thumbs_overvideo ),
 									$thumbs_direction,
 									(int)$thumbs_speed,
-									msp_is_true($thumbs_inset ),
+									msp_is_true( $thumbs_inset ),
+									msp_is_true( $thumbs_arrows ),
+									msp_is_true( $thumbs_hoverchange ),
+									$thumbs_custom_class,
 									$thumbs_align,
 									$thumbs_type,
 									(int)$thumbs_margin,
@@ -451,6 +462,8 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 									$thumbs_fillmode,
 									$thumbs_hideunder
 								);
+
+
 } ?>
 <?php if($scroll  == 'true'){ 
 						printf( "\t\t\t\t$instance_name.control('%s'  ,{ autohide:%s, overVideo:%s, dir:'%s', inset:%s, align:'%s', color:'%s' %s %s %s });\n",
@@ -506,6 +519,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 				<?php echo $instance_name; ?>.setup("<?php echo $uid; ?>", {
 						width           : <?php echo (int)$width; ?>,
 						height          : <?php echo (int) $height; ?>,
+						minHeight       : <?php echo (int) $min_height; ?>,
 						space           : <?php echo (int) $space;  ?>,
 						start           : <?php echo (int) $start;  ?>,
 						grabCursor      : <?php msp_is_true_e($grab_cursor); ?>,
@@ -525,6 +539,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 						overPause       : <?php msp_is_true_e($over_pause); ?>,
 						fillMode        : "<?php echo $fill_mode; ?>", 
 						centerControls  : <?php msp_is_true_e($center_controls); ?>,
+						startOnAppear   : <?php msp_is_true_e($start_on_appear); ?>,
 						layersMode      : "<?php echo $layers_mode; ?>", 
 						hideLayers      : <?php msp_is_true_e($hide_layers); ?>, 
 						fullscreenMargin: <?php echo (int) $fullscreen_margin;  ?>,
@@ -655,6 +670,7 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 
 					'thumb' 	=> '',
 					'tab' 		=> '',
+					'tab_thumb' => '',
 					'delay'     => '', // data-delay 
 					'bgalign'	=> '',  // data-fill-mode
 					'bgcolor' 	=> '',
@@ -695,6 +711,7 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 	$title 		= str_replace( array( "%5B", "%5D" ), array('[', ']'), $title 		);
 	$alt   		= str_replace( array( "%5B", "%5D" ), array('[', ']'), $alt   		);
 	$link_title = str_replace( array( "%5B", "%5D" ), array('[', ']'), $link_title  );
+	$link_rel   = str_replace( array( "%5B", "%5D" ), array('[', ']'), $link_rel    );
 	
 	// main image markup
 	if( ! empty( $src ) ) {
@@ -756,9 +773,13 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 		$slide_content .= "\t".sprintf('<img class="ms-thumb" src="%s" alt="%s" />', $thumb, $alt )."\n";
 	}
 
+	// markup for thumb in tab
+	$tab_image   = empty( $tab_thumb ) ? '' : sprintf('<img class="ms-tab-thumb" src="%s" alt="%s" />', msp_get_the_absolute_media_url( $tab_thumb ), $alt )."\n";
+	$tab_context = empty( $tab )       ? '' : sprintf('<div class="ms-tab-context">%s</div>', str_replace( '&quote;', '"', wp_specialchars_decode( $tab ) ), $alt )."\n";
+
 	// tab markup
-	if( ! empty( $tab ) ) {
-		$slide_content .= "\t".sprintf('<div class="ms-thumb" >%s</div>', str_replace( '&quote;', '"', wp_specialchars_decode( $tab ) ) )."\n";
+	if( ! empty( $tab_image ) || ! empty( $tab_context ) ) {
+		$slide_content .= "\t".sprintf( '<div class="ms-thumb" >%s%s</div>', $tab_image, $tab_context)."\n";
 	}
 
 	// video markup

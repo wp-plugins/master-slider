@@ -42,7 +42,7 @@
                 <li>{{#link-to 'slides'}} <?php _e('Slides', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-slides"></span>{{/link-to}}</li>
                 <li>{{#link-to 'controls'}} <?php _e('Slider Controls', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-controls"></span>{{/link-to}}</li>
                 <li>{{#link-to 'callbacks'}} <?php _e('Slider Callbacks', MSWP_TEXT_DOMAIN); ?> <span class="msp-ico msp-ico-api"></span>{{/link-to}}</li>
-                <li class="msp-upgrade-btn"> <a href="http://avt.li/mslpan" target="_blank">Upgrade to PRO <span class="msp-ico msp-ico-pro"></span></a></li>
+                <li class="msp-upgrade-btn"> {{#link-to 'pro-features'}}Upgrade to PRO <span class="msp-ico msp-ico-pro"></span>{{/link-to}}</li>
             </ul>
         </nav>
         <div class="clear"></div>
@@ -51,16 +51,112 @@
             <span><?php _e('Shortcode :', MSWP_TEXT_DOMAIN); ?> </span> {{view MSPanel.SimpleCodeBlock value=shortCode width=120}}
             <span><?php _e('PHP function :', MSWP_TEXT_DOMAIN); ?> </span> {{view MSPanel.SimpleCodeBlock value=phpFunction width=160}}
         </div>
-        <button id="msp-preview-btn" {{action showPreview}} class="msp-blue-btn msp-save-changes"> <?php _e('Preview', MSWP_TEXT_DOMAIN); ?></button>
-        {{#if isSending}}
-            <button class="msp-blue-btn msp-save-changes disabled"> <?php _e('Saving...', MSWP_TEXT_DOMAIN); ?></button>
-        {{else}}
-            <button class="msp-blue-btn msp-save-changes" {{action "saveAll"}}> <?php _e('Save Changes', MSWP_TEXT_DOMAIN); ?></button>
-        {{/if}}
-        <span class="msp-save-status">{{statusMsg}}</span>
+        <div class="msp-save-bar-placeholder" id="saveBarPlaceHolder"></div>
+        <div class="msp-save-bar" id="saveBar">
+            <button id="msp-preview-btn" {{action showPreview}} class="msp-blue-btn msp-save-changes"> <?php _e('Preview', MSWP_TEXT_DOMAIN); ?></button>
+            {{#if isSending}}
+                <button class="msp-blue-btn msp-save-changes disabled"> <?php _e('Saving...', MSWP_TEXT_DOMAIN); ?></button>
+            {{else}}
+                <button class="msp-blue-btn msp-save-changes" {{action "saveAll"}}> <?php _e('Save Changes', MSWP_TEXT_DOMAIN); ?></button>
+            {{/if}}
+            <div class="msp-saving-msg-cont">
+                <span {{bind-attr class=":msp-save-status savingStatus"}}>{{statusMsg}}</span>
+                <div {{bind-attr class=":msp-time-ago savingStatus"}}><?php _e('Saved', MSWP_TEXT_DOMAIN); ?> <span  id="timeAgo"></span>.</div>
+            </div>
+        </div>
     {{/if}}
 </script>
 
+<script type="text/x-handlebars" id="pro-features">
+	{{#meta-box title="Upgrade Master Slider to PRO"}}
+		<div class="msp-metabox-row msp-pro-tab">
+			<div class="msp-pro-featurs">
+				<h2>Add  Features to Master Slider</h2>
+				<p>Take your WordPress site to the next level with Master Slider PRO. This plugin crunches all type of content, making it a dead-simple way to display dynamic slides in the exact the way YOU want them to look.
+				Best of all, Master Slider PRO works perfectly with any existing WordPress theme and doesn’t affect overall site performance. Which means, less bloat and more control!</p>
+				<div class="msp-pf-figure">
+					<img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/layers.jpg" alt="Animated layers">
+					<h6>Animated Layers</h6>
+				</div>
+				<div class="msp-pf-figure">
+					<img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/videos.jpg" alt="Videos">
+					<h6>Videos</h6>
+				</div>
+				<div class="msp-pf-figure">
+					<img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/sample-sliders.jpg" alt="Sample sliders">
+					<h6>Sample Sliders</h6>
+				</div>
+				<div class="msp-pf-figure">
+					<img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/dynamic-sources.jpg" alt="Dynamic sources">
+					<h6>Dynamic Sources</h6>
+				</div>
+				<div class="msp-pf-figure">
+					<img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/parallax.jpg" alt="Prallax effect">
+					<h6>Parallax Effect</h6>
+				</div>
+				<div class="msp-pf-figure">
+					<img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/dedicated-support.jpg" alt="Dedicated support">
+					<h6>Dedicated Support</h6>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="msp-metabox-row msp-pro-tab msp-pf-admin-section">
+			<div class="msp-pf-admin-ss">
+				<div class="msp-pf-figure">
+					<a data-featherlight="image" href="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/layers.jpg">
+						<img  src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/thumbs/layers.jpg" alt="layers">
+						<div class="msp-pf-thumb-ol"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/zoom.png" alt="zoom-ico"></div>
+					</a>
+				</div>
+				<div class="msp-pf-figure">
+					<a data-featherlight="image" href="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/sample-sliders.jpg">
+						<img  src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/thumbs/sample-sliders.jpg" alt="sample sliders">
+						<div class="msp-pf-thumb-ol"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/zoom.png" alt="zoom-ico"></div>
+					</a>
+				</div>
+				<div class="msp-pf-figure">
+					<a data-featherlight="image" href="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/templates.jpg">
+						<img  src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/thumbs/templates.jpg" alt="slider templates">
+						<div class="msp-pf-thumb-ol"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/zoom.png" alt="zoom-ico"></div>
+					</a>
+				</div>
+				<div class="msp-pf-figure">
+					<a data-featherlight="image" href="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/transition-editor.jpg">
+						<img  src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/thumbs/transition-editor.jpg" alt="transition editor">
+						<div class="msp-pf-thumb-ol"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/zoom.png" alt="zoom-ico"></div>
+					</a>
+				</div>
+				<div class="msp-pf-figure">
+					<a data-featherlight="image" href="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/style-editor.jpg">
+						<img  src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/thumbs/style-editor.jpg" alt="style editor">
+						<div class="msp-pf-thumb-ol"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/zoom.png" alt="zoom-ico"></div>
+					</a>
+				</div>
+				<div class="msp-pf-figure">
+					<a data-featherlight="image" href="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/button-editor.jpg">
+						<img  src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/thumbs/button-editor.jpg" alt="style editor">
+						<div class="msp-pf-thumb-ol"><img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/admin-area/zoom.png" alt="zoom-ico"></div>
+					</a>
+				</div>
+			
+				<div class="clear"></div>
+				<h3>See It In Action</h3>
+				<p>Want to give it a shot right away? Just give it a test drive and create your own slider, or try some of our ready-made samples!</p>
+				<a class="msp-blue-btn msp-pf-testdrive" href="http://avt.li/msptd" target="_blank"> <span class="msp-ico msp-ico-testdrive"></span> Test Drive Now</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="msp-metabox-row msp-pro-tab msp-pf-join-section">
+			<img src="<?php echo MSWP_AVERTA_ADMIN_URL . '/views/slider-panel'; ?>/images/pro-features/join.png" alt="Join the PRO version" class="msp-join-ico">
+			<h3>Join 4600+ PRO Users</h3>
+			<p>Ready to take advantage of all of the amazing features packed into MasterSlider PRO?  We hope so!</p>
+			<a class="msp-pf-btn msp-pf-upgrade-btn" href="http://avt.li/mspup" target="_blank">Upgrade Now</a> 
+			<a class="msp-pf-btn msp-pf-more-btn" href="http://avt.li/mspt" target="_blank">See All Features</a> 
+			<div class="clear"></div>
+		</div>
+	{{/meta-box}}
+</script>
 <!-- Slider Settings Page -->
 <script type="text/x-handlebars" id="settings">
 
@@ -95,6 +191,11 @@
                     {{switch-box value=autoHeight}}<label><?php _e('Auto-height slider', MSWP_TEXT_DOMAIN); ?></label>
                 {{/if}}
             </div>
+            {{#if showMinHeight}} 
+                <div class="msp-metabox-indented">
+                    <label><?php _e('Minimum height amount :', MSWP_TEXT_DOMAIN); ?> </label>{{number-input value=minHeight}} px
+                </div>
+            {{/if}}
             {{#if showWrapperWidth}}
                <div class="msp-metabox-indented">
                     <label><?php _e('Slider wrapper width :', MSWP_TEXT_DOMAIN); ?> </label>{{number-input value=wrapperWidth}}
@@ -165,6 +266,9 @@
             </div>
             <div class="msp-metabox-indented"> 
                 {{switch-box value=wheel}}<label><?php _e('Mouse wheel navigation', MSWP_TEXT_DOMAIN); ?></label>
+            </div>
+            <div class="msp-metabox-indented"> 
+                {{switch-box value=startOnAppear}}<label><?php _e('Start slider when appears in browser window.', MSWP_TEXT_DOMAIN); ?></label>
             </div>
             <h4><?php _e('Slide preloading', MSWP_TEXT_DOMAIN); ?></h4>
             <div class="msp-metabox-indented"> 
@@ -620,9 +724,11 @@
             </div>
             <div class="msp-metabox-indented">
                 {{switch-box value=currentControl.inset}} <label><?php _e('Insert thumblist/tabs inside slider', MSWP_TEXT_DOMAIN); ?></label>
-          <div class="msp-form-space-med"></div>
-                <?php _e('Thumb background fill mode :', MSWP_TEXT_DOMAIN); ?>
-                {{view MSPanel.Fillmode value=currentControl.fillMode}}                
+                <div class="msp-form-space-med"></div>
+                {{switch-box value=currentControl.arrows}} <label><?php _e('Insert navigation arrows', MSWP_TEXT_DOMAIN); ?></label> 
+            </div>
+            <div class="msp-metabox-indented">
+                {{switch-box value=currentControl.hoverChange}} <label><?php _e('Change slides on hovering over thumbs/tabs.', MSWP_TEXT_DOMAIN); ?></label>
             </div>
             <div class="msp-metabox-indented">
                 <?php _e('Align control :', MSWP_TEXT_DOMAIN); ?> 
@@ -652,6 +758,18 @@
                     <option value="v"><?php _e('Vertical', MSWP_TEXT_DOMAIN); ?></option>   
                 {{/dropdwon-List}}
             </div>--}}
+
+            {{#if isTab}}
+                <div class="msp-metabox-indented">
+                    {{switch-box value=currentControl.insertThumb}} <?php _e('Insert thumbnail inside tabs', MSWP_TEXT_DOMAIN); ?> 
+                </div>
+            {{else}}
+                <div class="msp-metabox-indented">
+                    <?php _e('Thumb background fill mode :', MSWP_TEXT_DOMAIN); ?>
+                    {{view MSPanel.Fillmode value=currentControl.fillMode}}    
+                 </div>  
+            {{/if}}
+
             <div class="msp-metabox-indented">
                 <label><?php _e('Thumb/Tab width :', MSWP_TEXT_DOMAIN); ?> </label> {{number-input value=currentControl.width}} px
                 <div class="msp-form-space-med"></div>
