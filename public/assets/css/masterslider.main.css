@@ -1,6 +1,6 @@
 /*! 
  * Master Slider WordPress Lite Main CSS File
- * @date May 2015
+ * @date Jun 2015
  */
 
 
@@ -23,12 +23,12 @@
 .ms-ie7   {zoom:1;}
 
 .ms-moz .ms-slide-bgcont>img { transform: translateX(0px); }
+
 .master-slider a,
 .master-slider a:hover {
 	-webkit-transition: none;
 	-o-transition: none;
 	transition: none;
-  	background: transparent;
 }
 
 .wpb_row .master-slider-parent *,
@@ -2329,7 +2329,7 @@ only screen and (                min-resolution: 2dppx) {
 .ms-skin-contrast .ms-video-btn{
 	width: 60px;
 	height: 60px;
-	background: skins/url(contrast-skin.png) no-repeat -10px -144px;
+	background: url(skins/contrast-skin.png) no-repeat -10px -144px;
 	top: 50%;
 	left: 50%;
 	margin: -30px 0 0 -30px;
