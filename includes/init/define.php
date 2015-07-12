@@ -5,7 +5,7 @@ if ( ! defined('ABSPATH') ) {
     die();
 }
 
-define( 'MSWP_AVERTA_VERSION'		, '2.4.2' );
+define( 'MSWP_AVERTA_VERSION'		, '2.5.1' );
 
 define( 'MSWP_SLUG'					, 'master-slider' );
 define( 'MSWP_TEXT_DOMAIN'			, 'masterslider' );
@@ -22,9 +22,9 @@ define( 'MSWP_AVERTA_INC_DIR'		, MSWP_AVERTA_DIR . '/includes' );
 define( 'MSWP_AVERTA_INC_URL'		, MSWP_AVERTA_URL . '/includes' );
 
 define( 'MSWP_AVERTA_PUB_DIR'		, MSWP_AVERTA_DIR . '/public' );
-define( 'MSWP_AVERTA_PUB_URL'		, MSWP_AVERTA_URL . '/public' ); 
+define( 'MSWP_AVERTA_PUB_URL'		, MSWP_AVERTA_URL . '/public' );
 
-define( 'MSWP_BLANK_IMG' 			, MSWP_AVERTA_PUB_URL . '/assets/css/blank.gif' ); 
+define( 'MSWP_BLANK_IMG' 			, MSWP_AVERTA_PUB_URL . '/assets/css/blank.gif' );
 
 define( 'MSWP_AVERTA_FEED_URL'		, '' );
 

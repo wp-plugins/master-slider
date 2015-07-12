@@ -3,8 +3,8 @@
  * Copyright © 2015 All Rights Reserved. 
  *
  * @author Averta [www.averta.net]
- * @version 2.9.5
- * @date May 2015
+ * @version 2.9.7
+ * @date Jun 2015
  */
 
 
@@ -1790,6 +1790,12 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 		this.vframe.css('display' , 'block').attr('src' , this.video + '&autoplay=1');
 		this.view.$element.addClass('ms-def-cursor');
 		
+		// remove perspective style from view if it's Firefox.
+		// it fixes video fullscreen issue in Firefox
+		if ( this.moz ) {
+			this.view.$element.css('perspective', 'none');
+		}
+
 		// if swipe navigation enabled		
 		if ( this.view.swipeControl ) {
 			this.view.swipeControl.disable();
@@ -1819,6 +1825,11 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 		CTween.animate(this.vcbtn   , 500 , {opacity:0} , {complete:function(){	that.vcbtn.css  ('display'  , 'none'); }});
 		CTween.animate(this.vframe  , 500 , {opacity:0} , {complete:function(){	that.vframe.attr('src'  , 'about:blank').css('display'  , 'none');}});
 		
+		//  video fullscreen issue in Firefox
+		if ( this.moz ) {
+			this.view.$element.css('perspective', '');
+		}
+
 		// if swipe navigation enabled		
 		if ( this.view.swipeControl ) {
 			this.view.swipeControl.enable();
@@ -2620,8 +2631,8 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 	};
 	
 	MasterSlider.author  		= 'Averta Ltd. (www.averta.net)';
-	MasterSlider.version 		= '2.9.5';
-	MasterSlider.releaseDate 	= 'May 2015';
+	MasterSlider.version 		= '2.9.7';
+	MasterSlider.releaseDate 	= 'Jun 2015';
 	
 	// Master Slider plugins.
 	MasterSlider._plugins = []

@@ -1647,7 +1647,7 @@ button.msp-img-btn {
 	position: relative;
 }
 
-@-webkit-keyframes pulse {
+@-webkit-keyframes mswp-pulse {
 	0% { outline-color: rgba(0, 0, 204,0.2); }
 	50% { outline-color: rgba(0, 0, 204,1); }
 	100% { outline-color: rgba(0, 0, 204,0.2); }
@@ -1688,8 +1688,8 @@ button.msp-img-btn {
 
 .msp-stage-layer.active .msp-stage-hotspot,
 .msp-stage-layer.active {
-	-webkit-animation: pulse 1s infinite ease-out;
-	animation: pulse 4s infinite ease-in-out;
+	-webkit-animation: mswp-pulse 1s infinite ease-out;
+	animation: mswp-pulse 1s infinite ease-out;
 	outline-width: 1px;
 	outline-style: dashed;
 }
