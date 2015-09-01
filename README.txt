@@ -5,14 +5,14 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, best slider, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
 Requires at least: 4.0
-Tested up to: 4.2.2
-Stable tag: 2.6.1
+Tested up to: 4.3.0
+Stable tag: 2.6.2
 
 The most advanced responsive and HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on desktop and devices.
 
 == Description ==
 
->[Demo sliders](http://avt.li/mswftem "Live demos of Master Slider free version") | [Features](http://avt.li/mswfea "All features") | [Documentation](http://avt.li/mswfdoc "Master Slider documentation") | [Video tutorials](http://avt.li/msfvids "Watch all video tutorials") | [Support forum](http://wpbookingcalendar.com/support/ "Free support")
+>[Demo sliders](http://avt.li/mswftem "Live demos of Master Slider free version") | [Features](http://avt.li/mswfea "All features") | [Documentation](http://avt.li/mswfdoc "Master Slider documentation") | [Video tutorials](http://avt.li/msfvids "Watch all video tutorials") | [Support forum](http://wordpress.org/support/plugin/master-slider "Free support")
 
 
 = Overview =
@@ -225,7 +225,7 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 11. Flexible slider controls
 
 
-= Version 2.6.1 / (24.8.2015) =
+= Version 2.6.2 / (1.9.2015) =
 - [Fix]: Security improvement.
 
 = Version 2.5.1 / (12.7.2015) =
@@ -385,5 +385,5 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 2.6.1 =
+= 2.6.2 =
 - [Fix]: Security improvement.
