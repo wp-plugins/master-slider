@@ -6,12 +6,12 @@
  * @author    averta [averta.net]
  * @license   LICENSE.txt
  * @link      http://masterslider.com
- * 
+ *
  *
  * Plugin Name:       Master Slider
  * Plugin URI:        https://wordpress.org/plugins/master-slider/
  * Description:       Master Slider is the most advanced responsive HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on devices too.
- * Version:           2.4.2
+ * Version:           2.6.3
  * Author:            averta
  * Author URI:        http://averta.net
  * Text Domain:       master-slider
@@ -34,6 +34,7 @@ function msp_two_instance_notice() {
     echo '<div class="error"><p>' . __( 'You are using two instances of MasterSlider plugin at same time, please deactive one of them.', 'master-slider' ) . '</p></div>';
 }
 
+// check whether another instance of Master Slider is activated or not
 if( defined( 'MSWP_AVERTA_VERSION' ) ){
 	add_action( 'admin_notices', 'msp_two_instance_notice' );
 	return;

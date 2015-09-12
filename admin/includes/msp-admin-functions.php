@@ -23,7 +23,7 @@ function msp_get_sliders_custom_css( $slider_status = 'published' ) {
 	$sliders_result = $mspdb->get_sliders( 0, 0, 'ID', 'DESC', $slider_status );
 
 	$sliders_custom_css = array();
-	
+
 	if( $sliders_result ) {
 		foreach ( $sliders_result as $slider ) {
 			$sliders_custom_css[] = msp_get_slider_background_css( $slider['ID'] );
@@ -32,7 +32,7 @@ function msp_get_sliders_custom_css( $slider_status = 'published' ) {
 		// remove empty records from array
 		$sliders_custom_css = array_filter( $sliders_custom_css );
 	}
-	
+
 	return apply_filters( 'masterslider_get_sliders_custom_css', implode( "\n", $sliders_custom_css ), $sliders_custom_css, $sliders_result );
 }
 
@@ -49,9 +49,9 @@ function msp_get_slider_background_css( $slider_id ) {
 	$slider_data = get_masterslider_parsed_data( $slider_id );
 
 	$the_slider_bg  = empty( $slider_data['setting']['bg_color'] ) ? '' : $slider_data['setting']['bg_color'];
-	$the_slider_bg .= empty( $slider_data['setting']['bg_image'] ) ? '' : sprintf( ' url( %s ) repeat top left', msp_get_the_absolute_media_url( $slider_data['setting']['bg_image'] ) ); 
-	$the_slider_bg  = empty( $the_slider_bg ) ? '' : 'background:' . $the_slider_bg . ";"; 
-	
+	$the_slider_bg .= empty( $slider_data['setting']['bg_image'] ) ? '' : sprintf( ' url( %s ) repeat top left', msp_get_the_absolute_media_url( $slider_data['setting']['bg_image'] ) );
+	$the_slider_bg  = empty( $the_slider_bg ) ? '' : 'background:' . $the_slider_bg . ";";
+
 	return empty( $the_slider_bg ) ? '' : sprintf( ".ms-parent-id-%d > .master-slider{ %s }", $slider_id, $the_slider_bg );
 }
 
@@ -66,16 +66,16 @@ function msp_get_all_custom_css () {
 /**
  * Get custom styles and store them in custom.css file or use inline css fallback
  * This function will be called by masterslider save handler
- * 
+ *
  * @return void
  */
 function msp_save_custom_styles() {
-    
+
     $uploads   = wp_upload_dir();
-	
+
 	$css_dir   = apply_filters( 'masterslider_custom_css_dir', $uploads['basedir'] . '/' . MSWP_SLUG );
 	$css_file  = $css_dir . '/custom.css';
-    
+
     $css_terms = "/*
 ===============================================================
  # CUSTOM CSS
@@ -86,12 +86,15 @@ function msp_save_custom_styles() {
     // Get all custom css styles
     $css = msp_get_all_custom_css();
 
-    // write to custom.css file
-    require_once( ABSPATH . 'wp-admin/includes/file.php' );
-
-    WP_Filesystem();
+    /**
+     * Initialize the WP_Filesystem
+     */
     global $wp_filesystem;
-    
+    if ( empty( $wp_filesystem ) ) {
+        require_once ( ABSPATH.'/wp-admin/includes/file.php' );
+        WP_Filesystem();
+    }
+
     if ( wp_mkdir_p( $css_dir ) && ! $wp_filesystem->put_contents( $css_file, $css_terms.$css, 0644 ) ) {
         // if the directory is not writable, try inline css fallback
         msp_update_option( 'custom_inline_style' , $css ); // save css rules as option to print as inline css

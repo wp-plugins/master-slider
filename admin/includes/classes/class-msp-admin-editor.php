@@ -91,9 +91,12 @@ class MSP_Admin_Editor {
 	public function add_shortcode_tinymce_plugin( $plugin_array ) {
 		$wp_version = get_bloginfo( 'version' );
 
-		if ( version_compare( $wp_version, '3.9', '>=' ) ) {
-			$plugin_array['msp_shortcodes_button'] = MSWP_AVERTA_ADMIN_URL . '/assets/js/mce-plugin.js';
-		}
+        /* Deprecated in WP version 4.2
+        if ( version_compare( $wp_version, '3.9', '>=' ) ) {
+            $plugin_array['msp_shortcodes_button'] = MSWP_AVERTA_ADMIN_URL . '/assets/js/mce-plugin.js';
+        }*/
+
+        $plugin_array['msp_shortcodes_button'] = MSWP_AVERTA_ADMIN_URL . '/assets/js/mce-plugin.js';
 
 		return $plugin_array;
 	}

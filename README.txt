@@ -5,14 +5,14 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: banner rotator, carousel, content slider, gallery, image slider, responsive slider, showcase, slideshow, swipe, touch slider, video gallery, SEO, vertical slide, HTML5 slider, hardware accelerate, best slider, animation, mobile slider, iOS, android, video slider, youtube slider, horizontal slider, vertical slider, fullwidth slider, fullscreen slider, post slider, photo slider, online album, mobile slider, WordPress slider,wpml, ,ultisite, wistia, woocommerce, product slider, woocommerce slider, portfolio, gallery
 Requires at least: 4.0
-Tested up to: 4.2.2
-Stable tag: 2.4.2
+Tested up to: 4.3.0
+Stable tag: 2.6.3
 
 The most advanced responsive and HTML5 WordPress slider plugin with touch swipe navigation that works smoothly on desktop and devices.
 
 == Description ==
 
->[Demo sliders](http://avt.li/mswftem "Live demos of Master Slider free version") | [Features](http://avt.li/mswfea "All features") | [Documentation](http://avt.li/mswfdoc "Master Slider documentation") | [Video tutorials](http://avt.li/msfvids "Watch all video tutorials") | [Support forum](http://wpbookingcalendar.com/support/ "Free support") 
+>[Demo sliders](http://avt.li/mswftem "Live demos of Master Slider free version") | [Features](http://avt.li/mswfea "All features") | [Documentation](http://avt.li/mswfdoc "Master Slider documentation") | [Video tutorials](http://avt.li/msfvids "Watch all video tutorials") | [Support forum](http://wordpress.org/support/plugin/master-slider "Free support")
 
 
 = Overview =
@@ -197,7 +197,7 @@ If you have any question about working with "Master Slider", you can take a look
 If you get stuck you can follow these [steps to get support](http://masterslider.com/doc/wp/free/#support).
 
 = Will Master Slider work with my theme? =
-Master Slider works with any theme, including the default WordPress themes. 
+Master Slider works with any theme, including the default WordPress themes.
 
 = I added text to slide (slide info), but it does not appear in slider =
 You need to add "slide info" control too. To do that, go for editing slider, under "slider controls" tab, select and add "slide info" control
@@ -225,8 +225,19 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 11. Flexible slider controls
 
 
+= Version 2.6.3 / (12.9.2015) =
+- [Fix]: Addressed an issue with undefined IDs while adding shortcodes to WordPress editor
+- [New]: Russian translation by: oharreg
 
-== Changelog ==
+= Version 2.6.2 / (1.9.2015) =
+- [Fix]: Security improvement.
+
+= Version 2.5.1 / (12.7.2015) =
+- [New]: Plugin thumbnail changed.
+
+= Version 2.5.0 / (30.6.2015) =
+- [Fix]: Addressed an issue with IE9.
+- [Improvement]: Under the hood improvement
 
 = Version 2.4.0 / (8.5.2015) =
 - [Improvement]: Some improvement for serving assets under SSL.
@@ -277,7 +288,7 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 - [New]: Introducing multiple image Upload
 - [New]: Autoplay option for video slides added
 - [New]: Custom css editor added to admin panel
-- [Improvement]: Major improvement in linking slides 
+- [Improvement]: Major improvement in linking slides
 - [Improvement]: Some improvement in API for managing front end assets
 - [Improvement]: improvement in aligning the content of tab control
 - [Improvement]: User interface improvement
@@ -291,7 +302,7 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 - [Fix]: An issue with wheel navigation with non-loop slider fixed
 - [Fix]: Fixed unexpected js errors when swipe navigation is disabled
 - [Fix]: An issue removeEventListener method fixed
-- [Update]: Annoying glow on buttons and links in admin panel removed 
+- [Update]: Annoying glow on buttons and links in admin panel removed
 - [Update]: Slider base styles updated
 - [Update]: Translate files updated
 
@@ -307,7 +318,7 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 - A conflict with modal in WordPress 4.1 fixed
 
 = Version 1.3.9 / (22.11.2014) =
-- Some class names renamed to eliminate the conflict with others themes and plugins. 
+- Some class names renamed to eliminate the conflict with others themes and plugins.
 
 = Version 1.3.8 / (16.11.2014) =
 - Mino bugs fixed
@@ -378,6 +389,5 @@ Bugs can be reported in our [support forums](http://wordpress.org/tags/master-sl
 
 == Upgrade Notice ==
 
-= 2.4.2 =
-- [Improvement]: Some improvement for serving assets under SSL.
-- [Fix]: Default minHeight changed to 0.
+= 2.6.3 =
+- [Fix]: Addressed an issue with undefined IDs while adding shortcodes to WordPress editor
