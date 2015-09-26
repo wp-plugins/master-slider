@@ -9,11 +9,11 @@ add_shortcode( 'master_slider'	, 'msp_masterslider_shortcode' );
 
 
 function msp_masterslider_shortcode( $atts, $content = null ) {
-	extract( shortcode_atts( 
+	extract( shortcode_atts(
 					array( 'id' => ''),
-					$atts, 
+					$atts,
 					'masterslider'
-				) 
+				)
 	);
 
 	return get_masterslider( $id );
@@ -26,13 +26,13 @@ function msp_masterslider_shortcode( $atts, $content = null ) {
 add_shortcode( 'masterslider_pb', 'msp_masterslider_pb_shortcode' );
 
 function msp_masterslider_pb_shortcode( $atts, $content = null ) {
-	$mixed = shortcode_atts( 
-		array( 
-		      'id' 	  => '', 
+	$mixed = shortcode_atts(
+		array(
+		      'id' 	  => '',
 		      'title' => '',
 		      'class' => ''
 		),
-		$atts, 
+		$atts,
 		'masterslider_pb'
 	);
 
@@ -56,13 +56,13 @@ add_shortcode( 'ms_slider', 'msp_masterslider_wrapper_shortcode' );
 
 function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 
-	 $mixed = shortcode_atts( 
+	 $mixed = shortcode_atts(
 
 				array(
 					'id'            => '1',     // slider id
-					'uid'           => '',      // an unique and temporary id 
+					'uid'           => '',      // an unique and temporary id
 					'class'         => '',      // a class that adds to slider wrapper
-					'margin'        => 0,  
+					'margin'        => 0,
 
 					'inline_style'  => '',
 					'bg_color'      => '',
@@ -86,7 +86,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					'crop' 			 => 'false', // Automatically crop slide images?
 
 					'autoplay'      => 'false', // Enables the autoplay slideshow
-					'loop'          => 'false', // 
+					'loop'          => 'false', //
 					'shuffle'       => 'false', // Enables the shuffle slide order
 					'preload'       =>  0,
 
@@ -104,7 +104,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					'height_limit'  => 'false', // It force the slide to use max height value as its base specified height value.
 					'auto_height'   => 'false',
 					'smooth_height' => 'true',
-					
+
 					'end_pause'     => 'false',
 					'over_pause'    => 'false',
 
@@ -137,7 +137,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 		      		'flickr_size'   => 'c',
 		      		'flickr_thumb_size' => 'q',
 
-		      		
+
 					'facebook_username' => '',
 					'facebook_albumid'  => '',
 					'facebook_count'	=> 10,
@@ -171,7 +171,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					'bullets_align'    => 'bottom',
 					'bullets_margin'   => '',
 					'bullets_hideunder'=> '',
-					
+
 					'thumbs'           => 'false',  // display thumbnails?
 					'thumbs_autohide'  => 'true',   // auto hide thumbs?
 					'thumbs_overvideo' => 'true',   // visible over slide video while playing?
@@ -217,7 +217,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					'timebar_color'    => '#FFFFFF',
 					'timebar_hideunder'=> '',
 					'timebar_width' 	 => '',
-					
+
 
 					'slideinfo'          => 'false',   // display timebar?
 					'slideinfo_autohide' => 'true',   // auto hide timebar?
@@ -249,16 +249,16 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 	 wp_enqueue_style ( 'masterslider-main');
 	 wp_enqueue_script( 'masterslider-core');
 	 wp_enqueue_script( 'prettyPhoto' );
-	 
+
 	// create an unique id for slider
 	$uid    = empty($uid ) ? uniqid("MS") : $uid;
 	// unique id for parant wrapper
 	$puid   = 'P_' . $uid;
 
-	 
+
 	// class name for slider template
 	$template_class = empty( $template_class ) ? '' : esc_attr( $template_class );
-	
+
 	$preload = is_numeric($preload) ? ( (int)$preload + 1 ) : "'$preload'";
 
 
@@ -267,11 +267,11 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 		// validate wrapper_width_unit
 		$wrapper_width_unit = in_array( $wrapper_width_unit, array( 'px', '%', 'em' ) ) ? $wrapper_width_unit : 'px';
 		$inline_style .= sprintf( 'max-width:%s%s;', $wrapper_width, $wrapper_width_unit );
-	
+
 	// if wrapper_width is not set use slider width as default
 	} elseif ( 'boxed' == $layout ) {
 		$inline_style .= sprintf( 'max-width:%spx;', $width );
-	
+
 	// if wrapper_width is not set the value to 100%
 	} elseif ( 'partialview' == $layout ) {
 		$inline_style .= 'max-width:100%;';
@@ -326,7 +326,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 	} else {
 		$slideinfo_size = sprintf( ', size:%s', $slideinfo_width );
 	}
-	
+
 	$instance_suffix = substr($uid, -4);
 	// slider javascript instance name
 	$instance_name = "masterslider_".$instance_suffix;
@@ -339,11 +339,11 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 	if( 'laptop' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-laptop-cont"><img src="%s" class="ms-laptop-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/laptop.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'display' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-display-cont"><img src="%s" class="ms-display-bg" /><div class="ms-dis-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/display.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'flat-laptop' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-laptop-cont"><img src="%s" class="ms-laptop-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/flat-laptop.png' );
 		$inner_template_container_close_tags = '</div></div>';
@@ -351,35 +351,35 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 	} elseif( 'flat-display' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-display-cont"><img src="%s" class="ms-display-bg" /><div class="ms-dis-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/flat-display.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'tablet' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-tablet-cont"><img src="%s" class="ms-tablet-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/tablet.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'flat-tablet' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-tablet-cont"><img src="%s" class="ms-tablet-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/flat-tablet.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'tablet-land' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-tablet-cont"><img src="%s" class="ms-tablet-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/tablet-land.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'flat-tablet-land' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-tablet-cont"><img src="%s" class="ms-tablet-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/flat-tablet-land.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'phone' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-phone-cont"><img src="%s" class="ms-phone-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/phone.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'flat-phone' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-phone-cont"><img src="%s" class="ms-phone-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/flat-phone.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'phone-land' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-phone-cont"><img src="%s" class="ms-phone-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/phone-land.png' );
 		$inner_template_container_close_tags = '</div></div>';
-	
+
 	} elseif( 'flat-phone-land' == $template ){
 		$inner_template_container_open_tags  = sprintf( '<div class="ms-phone-cont"><img src="%s" class="ms-phone-bg" /><div class="ms-lt-slider-cont">', MSWP_AVERTA_PUB_URL.'/assets/css/templates/flat-phone-land.png' );
 		$inner_template_container_close_tags = '</div></div>';
@@ -397,7 +397,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 
 		<!-- MasterSlider -->
 		<div id="<?php echo $puid; ?>" class="master-slider-parent msl <?php echo trim( $wrapper_classes ); ?>" <?php echo $inline_style; ?> >
-				
+
 			<?php echo $inner_template_container_open_tags; ?>
 
 			<!-- MasterSlider Main -->
@@ -411,8 +411,8 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 			 <?php echo $inner_template_container_close_tags; ?>
 
 		</div>
-		<!-- END MasterSlider --> 
-		
+		<!-- END MasterSlider -->
+
 		<script>
 		(function ( $ ) {
 			"use strict";
@@ -421,18 +421,18 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 				var <?php echo $instance_name; ?> = new MasterSlider();
 
 				// slider controls
-<?php if($arrows  == 'true' || 'image-gallery' == $template ){ 
+<?php if($arrows  == 'true' || 'image-gallery' == $template ){
 						printf( "\t\t\t\t$instance_name.control('%s'     ,{ autohide:%s, overVideo:%s %s });",
-									'arrows', 
-									msp_is_true($arrows_autohide ), 
+									'arrows',
+									msp_is_true($arrows_autohide ),
 									msp_is_true($arrows_overvideo ),
 									$arrows_hideunder
 								);
-} ?>                    
-<?php if($bullets == 'true'){ 
+} ?>
+<?php if($bullets == 'true'){
 						printf( "\t\t\t\t$instance_name.control('%s'    ,{ autohide:%s, overVideo:%s, dir:'%s', align:'%s' %s %s });\n",
-									'bullets'  , 
-									msp_is_true($bullets_autohide ), 
+									'bullets'  ,
+									msp_is_true($bullets_autohide ),
 									msp_is_true($bullets_overvideo ),
 									$bullets_direction,
 									$bullets_align,
@@ -441,7 +441,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 								);
 } ?>
 
-<?php if($thumbs  == 'true'){ 
+<?php if($thumbs  == 'true'){
 						$thumbs_custom_class = 'true' == $thumbs_in_tab ? 'ms-has-thumb' : '';
 						printf( "\t\t\t\t$instance_name.control('%s'  ,{ autohide:%s, overVideo:%s, dir:'%s', speed:%d, inset:%s, arrows:%s, hover:%s, customClass:'%s', align:'%s',type:'%s', margin:%d, width:%d, height:%d, space:%d, fillMode:'%s' %s });\n",
 									'thumblist',
@@ -465,10 +465,10 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 
 
 } ?>
-<?php if($scroll  == 'true'){ 
+<?php if($scroll  == 'true'){
 						printf( "\t\t\t\t$instance_name.control('%s'  ,{ autohide:%s, overVideo:%s, dir:'%s', inset:%s, align:'%s', color:'%s' %s %s %s });\n",
-								  'scrollbar', 
-									msp_is_true($scroll_autohide  ), 
+								  'scrollbar',
+									msp_is_true($scroll_autohide  ),
 									msp_is_true($scroll_overvideo ),
 									$scroll_direction,
 									msp_is_true($scroll_inset ),
@@ -479,10 +479,10 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 									$scroll_width
 								);
 } ?>
-<?php if($circletimer == 'true'){ 
+<?php if($circletimer == 'true'){
 						printf( "\t\t\t\t$instance_name.control('%s',{ autohide:%s, overVideo:%s, color:'%s', radius:%d, stroke:%d %s %s });\n",
-								  "circletimer", 
-									msp_is_true($circletimer_autohide ), 
+								  "circletimer",
+									msp_is_true($circletimer_autohide ),
 									msp_is_true($circletimer_overvideo ),
 									$circletimer_color,
 									$circletimer_radius,
@@ -491,10 +491,10 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 									$circletimer_hideunder
 								);
 } ?>
-<?php if($timebar == 'true'){ 
+<?php if($timebar == 'true'){
 						printf( "\t\t\t\t$instance_name.control('%s'    ,{ autohide:%s, overVideo:%s, align:'%s', color:'%s' %s %s });\n",
-								  "timebar", 
-									msp_is_true($timebar_autohide  ), 
+								  "timebar",
+									msp_is_true($timebar_autohide  ),
 									msp_is_true($timebar_overvideo ),
 									$timebar_align,
 									$timebar_color,
@@ -502,10 +502,10 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 									$timebar_width
 								);
 } ?>
-<?php if($slideinfo == 'true'){ 
+<?php if($slideinfo == 'true'){
 						printf( "\t\t\t\t$instance_name.control('%s'  ,{ autohide:%s, overVideo:%s, dir:'%s', align:'%s',inset:%s %s %s %s });\n",
-								  "slideinfo", 
-									msp_is_true($slideinfo_autohide  ), 
+								  "slideinfo",
+									msp_is_true($slideinfo_autohide  ),
 									msp_is_true($slideinfo_overvideo ),
 									$slideinfo_direction,
 									$slideinfo_align,
@@ -525,7 +525,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 						grabCursor      : <?php msp_is_true_e($grab_cursor); ?>,
 						swipe           : <?php msp_is_true_e($swipe); ?>,
 						mouse           : <?php msp_is_true_e($mouse); ?>,
-						layout          : "<?php echo $layout; ?>", 
+						layout          : "<?php echo $layout; ?>",
 						wheel           : <?php msp_is_true_e($wheel); ?>,
 						autoplay        : <?php msp_is_true_e($autoplay); ?>,
 						instantStartLayers:<?php msp_is_true_e( $instant_show_layers ); ?>,
@@ -537,14 +537,14 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 						smoothHeight    : <?php msp_is_true_e($smooth_height); ?>,
 						endPause        : <?php msp_is_true_e($end_pause); ?>,
 						overPause       : <?php msp_is_true_e($over_pause); ?>,
-						fillMode        : "<?php echo $fill_mode; ?>", 
+						fillMode        : "<?php echo $fill_mode; ?>",
 						centerControls  : <?php msp_is_true_e($center_controls); ?>,
 						startOnAppear   : <?php msp_is_true_e($start_on_appear); ?>,
-						layersMode      : "<?php echo $layers_mode; ?>", 
-						hideLayers      : <?php msp_is_true_e($hide_layers); ?>, 
+						layersMode      : "<?php echo $layers_mode; ?>",
+						hideLayers      : <?php msp_is_true_e($hide_layers); ?>,
 						fullscreenMargin: <?php echo (int) $fullscreen_margin;  ?>,
-						speed           : <?php echo (int)$speed; ?>, 
-						dir             : "<?php echo $direction; ?>", 
+						speed           : <?php echo (int)$speed; ?>,
+						dir             : "<?php echo $direction; ?>",
 <?php if( 'staff-3' == $template      ) { echo "viewOption      : { centerSpace:1.6 },\n"; } ?>
 <?php if( 'off'     != $parallax_mode ) { echo "\t\t\t\t\t\tparallaxMode    : '$parallax_mode',\n"; } ?>
 						view            : "<?php echo $view; ?>"
@@ -554,7 +554,7 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 
 				if( ! empty( $on_change_start ) )
 					printf( "$instance_name.api.addEventListener(MSSliderEvent.CHANGE_START, %s );\n"		  , msp_maybe_base64_decode( $on_change_start ) ) ;
-				
+
 				if( ! empty( $on_change_end ) )
 					printf( "\t\t\t\t$instance_name.api.addEventListener(MSSliderEvent.CHANGE_END, %s );\n"  , msp_maybe_base64_decode( $on_change_end ) ) ;
 
@@ -589,23 +589,23 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 					echo "\t\t\t\t});\n";
 				}
 
-				if ( 'image-gallery' == $template ) { 
+				if ( 'image-gallery' == $template ) {
 					printf( "new MSGallery( '%s' , %s).setup();", $puid, $instance_name );
 				}
 
-				if ( 'flickr' == $slider_type ) { 
+				if ( 'flickr' == $slider_type ) {
 					printf( "new MSFlickrV2( %s, { key:'%s', id:'%s', count:%d, thumbSize:'%s',imgSize:'%s', type:'%s' });", $instance_name, $flickr_key, $flickr_id, $flickr_count, $flickr_thumb_size, $flickr_size, $flickr_type );
 				}
 
-				if ( 'facebook' == $slider_type ) { 
+				if ( 'facebook' == $slider_type ) {
 					$facebook_username_prop   = empty( $facebook_username ) ? '' : sprintf( "username:'%s', " , $facebook_username  );
 					$facebook_albumid_prop    = empty( $facebook_albumid  ) ? '' : sprintf( "albumId :'%s', " , $facebook_albumid   );
 
-					printf( "new MSFacebookGallery( %s, { %s %s count:%d, thumbSize:'%s',imgSize:'%s', type:'%s' });", 
+					printf( "new MSFacebookGallery( %s, { %s %s count:%d, thumbSize:'%s',imgSize:'%s', type:'%s' });",
 					        $instance_name, $facebook_username_prop, $facebook_albumid_prop, $facebook_count, $facebook_thumb_size, $facebook_size, $facebook_type );
 				}
 
-				if ( ! empty( $gfonts ) ) { 
+				if ( ! empty( $gfonts ) ) {
 					$link_tag = sprintf( "<link rel='stylesheet' id='ms-fonts'  href='http://fonts.googleapis.com/css?family=%s' type='text/css' media='all' />", $gfonts );
 					echo "\n\t\t\t\t" . sprintf( '$("head").append( "%s" );', $link_tag ) . "\n";
 				}
@@ -614,10 +614,10 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 				echo "\n\t\t\t\twindow.masterslider_instances.push( $instance_name );\n";
 				?>
 			 });
-			
+
 		})(jQuery);
-		</script> 
-		
+		</script>
+
 <?php
 	 return apply_filters( "masterslider_ms_slider_shortcode", ob_get_clean(), $mixed );
 }
@@ -630,8 +630,8 @@ function msp_masterslider_wrapper_shortcode( $atts, $content = null ) {
 add_shortcode( 'ms_slide', 'msp_masterslider_slide_shortcode' );
 
 function msp_masterslider_slide_shortcode( $atts, $content = null ) {
-	extract( shortcode_atts( 
-				array( 
+	extract( shortcode_atts(
+				array(
 					'src'       => '',
 					'src_full'  => '',
 
@@ -640,7 +640,7 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 					'style' 	=> '',
 
 					'src_blank'	=> MSWP_BLANK_IMG, // url to black image for preloading job
-					
+
 					'title'     => '', // image title
 					'alt'       => '', // image alternative text
 
@@ -649,7 +649,7 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 		            'link_class' => '',
 		            'link_id'    => '',
 		            'link_rel'   => '',
-					
+
 					'target'    => '_blank',
 					'video'     => '', // youtube or vimeo video link
 					'auto_play_video' => '', // autoplay for youtube or vimeo videos
@@ -660,7 +660,7 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 
 					'info'      => '',
 
-					'autopause' => 'false', 
+					'autopause' => 'false',
 					'mute'		=> 'true',
 					'loop' 		=> 'true',
 					'vbgalign' 	=> 'fill',
@@ -671,13 +671,13 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 					'thumb' 	=> '',
 					'tab' 		=> '',
 					'tab_thumb' => '',
-					'delay'     => '', // data-delay 
+					'delay'     => '', // data-delay
 					'bgalign'	=> '',  // data-fill-mode
 					'bgcolor' 	=> '',
 					'pattern'   => '',
 					'tintcolor' => ''
 				)
-				, $atts, 'masterslider_slide' ) 
+				, $atts, 'masterslider_slide' )
 			 );
 
 	$css_class = empty( $css_class ) ? '' : ' '.$css_class;
@@ -696,7 +696,7 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 
 	// add slide starter tag
 	$slide_start_tag = sprintf( '<div %s class="ms-slide%s" %s %s %s >', $css_id, $css_class, $data_delay, $data_align, $style_attr )."\n";
-	
+
 	// making start tag filterable for extend purposes
 	$slide_start_tag = apply_filters( 'msp_masterslider_slide_start_tag', "\t\t\t\t".$slide_start_tag, $atts );
 
@@ -706,13 +706,13 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 
 	// if blank image is not set use original img instead
 	$src_blank 	= empty( $src_blank ) ? $src : $src_blank;
-	
+
 	// decode escaped square brackets
 	$title 		= str_replace( array( "%5B", "%5D" ), array('[', ']'), $title 		);
 	$alt   		= str_replace( array( "%5B", "%5D" ), array('[', ']'), $alt   		);
 	$link_title = str_replace( array( "%5B", "%5D" ), array('[', ']'), $link_title  );
 	$link_rel   = str_replace( array( "%5B", "%5D" ), array('[', ']'), $link_rel    );
-	
+
 	// main image markup
 	if( ! empty( $src ) ) {
 		$crop_width  = empty( $crop_width  ) || ! is_numeric( $crop_width  ) ? NULL : (int)$crop_width;
@@ -723,24 +723,24 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 
 		if( $crop_width ||  $crop_height )
 			$src = msp_get_the_resized_image_src( $src, $crop_width, $crop_height, true );
-		
+
 		$slide_content .= "\t\t\t\t\t" . sprintf('<img src="%s" alt="%s" title="%s" data-src="%s" />', $src_blank, $alt, $title, $src )."\n";
 	}
 
 	$self_video_markup = '';
 	// self host video background
-	if( ! empty( $mp4 ) ) 
+	if( ! empty( $mp4 ) )
 		 $self_video_markup .= "\t\t".sprintf('<source src="%s" type="video/mp4"/>', $mp4 )."\n";
 
-	if( ! empty( $webm ) ) 
+	if( ! empty( $webm ) )
 		 $self_video_markup .= "\t\t".sprintf('<source src="%s" type="video/webm"/>', $webm )."\n";
 
-	if( ! empty( $ogg ) ) 
+	if( ! empty( $ogg ) )
 		 $self_video_markup .= "\t\t".sprintf('<source src="%s" type="video/ogg"/>', $ogg )."\n";
 
 
 	if( ! empty( $self_video_markup ) ) {
-		$slide_content .= "\t".sprintf(	'<video data-autopause="%s" data-mute="%s" data-loop="%s" data-fill-mode="%s" >%s%s%s</video>', 
+		$slide_content .= "\t".sprintf(	'<video data-autopause="%s" data-mute="%s" data-loop="%s" data-fill-mode="%s" >%s%s%s</video>',
 									msp_is_true( $autopause ), $mute, $loop, $vbgalign, "\n", $self_video_markup, "\t" )."\n";
 	}
 
@@ -754,12 +754,12 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 		$att_link_title  = $link_title ? 'title="'.  $link_title .'"' : '';
 		$att_link_class  = $link_class ? 'class="'.  $link_class .'"' : '';
 		$att_link_id     = $link_id    ? 'id="'.     $link_id .'"' : '';
-		
-		$slide_content .= "\t".sprintf('<a href="%s" %s %s %s %s %s>%s</a>', $link, $att_link_target, 
+
+		$slide_content .= "\t".sprintf('<a href="%s" %s %s %s %s %s>%s</a>', $link, $att_link_target,
 		                               			$att_link_rel, $att_link_title, $att_link_class,
 		                               			$att_link_id, $title )."\n";
 	}
-	
+
 	// add layers that passed as content
 	if( ! empty( $content ) )
 		 $slide_content .= $content."\n";
@@ -796,7 +796,7 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 	$slide_content = do_shortcode( $slide_content );
 
 	$output = empty( $slide_content ) ? '' : $slide_start_tag.$slide_content.$slide_end_tag;
-	
+
 	return apply_filters( 'masterslider_slide_content', $output, $slide_start_tag, $slide_content, $slide_end_tag );
 }
 
@@ -808,10 +808,10 @@ function msp_masterslider_slide_shortcode( $atts, $content = null ) {
 add_shortcode( 'ms_layer', 'msp_masterslider_layer_shortcode' );
 
 function msp_masterslider_layer_shortcode( $atts, $content = null ) {
-	
+
 	// merge input and default attrs
-	$merged = shortcode_atts( 
-				  array( 
+	$merged = shortcode_atts(
+				  array(
 					'src'       => '', // image layer src or video cover image
 					'src_blank'	=> MSWP_BLANK_IMG, // url to black image for preloading job
 
@@ -864,8 +864,8 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 					'height'    => ''
 				  )
 				  , $atts, 'masterslider_layer' );
-	
-		extract( $merged ); 
+
+		extract( $merged );
 
 
 	$wrapper_class = trim( 'ms-layer '. $css_class.' '. $style_id );
@@ -887,8 +887,8 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 	}
 
 
-	$show_duration = ( ! is_numeric( $show_duration ) || empty( $show_duration ) ) ? 1000 : (int)$show_duration; 
-	$show_delay    = ( ! is_numeric( $show_delay    ) || empty( $show_delay    ) ) ?    0 : (int)$show_delay; 
+	$show_duration = ( ! is_numeric( $show_duration ) || empty( $show_duration ) ) ? 1000 : (int)$show_duration;
+	$show_delay    = ( ! is_numeric( $show_delay    ) || empty( $show_delay    ) ) ?    0 : (int)$show_delay;
 
 	$hide_duration = ( ! is_numeric( $hide_duration ) || empty( $hide_duration ) ) ? 1000 : (int)$hide_duration;
 	$hide_delay    = ( ! is_numeric( $hide_delay    ) || empty( $hide_delay    ) ) ? 1000 : (int)$hide_delay;
@@ -952,7 +952,7 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 	$rel_attr = empty( $rel ) ? '' : 'rel="'.$rel.'"';
 
 	$rel_attr = apply_filters( 'masterslider_layer_shortcode_attr_rel', $rel_attr, $rel );
-	
+
 	$link     = apply_filters( 'masterslider_layer_shortcode_attr_link', $link );
 
 	// create data-link attr if it's not default value
@@ -967,7 +967,7 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 	} else {
 		$data_action  = '';
 	}
-	
+
 
 	// convert relative image link to absolute
 	$src = ! empty( $src ) ? msp_get_the_absolute_media_url( $src ) : $src;
@@ -978,7 +978,7 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 	$data_tp_width   = 'hotspot' == $type ? 'data-width="'.$tooltip_width.'"' : '';
 	$data_target     = 'hotspot' == $type ? 'data-target="'.$target.'"' : '';
 
-	$effect_attrs 	 = sprintf( '%s %s %s %s %s %s %s %s %s %s', 
+	$effect_attrs 	 = sprintf( '%s %s %s %s %s %s %s %s %s %s',
 									  $data_show_effect, $data_show_duration, $data_show_delay, $data_show_ease, $data_hide_effect,
 									  $data_hide_duration, $data_hide_time, $data_hide_ease, $data_hide_delay, $data_fixed );
 
@@ -1002,7 +1002,7 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 
 		// or single image
 		} else {
-			$layer .= sprintf( '<img %s class="%s" src="%s" data-src="%s" alt="%s" style="%s" %s %s %s %s %s />', 
+			$layer .= sprintf( '<img %s class="%s" src="%s" data-src="%s" alt="%s" style="%s" %s %s %s %s %s />',
 									 $id_attr, $wrapper_class, $src_blank, $src, $alt, $style_size, $effect_attrs, $common_attrs, $rel_attr, $data_action, $position_attrs )."\n";
 		}
 
@@ -1014,7 +1014,7 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 
 	// if layer type was text, video or hotspot
 	} else {
-		
+
 		$layer_content = '';
 		// add video iframe as layer content if type was video
 		if( 'video' == $type ) {
@@ -1027,19 +1027,19 @@ function msp_masterslider_layer_shortcode( $atts, $content = null ) {
 					$vid_height = empty( $height ) ? '270' : rtrim( $height, 'px' ) ;
 					$layer_content .= sprintf( '<iframe src="%s" width="%s" height="%s" > </iframe>', $video, $vid_width, $vid_height );
 			}
-		
+
 		// add shortcode content if layer type was text or hotspot
 		} else {
 			$layer_content .= ! empty( $content ) ? do_shortcode( wp_unslash( $content ) ) : '';
 		}
 
-		$layer = sprintf( '<div %s class="%s" style="%s" %s %s %s %s >%s</div>', 
+		$layer = sprintf( '<div %s class="%s" style="%s" %s %s %s %s >%s</div>',
 								 $id_attr, $wrapper_class, $style_size, $data_link, $effect_attrs, $common_attrs, $position_attrs, $layer_content )."\n";
 	}
 
 	// end layer markup generation //////////////////////////////////////////
 
-	 
+
 	 return apply_filters( "masterslider_layer_shortcode", "\t\t\t\t\t".$layer, $merged, $atts, $content );
 }
 
@@ -1052,20 +1052,24 @@ add_shortcode( 'ms_slide_info', 'msp_masterslider_slide_info_shortcode' );
 
 function msp_masterslider_slide_info_shortcode( $atts, $content = null ) {
 
-	 $args = shortcode_atts( 
-		  array( 
+	 $args = shortcode_atts(
+		  array(
 				'css_class' => '',
 				'tag_name'  => 'div'
 		  )
 		  , $atts, 'masterslider_slide_info' );
 
-	 extract( $args ); 
+	 extract( $args );
 
-	 $css_class = empty( $css_class ) ? '' : esc_attr(' '.$css_class);
+     if( is_array( $css_class ) ){
+        $css_class = join( ' ' , $css_class );
+     } else {
+        $css_class = empty( $css_class ) ? '' : esc_attr( ' '.$css_class );
+     }
 
 	 // create slide info markup
 	 $output = sprintf( '<%1$s class="ms-info%2$s">%3$s</%1$s>', $tag_name, $css_class, do_shortcode( wp_unslash( $content ) ) )."\n";
-	 
+
 	 return apply_filters( 'masterslider_slide_info_shortcode', "\t\t\t\t\t".$output, $args );
 }
 
@@ -1075,21 +1079,21 @@ add_shortcode( 'ms_slide_flickr', 'msp_masterslider_slide_flickr_shortcode' );
 
 function msp_masterslider_slide_flickr_shortcode( $atts, $content = null ) {
 
-	 $args = shortcode_atts( 
-		  array( 
+	 $args = shortcode_atts(
+		  array(
 		      'src_blank'	=> MSWP_BLANK_IMG, // url to black image for preloading job
 				'thumb'  => 'yes'
 		  )
 		  , $atts, 'masterslider_slide_flickr' );
 
-	extract( $args ); 
+	extract( $args );
 
 	$output = sprintf( '<img src="%s" data-src="{{image}}" alt="{{title}}"/>', $src_blank ) . "\n";
 
 	if( 'yes' == $thumb )
 		$output .= "\t\t\t\t" . '<img class="ms-thumb" src="{{thumb}}" alt="{{title}}"/>';
 
-	 
+
 	return apply_filters( 'masterslider_slide_flickr_shortcode', "\t\t\t\t".$output, $args );
 }
 

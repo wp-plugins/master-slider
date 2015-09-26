@@ -20,7 +20,7 @@ if ( ! class_exists( 'MSP_Main_Widget' ) ) :
 class MSP_Main_Widget extends MSP_Widget {
 
 	public $fields   = array(
-                            
+
                             array(
                                 'name'    => 'Title',
                                 'id'      => 'title',
@@ -34,7 +34,7 @@ class MSP_Main_Widget extends MSP_Widget {
                                 'value'   => '-1',
                                 'options' => array()
                             )
-                            
+
                         );
 
 	/*--------------------------------------------------*/
@@ -50,10 +50,10 @@ class MSP_Main_Widget extends MSP_Widget {
 
 		parent::__construct(
 			'master-slider-main-widget',
-			__( 'Master Slider Widget', MSWP_TEXT_DOMAIN ),
+			__( 'Master Slider Widget', 'master-slider' ),
 			array(
 				'classname'  => 'master-slider-main-widget',
-				'description' => __( 'Display a Master Slider', MSWP_TEXT_DOMAIN )
+				'description' => __( 'Display a Master Slider', 'master-slider' )
 			)
 		);
 
@@ -80,7 +80,7 @@ class MSP_Main_Widget extends MSP_Widget {
 		if ( ! empty( $title ) ) { echo $before_title . $title . $after_title; }
 
 		echo get_masterslider( $instance['id'] );
-		
+
 		echo $after_widget;
 	} // end widget
 

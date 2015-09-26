@@ -116,7 +116,7 @@ class MSP_Widget extends WP_Widget {
 
                 case 'select':
                     echo '<p>',
-                        '<label for="'.$this->get_field_id($id).'" >'. __( $field['name'], MSWP_TEXT_DOMAIN ). '</label>',
+                        '<label for="'.$this->get_field_id($id).'" >'. __( $field['name'], 'master-slider' ). '</label>',
                         '<select name="'.$this->get_field_name($id).'" id="'.$this->get_field_id($id).'" value="'.$instance[$id].'" style="width:100%;max-width:100%;" >';
                 foreach ($field['options'] as $key => $value) {
                     echo    '<option value="'.$key.'" '.(($instance[$id] == $key)?'selected="selected"':'' ).' >'. __($value, "default"). '</option>';
