@@ -13,7 +13,7 @@
  * 
  */
 class MSP_Pointers {
-	
+  
     /*  */
     public $pointers     = array();
     public $seen_ids     = array();
@@ -24,7 +24,7 @@ class MSP_Pointers {
      * Set theme or plugine file path to get version from
      * @param string $version_file   a path to plugin or theme file to get and compare version with it
      */
-	function __construct( $version_file = '' ) {
+  function __construct( $version_file = '' ) {
         $this->version_file = $version_file;
     }
     
@@ -162,8 +162,8 @@ function msp_add_custom_pointers(){
                             'hook_suffix'=> 'toplevel_page_masterslider',   // Screen hook suffix to show pointer on [empty means display every where on admin] (dashboard : index.php)
                             'target'     => '#contextual-help-link',        // CSS selector to hang the pointer to that element
                             'version'    => '1.0.0',                        // The theme or plugin version to display tooltip on
-                            'title'      => __( 'Do you need any help on Master Slider?', MSWP_TEXT_DOMAIN ),  // Tooltip title
-                            'content'    => sprintf( __( 'Please open contextual help panel (click the %s button at top right side of this page)', MSWP_TEXT_DOMAIN ), '<strong style="color:#1D86AC;">'.__( 'Help', MSWP_TEXT_DOMAIN ).'</strong>' ), // Tooltip description
+                            'title'      => __( 'Do you need any help on Master Slider?', 'master-slider' ),  // Tooltip title
+                            'content'    => sprintf( __( 'Please open contextual help panel (click the %s button at top right side of this page)', 'master-slider' ), '<strong style="color:#1D86AC;">'.__( 'Help', 'master-slider' ).'</strong>' ), // Tooltip description
                             'width'      => 370,
                             'css'        => '.master_1_0_view_help { left:auto !important; right:20px !important; } .master_1_0_view_help .wp-pointer-arrow { left:auto !important; right:25px; }',
                             'position'   => array( 
