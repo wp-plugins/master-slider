@@ -158,9 +158,7 @@ class MSP_Shortcode_Factory {
 		if( empty( $the_content ) )
 			return '';
 
-        if( "&nbsp;" == $the_content ){
-            $css_class = 'ms-info-empty';
-        }
+        $css_class = ( "&nbsp;" == $the_content ) ? 'ms-info-empty' : '';
 
 		return sprintf( '[%1$s css_class="%3$s"]%2$s[/%1$s]', 'ms_slide_info', $the_content, $css_class )."\n";
 	}
