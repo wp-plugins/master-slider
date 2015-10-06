@@ -54,8 +54,8 @@ class MSP_Settings {
         if( isset( $section['id'] ) && 'msp_envato_license' == $section['id'] ){
             $is_license_actived = get_option( MSWP_SLUG . '_is_license_actived', 0 );
             return sprintf( '<a id="validate_envato_license" class="button button-primary button-large" data-activate="%1$s" data-isactive="%3$d" data-deactivate="%2$s" data-validation="%4$s" >%1$s</a>%5$s', 
-                            __( 'Activate License', MSWP_TEXT_DOMAIN ), __( 'Deactivate License', MSWP_TEXT_DOMAIN ), (int)$is_license_actived,
-                            __( 'Validating ..', MSWP_TEXT_DOMAIN ), '<div class="msp-msg-nag">is not actived</div>' );
+                            __( 'Activate License', 'master-slider' ), __( 'Deactivate License', 'master-slider' ), (int)$is_license_actived,
+                            __( 'Validating ..', 'master-slider' ), '<div class="msp-msg-nag">is not actived</div>' );
         }
         return $button_markup;
     }
@@ -65,8 +65,8 @@ class MSP_Settings {
         
         add_submenu_page(
             MSWP_SLUG,
-            __( 'Settings' , MSWP_TEXT_DOMAIN ),
-            __( 'Settings' , MSWP_TEXT_DOMAIN ),
+            __( 'Settings' , 'master-slider' ),
+            __( 'Settings' , 'master-slider' ),
             apply_filters( 'masterslider_setting_capability', 'manage_options' ),
             MSWP_SLUG . '-setting',
             array( $this, 'render_setting_page' )
@@ -78,18 +78,18 @@ class MSP_Settings {
             
             array(
                 'id' => 'msp_general_setting',
-                'title' => __( 'General Settings', MSWP_TEXT_DOMAIN )
+                'title' => __( 'General Settings', 'master-slider' )
             )
         );
 
         $sections[] = array(
             'id' => 'msp_advanced',
-            'title' => __( 'Advanced Setting', MSWP_TEXT_DOMAIN )
+            'title' => __( 'Advanced Setting', 'master-slider' )
         );
 
         $sections[] = array(
             'id' => 'upgrade_to_pro',
-            'title' => __( 'Upgrade to Pro version', MSWP_TEXT_DOMAIN )
+            'title' => __( 'Upgrade to Pro version', 'master-slider' )
         );
 
         return $sections;
@@ -107,20 +107,20 @@ class MSP_Settings {
         $settings_fields['msp_general_setting'] = array(
             array(
                 'name'  => 'hide_info_table',
-                'label' => __( 'Hide info table', MSWP_TEXT_DOMAIN ),
-                'desc'  => __( 'If you want to hide "Latest video tutorials" table on master slider admin panel check this field.', MSWP_TEXT_DOMAIN ),
+                'label' => __( 'Hide info table', 'master-slider' ),
+                'desc'  => __( 'If you want to hide "Latest video tutorials" table on master slider admin panel check this field.', 'master-slider' ),
                 'type'  => 'checkbox'
             ),
             array(
                 'name'  => '_enable_cache',
-                'label' => __( 'Enable cache?', MSWP_TEXT_DOMAIN ),
-                'desc'  => __( 'Enable cache to make Masterslider even more faster!', MSWP_TEXT_DOMAIN ),
+                'label' => __( 'Enable cache?', 'master-slider' ),
+                'desc'  => __( 'Enable cache to make Masterslider even more faster!', 'master-slider' ),
                 'type'  => 'checkbox'
             ),
             array(
                 'name'  => '_cache_period',
-                'label' => __( 'Cache period time', MSWP_TEXT_DOMAIN ),
-                'desc'  => __( 'The cache refresh time in hours. Cache is also cleared when you click on "Save Changes" in slider panel.', MSWP_TEXT_DOMAIN ),
+                'label' => __( 'Cache period time', 'master-slider' ),
+                'desc'  => __( 'The cache refresh time in hours. Cache is also cleared when you click on "Save Changes" in slider panel.', 'master-slider' ),
                 'type'  => 'text',
                 'default' => '12',
                 'sanitize_callback' => 'floatval'
@@ -130,8 +130,8 @@ class MSP_Settings {
         $settings_fields['msp_advanced'] = array(
             array(
                 'name'  => 'allways_load_ms_assets',
-                'label' => __( 'Load assets on all pages?', MSWP_TEXT_DOMAIN ),
-                'desc'  => __( 'By default, Master Slider will load corresponding JavaScript files on demand. but if you need to load assets on all pages, check this option. ( For example, if you plan to load Master Slider via Ajax, you need to check this option ) ', MSWP_TEXT_DOMAIN ),
+                'label' => __( 'Load assets on all pages?', 'master-slider' ),
+                'desc'  => __( 'By default, Master Slider will load corresponding JavaScript files on demand. but if you need to load assets on all pages, check this option. ( For example, if you plan to load Master Slider via Ajax, you need to check this option ) ', 'master-slider' ),
                 'type'  => 'checkbox'
             )
         );
@@ -139,9 +139,9 @@ class MSP_Settings {
         $settings_fields['upgrade_to_pro'] = array(
             array(
                 'name' => 'upgrade_text',
-                'desc' => __( 'Upgrade to Pro version to unlock more features!', MSWP_TEXT_DOMAIN ) . sprintf( ' <a href="http://avt.li/mslset" target="_blank">%s</a>', __( 'Checkout the list of features ..', MSWP_TEXT_DOMAIN ) ),
+                'desc' => __( 'Upgrade to Pro version to unlock more features!', 'master-slider' ) . sprintf( ' <a href="http://avt.li/mslset" target="_blank">%s</a>', __( 'Checkout the list of features ..', 'master-slider' ) ),
                 'type' => 'plain_text',
-                'label'=> __( 'Need more features?', MSWP_TEXT_DOMAIN )
+                'label'=> __( 'Need more features?', 'master-slider' )
             )
         );
 

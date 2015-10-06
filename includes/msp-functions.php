@@ -38,7 +38,7 @@ if( ! function_exists( 'get_masterslider' ) ) {
         
         // through an error if slider id is not valid number
         if( ! is_numeric( $slider_id ) ) 
-            return __( 'Invalid slider id. Master Slider ID must be a valid number.', MSWP_TEXT_DOMAIN );
+            return __( 'Invalid slider id. Master Slider ID must be a valid number.', 'master-slider' );
 
         // load masterslider script
         wp_enqueue_style ( 'masterslider-main');
@@ -534,22 +534,22 @@ function msp_the_post_thumbnail( $post_id = null, $width = null , $height = null
 
                 if( ! isset( $post ) ) return '';
 
-				if ( 'auto' == $image_from ) {
-					$img_src = has_post_thumbnail( $post->ID ) ? msp_get_the_post_thumbnail_full_src( $post->ID ) : '';
+        if ( 'auto' == $image_from ) {
+          $img_src = has_post_thumbnail( $post->ID ) ? msp_get_the_post_thumbnail_full_src( $post->ID ) : '';
 
-					if( empty( $img_src ) ) {
-						$content   = get_the_content();
-						$img_src = msp_get_first_image_src_from_string( $content );
-					}
+          if( empty( $img_src ) ) {
+            $content   = get_the_content();
+            $img_src = msp_get_first_image_src_from_string( $content );
+          }
 
-				} elseif( 'featured' == $image_from ) {
-					$img_src = has_post_thumbnail( $post->ID ) ? msp_get_the_post_thumbnail_full_src( $post->ID ) : '';
+        } elseif( 'featured' == $image_from ) {
+          $img_src = has_post_thumbnail( $post->ID ) ? msp_get_the_post_thumbnail_full_src( $post->ID ) : '';
 
-				} elseif ( 'first' == $image_from ) {
+        } elseif ( 'first' == $image_from ) {
 
-					$content = get_the_content();
-					$img_src = msp_get_first_image_src_from_string( $content );
-				}
+          $content = get_the_content();
+          $img_src = msp_get_first_image_src_from_string( $content );
+        }
                 
                 return $img_src;
             }
@@ -807,8 +807,8 @@ function msp_exclude_strip_shortcode_tags(){
  * @return array  List of all custom post types
  */
 function msp_get_custom_post_types(){
-	$custom_post_types = get_post_types( array( '_builtin' => false ), 'objects' );
-	return apply_filters( 'masterslider_get_custom_post_types', $custom_post_types );
+  $custom_post_types = get_post_types( array( '_builtin' => false ), 'objects' );
+  return apply_filters( 'masterslider_get_custom_post_types', $custom_post_types );
 }
 
 
@@ -824,38 +824,38 @@ function msp_is_plugin_active( $plugin_basename ){
 
 
 function msp_get_template_tag_value( $tag_name, $post = null, $args = null ){
-	$post  = get_post( $post );
-	$value = '{{' . $tag_name . '}}';
-	
-	switch ( $tag_name ) {
+  $post  = get_post( $post );
+  $value = '{{' . $tag_name . '}}';
+  
+  switch ( $tag_name ) {
 
-		case 'title':
-			$value = $post->post_title;
-			break;
+    case 'title':
+      $value = $post->post_title;
+      break;
 
-		case 'content':
-			$value = $post->post_content;
-			break;
+    case 'content':
+      $value = $post->post_content;
+      break;
 
-		case 'excerpt':
-			$value = $post->post_excerpt;
-			if ( empty( $value ) ) {
-				$excerpt_length = isset( $args['excerpt_length'] ) ? (int)$args['excerpt_length'] : 80;
-				$value = msp_get_the_trim_excerpt( $value, $excerpt_length );
-			}
-			break;
+    case 'excerpt':
+      $value = $post->post_excerpt;
+      if ( empty( $value ) ) {
+        $excerpt_length = isset( $args['excerpt_length'] ) ? (int)$args['excerpt_length'] : 80;
+        $value = msp_get_the_trim_excerpt( $value, $excerpt_length );
+      }
+      break;
 
-		case 'permalink':
-			$value = $post->guid;
-			break;
+    case 'permalink':
+      $value = $post->guid;
+      break;
 
-		case 'author':
-			$value = get_the_author_meta( 'display_name', (int)$post->post_author );
-			break;
+    case 'author':
+      $value = get_the_author_meta( 'display_name', (int)$post->post_author );
+      break;
 
-		case 'post_id':
-			$value = $post->ID;
-			break;
+    case 'post_id':
+      $value = $post->ID;
+      break;
 
         case 'categories':
             $taxonomy_objects = get_object_taxonomies( $post, 'objects' );
@@ -881,132 +881,132 @@ function msp_get_template_tag_value( $tag_name, $post = null, $args = null ){
             $value = rtrim( $value, ' / ' );
             break;
 
-		case 'image':
-			$value = msp_get_auto_post_thumbnail_src( $post, 'featured' );
+    case 'image':
+      $value = msp_get_auto_post_thumbnail_src( $post, 'featured' );
 
-			if( ! empty( $value ) )
-				$value = sprintf( '<img src="%s" alt="%s" />', $value, $post->post_title );
-			break;
+      if( ! empty( $value ) )
+        $value = sprintf( '<img src="%s" alt="%s" />', $value, $post->post_title );
+      break;
 
-		case 'image-url':
+    case 'image-url':
         case 'slide-image-url':
             $value = msp_get_auto_post_thumbnail_src( $post, 'auto' );
             break;
 
-		case 'year':
-			$value = strtotime( $post->post_date );
-			$value = date_i18n( 'Y', $value );
-			break;
+    case 'year':
+      $value = strtotime( $post->post_date );
+      $value = date_i18n( 'Y', $value );
+      break;
 
-		case 'daynum':
-			$value = strtotime( $post->post_date );
-			$value = date_i18n( 'j', $value );
-			break;
+    case 'daynum':
+      $value = strtotime( $post->post_date );
+      $value = date_i18n( 'j', $value );
+      break;
 
-		case 'day':
-			$value = strtotime( $post->post_date );
-			$value = date_i18n( 'l', $value );
-			break;
+    case 'day':
+      $value = strtotime( $post->post_date );
+      $value = date_i18n( 'l', $value );
+      break;
 
-		case 'monthnum':
-			$value = strtotime( $post->post_date );
-			$value = date_i18n( 'm', $value );
-			break;
+    case 'monthnum':
+      $value = strtotime( $post->post_date );
+      $value = date_i18n( 'm', $value );
+      break;
 
-		case 'month':
-			$value = strtotime( $post->post_date );
-			$value = date_i18n( 'F', $value );
-			break;
+    case 'month':
+      $value = strtotime( $post->post_date );
+      $value = date_i18n( 'F', $value );
+      break;
 
-		case 'time':
-			$value = strtotime( $post->post_date );
-			$value = date_i18n( 'g:i A', $value );
-			break;
+    case 'time':
+      $value = strtotime( $post->post_date );
+      $value = date_i18n( 'g:i A', $value );
+      break;
 
-		case 'date-published':
-			$value = $post->post_date;
-			break;
+    case 'date-published':
+      $value = $post->post_date;
+      break;
 
-		case 'date-modified':
-			$value = $post->post_modified;
-			break;
+    case 'date-modified':
+      $value = $post->post_modified;
+      break;
 
-		case 'commentnum':
-			$value = $post->comment_count;
-			break;
+    case 'commentnum':
+      $value = $post->comment_count;
+      break;
 
-		case 'wc_price':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = wc_format_decimal( $product->get_price(), 2 );
-			break;
+    case 'wc_price':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = wc_format_decimal( $product->get_price(), 2 );
+      break;
 
-		case 'wc_regular_price':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = wc_format_decimal( $product->get_regular_price(), 2 );
-			break;
+    case 'wc_regular_price':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = wc_format_decimal( $product->get_regular_price(), 2 );
+      break;
 
-		case 'wc_sale_price':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = $product->get_sale_price() ? wc_format_decimal( $product->get_sale_price(), 2 ) : '';
-			break;
+    case 'wc_sale_price':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = $product->get_sale_price() ? wc_format_decimal( $product->get_sale_price(), 2 ) : '';
+      break;
 
-		case 'wc_stock_status':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = $product->is_in_stock() ? __( 'In Stock', MSWP_TEXT_DOMAIN ) : __( 'Out of Stock', MSWP_TEXT_DOMAIN );
-			break;
+    case 'wc_stock_status':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = $product->is_in_stock() ? __( 'In Stock', 'master-slider' ) : __( 'Out of Stock', 'master-slider' );
+      break;
 
-		case 'wc_stock_quantity':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = (int) $product->get_stock_quantity();
-			break;
+    case 'wc_stock_quantity':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = (int) $product->get_stock_quantity();
+      break;
 
-		case 'wc_weight':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = $product->get_weight() ? wc_format_decimal( $product->get_weight(), 2 ) : '';
-			break;
+    case 'wc_weight':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = $product->get_weight() ? wc_format_decimal( $product->get_weight(), 2 ) : '';
+      break;
 
-		case 'wc_product_cats':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = wp_get_post_terms( $product->id, 'product_cat', array( 'fields' => 'names' ) );
-			break;
+    case 'wc_product_cats':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = wp_get_post_terms( $product->id, 'product_cat', array( 'fields' => 'names' ) );
+      break;
 
-		case 'wc_product_tags':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = wp_get_post_terms( $product->id, 'product_tag', array( 'fields' => 'names' ) );
-			break;
+    case 'wc_product_tags':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = wp_get_post_terms( $product->id, 'product_tag', array( 'fields' => 'names' ) );
+      break;
 
-		case 'wc_total_sales':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = metadata_exists( 'post', $product->id, 'total_sales' ) ? (int) get_post_meta( $product->id, 'total_sales', true ) : 0;
-			break;
+    case 'wc_total_sales':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = metadata_exists( 'post', $product->id, 'total_sales' ) ? (int) get_post_meta( $product->id, 'total_sales', true ) : 0;
+      break;
 
-		case 'wc_average_rating':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = wc_format_decimal( $product->get_average_rating(), 2 );
-			break;
+    case 'wc_average_rating':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = wc_format_decimal( $product->get_average_rating(), 2 );
+      break;
 
-		case 'wc_rating_count':
-			if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
-			$product = get_product( $post );
-			$value = (int) $product->get_rating_count();
-			break;
+    case 'wc_rating_count':
+      if ( ! msp_is_plugin_active( 'woocommerce/woocommerce.php' ) ) break;
+      $product = get_product( $post );
+      $value = (int) $product->get_rating_count();
+      break;
 
-		default:
+    default:
             $value = get_post_meta(  $post->ID, $tag_name, true );
-			break;
-	}
+      break;
+  }
 
-	return apply_filters( 'masterslider_get_template_tag_value', $value, $tag_name, $post, $args );
+  return apply_filters( 'masterslider_get_template_tag_value', $value, $tag_name, $post, $args );
 }
 
 
@@ -1028,12 +1028,12 @@ function msp_escape_tag( $tag_name ){
 
 
 function msp_is_true($value) {
-	return strtolower( $value ) === 'true' ? 'true' : 'false';
+  return strtolower( $value ) === 'true' ? 'true' : 'false';
 }
 
 
 function msp_is_true_e( $value ) {
-	echo msp_is_true( $value );
+  echo msp_is_true( $value );
 }
 
 
